@@ -1,0 +1,61 @@
+.button-grid__tesla {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-container__icon-tesla {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.button-icon__tesla-page {
+    width: 100%;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.button-icon__name-tesla {
+    font-family: var(--font-family-text);
+    font-size: 15px;
+    text-align: center;
+    cursor: default;
+    color: #ffffff;
+    padding: 2px 4px;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0);
+}
+
+.button-icon__door,
+.button-icon__window {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: filter .3s ease;
+}
+
+.button-icon__door {
+    background-image: url('../img/icons/doorNew.png');
+}
+
+.button-icon__window {
+    background-image: url('../img/icons/windowNew.png');
+}
+
+.button-icon__door:hover,
+.button-icon__window:hover {
+    filter: brightness(.5);
+}

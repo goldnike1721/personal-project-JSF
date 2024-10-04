@@ -1,0 +1,27 @@
+.phone-screen__title-wrapers {
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+    font-family: var(--font-family-text);
+    font-weight: 500;
+    padding-top: 20px;
+    color: #ffffff;
+}
+
+.button-container__wrapers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 70px;
+    gap: 10px;
+}
+
+.button-container__icon-wrapers {
+    width: 95px;
+    text-align: center;
+    margin: 5px;
+}
+
+.page__wrapers {
+    z-index: -1;
+}

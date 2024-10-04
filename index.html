@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Tesla Model X</title>
+  <link rel="shortcut icon" href="img/favicon.ico" sizes="32x32" type="image/x-icon" />
+  <link rel="stylesheet" href="css/index.css">
+  <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@v0.163.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@v0.163.0/examples/jsm/"
+        }
+      }
+    </script>
+  <script src="https://unpkg.com/htmx.org@1.9.10"
+    integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="heading">
+    <h1>Tesla Model X</h1>
+    <div class="border"></div>
+  </div>
+  <div id="progress-container">
+    <div id="progress">Attracting a model...</div>
+  </div>
+
+
+
+  <div class="phone-frame">
+    <div class="phone-buttons">
+      <div class="volume-buttons">
+        <div class="mute-switch" id="muteSwitch"></div>
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+        <div class="toggle-switch" id="toggleSwitch">
+          <label class="toggle-label">
+            <input type="checkbox" class="toggle-input" checked />
+            <div class="toggle-background">
+              <span class="on">On</span>
+              <span class="off">Off</span>
+            </div>
+            <i class="toggle-indicator"></i>
+          </label>
+        </div>
+      </div>
+      <div class="power-button"></div>
+    </div>
+    <div class="phone-frame__dark-start">
+      <div>
+        <div class="phone-frame__dark">
+          <p class="cellular-communication">lifecell</p>
+          <div class="iphone-lock">
+            <img class="iphone-lock__image" src="img/lock-close.png" alt="Lock close image">
+          </div>
+          <div class="iphone-lock__open hidden">
+            <img class="iphone-lock__open-image" src="img/lock-open.png" alt="Lock open image">
+          </div>
+          <div class="clock-general">
+            <div class="date-general" id="date"></div>
+            <div class="time-general" id="time-lockPage"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+          <div class="button__start-page-general" onclick="showScreen('startScreen')">
+            <div class="button__start-page"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new-screen hidden" id="startScreen">
+      <div class="phone-frame__dark">
+        <div class="phone-screen">
+          <div class="general-phone__top">
+            <div class="clock">
+              <div class="time" id="time-general"></div>
+            </div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+            </div>
+            <div class="iphone-battery">
+              <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+            </div>
+            <div class="iphone-wifi">
+              <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+            </div>
+            <div class="iphone-signal">
+              <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+            </div>
+          </div>
+          <div class="main-content active" id="content1">
+            <div class="button-container__general">
+              <div class="button-container">
+                <div class="button-container__icon">
+                  <button class="button-icon button-icon__tesla" onclick="showScreen('teslaScreen')"></button>
+                  <p class="button-icon__name">Tesla</p>
+                </div>
+                <div class="button-container__icon">
+                  <button class="button-icon button-icon__radio" onclick="showScreen('radioScreen')"></button>
+                  <p class="button-icon__name">Radio</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__github" href="https://github.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">GitHub</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__discord" href="https://discord.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Discord</p>
+                </div>
+              </div>
+              <div class="button-container">
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__google" href="https://google.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Chrome</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__vscode" href="https://code.visualstudio.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">VSCode</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__diya" href="https://diia.gov.ua/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Дія</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__workua" href="https://www.work.ua/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Work.ua</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="main-content hidden" id="content2">
+            <div class="button-container__weather-general">
+              <div class="button-container__weather" id="weatherContainer" onclick="showScreen('weatherScreen')">
+              </div>
+              <p class="button-icon__name-weather">Weather</p>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="main-content hidden" id="content3">
+            <div class="button-container__stock-general">
+              <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
+              </div>
+              <p class="button-icon__name-stock">Stock</p>
+            </div>
+          </div>
+
+
+
+          <div class="button-container__bottom">
+            <div class="button-container__icon-bottom">
+              <button class="button-icon__bottom button-icon__phone"></button>
+            </div>
+            <div class="button-container__icon-bottom">
+              <button class="button-icon__bottom button-icon__safari"></button>
+            </div>
+            <div class="button-container__icon-bottom">
+              <button class="button-icon__bottom button-icon__messages"></button>
+            </div>
+            <div class="button-container__icon-bottom">
+              <button class="button-icon__bottom button-icon__appleMusic"></button>
+            </div>
+          </div>
+        </div>
+        <div class="indicator-container">
+          <span class="indicator active" onclick="showContent(1)"></span>
+          <span class="indicator" onclick="showContent(2)"></span>
+          <span class="indicator" onclick="showContent(3)"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Новий екран -->
+    <div class="phone-frame__dark-bottom">
+      <div class="clock__page-icons">
+        <div class="time__page-icons" id="time"></div>
+      </div>
+      <div class="phone-notch__page-icons">
+        <div class="camera__page-icons"></div>
+      </div>
+      <div class="iphone-battery__page-icons">
+        <img class="iphone-battery__image-page-icons" src="img/battery.png" alt="Battery iPhone">
+      </div>
+      <div class="iphone-wifi__page-icons">
+        <img class="iphone-wifi__image-page-icons" src="img/wifi.png" alt="Wifi image">
+      </div>
+      <div class="iphone-signal__page-icons">
+        <img class="iphone-signal__image-page-icons" src="img/communication-signal.png" alt="Communication Signal">
+      </div>
+
+
+      <div id="radioScreen" class="new-screen hidden">
+        <div class="phone-frame__dark">
+          <div class="clock">
+            <div class="time" id="time-radio"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <h1 class="phone-screen__title-window">Radio</h1>
+        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
+          onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+      <!-- <section data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="index.door.partial.html"></section> -->
+      <!-- <section data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="index.window.partial.html"></section> -->
+
+      <div id="teslaScreen" class="new-screen hidden">
+        <div class="phone-frame__dark">
+          <div class="clock">
+            <div class="time" id="time-tesla"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <h2 class="phone-screen__title-window">Tesla</h2>
+        <div class="button-grid__tesla">
+          <div class="button-container__icon-tesla">
+            <button class="button-icon__tesla-page button-icon__door" onclick="showScreen('doorScreen')"></button>
+            <p class="button-icon__name-tesla">Door</p>
+          </div>
+          <div class="button-container__icon-tesla">
+            <button class="button-icon__tesla-page button-icon__window" onclick="showScreen('windowScreen')"></button>
+            <p class="button-icon__name-tesla">Window</p>
+          </div>
+
+          <div class="button-container__icon-tesla">
+            <button class="button-icon__tesla-page button-icon__wrapers" onclick="showScreen('wrapersScreen')"></button>
+            <p class="button-icon__name-tesla">Wrapers</p>
+          </div>
+
+          <div class="button-container__icon-tesla">
+            <button class="button-icon__tesla-page button-icon__NEW" onclick="showScreen('')"></button>
+            <p class="button-icon__name-tesla">NEW</p>
+          </div>
+        </div>
+        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
+          onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+      <div id="doorScreen" class="new-screen hidden">
+        <div class="phone-frame__dark page__door">
+          <div class="clock">
+            <div class="time" id="time-tesla__door"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <h2 class="phone-screen__title-door">Door</h2>
+        <div class="button-container__door">
+          <div class="button-container__icon-door door-LC">
+            <button id="toggleDoorButtonLC" class="button-icon__door-page doorLC"></button>
+          </div>
+          <div class="button-container__icon-door">
+            <button id="toggleDoorButtonFL" class="button-icon__door-page doorFL"></button>
+          </div>
+          <div class="button-container__icon-door">
+            <button id="toggleDoorButtonFR" class="button-icon__door-page doorFR"></button>
+          </div>
+          <div class="button-container__icon-door">
+            <button id="toggleDoorButtonRL" class="button-icon__door-page doorRL"></button>
+          </div>
+          <div class="button-container__icon-door">
+            <button id="toggleDoorButtonRR" class="button-icon__door-page doorRR"></button>
+          </div>
+          <div class="button-container__icon-door door-H">
+            <button id="toggleDoorButtonHood" class="button-icon__door-page doorH"></button>
+          </div>
+        </div>
+        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
+          onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+      <div id="windowScreen" class="new-screen hidden">
+        <div class="phone-frame__dark page__window">
+          <div class="clock">
+            <div class="time" id="time-tesla__window"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <h2 class="phone-screen__title-window">Window</h2>
+        <div class="button-container__window">
+          <div class="button-container__icon-window">
+            <button id="toggleDoorButtonWindowFL" class="button-icon__window-page windowFL"></button>
+          </div>
+          <div class="button-container__icon-window">
+            <button id="toggleDoorButtonWindowFR" class="button-icon__window-page windowFR"></button>
+          </div>
+          <div class="button-container__icon-window">
+            <button id="toggleDoorButtonWindowRL" class="button-icon__window-page windowRL"></button>
+          </div>
+          <div class="button-container__icon-window">
+            <button id="toggleDoorButtonWindowRR" class="button-icon__window-page windowRR"></button>
+          </div>
+        </div>
+        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
+          onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+      <div id="wrapersScreen" class="new-screen hidden">
+        <div class="phone-frame__dark page__wrapers">
+          <div class="clock">
+            <div class="time" id="time-tesla__wrapers"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <h2 class="phone-screen__title-wrapers">Wrapers</h2>
+        <div class="button-container__wrapers">
+          <div class="button-container__icon-wrapers">
+            <button id="buttonFirstModeWrapers" class="button-icon__window-page">Wrapers 1st</button>
+          </div>
+          <div class="button-container__icon-wrapers">
+            <button id="buttonSecondModeWrapers" class="button-icon__window-page">Wrapers 2nd</button>
+          </div>
+          <div class="button-container__icon-wrapers">
+            <button id="buttonThirdModeWrapers" class="button-icon__window-page">Wrapers 3rd</button>
+          </div>
+          <div class="button-container__icon-wrapers">
+            <button id="buttonFirstModeWrapersOne" class="button-icon__window-page">SingleRun</button>
+          </div>
+        </div>
+        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
+          onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+      <div id="weatherScreen" class="new-screen hidden weather-page">
+        <div class="phone-frame__dark">
+          <div class="clock">
+            <div class="time" id="time-weather"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <div class="button-container__weather-general-page">
+          <div class="button-container__weather-page" id="weatherContainerPage">
+          </div>
+        </div>
+        <div class="city-indicators__weather">
+          <hr class="city-weather__line" />
+          <button class="city-button__weather" data-city="Lviv"></button>
+          <button class="city-button__weather" data-city="Kyiv"></button>
+          <button class="city-button__weather" data-city="London"></button>
+          <button class="city-button__weather" data-city="New York"></button>
+          <button class="city-button__weather" data-city="Bangkok"></button>
+          <button class="city-button__weather" data-city="Paris"></button>
+          <button class="city-button__weather" data-city="Dubai"></button>
+          <button class="city-button__weather" data-city="Singapore"></button>
+          <button class="city-button__weather" data-city="Seoul"></button>
+          <button class="city-button__weather" data-city="Kuala Lumpur"></button>
+          <button class="city-button__weather" data-city="Tokyo"></button>
+          <button class="city-button__weather" data-city="Istanbul"></button>
+        </div>
+        <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
+          ontouchend="endTouch(event)" onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div id="stockScreen" class="new-screen hidden stock-page">
+        <div class="phone-frame__dark">
+          <div class="clock">
+            <div class="time" id="time-stock"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <!-- <div class="button-container__weather-general-page">
+          <div class="button-container__weather-page" id="weatherContainerPage">
+          </div>
+        </div> -->
+
+
+
+
+        <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
+          ontouchend="endTouch(event)" onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+  <script type="module" src="./js/tesla.js"></script>
+  <!-- <script src="./js/index.js"></script> -->
+  <script src="./js/icon-page.js"></script>
+  <script src="./js/weather.js"></script>
+  <script src="./js/weather-page.js"></script>
+  <script src="./js/switch.js"></script>
+  <script src="./js/clock.js"></script>
+  <script src="./js/lock.js"></script>
+  <script src="./js/general-page.js"></script>
+  <script src="./js/stock.js"></script>
+
+</body>
+
+</html>

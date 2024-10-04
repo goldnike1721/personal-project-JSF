@@ -1,0 +1,488 @@
+.phone-frame {
+    position: fixed;
+    width: 280px;
+    height: 556.67px;
+    background-color: #171717;
+    border-radius: 35px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid #C6DFDF;
+    top: 200px;
+    left: 100px;
+    z-index: 111;
+}
+
+.phone-frame__dark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 96%;
+    height: 98%;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.clock {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 20px;
+    top: 7px;
+    left: 10px;
+    background-color: transparent;
+    color: #ffffff;
+    font-family: var(--font-family-text);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px;
+    z-index: 111;
+}
+
+.phone-notch {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 20px;
+    background-color: #000000;
+    border-radius: 20px;
+    z-index: 1000000;
+    margin: 6px 0 25px 0;
+}
+
+.camera {
+    position: absolute;
+    top: 5px;
+    left: 85%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #17183F;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.iphone-battery {
+    position: fixed;
+    top: 6px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.iphone-battery__image {
+    width: 20px;
+    height: auto;
+}
+
+.iphone-wifi {
+    position: fixed;
+    top: 9px;
+    right: 35px;
+    z-index: 1000;
+}
+
+.iphone-wifi__image {
+    width: 14px;
+    height: auto;
+}
+
+.iphone-signal {
+    position: fixed;
+    top: 11px;
+    right: 55px;
+    z-index: 1000;
+}
+
+.iphone-signal__image {
+    width: 15px;
+    height: 10px;
+}
+
+.iphone-battery__image,
+.iphone-wifi__image,
+.iphone-signal__image {
+    filter: brightness(0) invert(1);
+}
+
+.phone-screen {
+    flex-grow: 1;
+    width: 104%;
+    height: 102%;
+    background-image: url('../img/wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 27px;
+    padding: 6px 0 15px 0;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.phone-buttons {
+    position: fixed;
+    width: 276.4px;
+    height: 555.2px;
+}
+
+.volume-up {
+    height: 43px;
+    margin: 17px 0 7px 0;
+}
+
+.volume-down {
+    height: 43px;
+}
+
+.volume-buttons {
+    position: relative;
+    left: -4px;
+    top: 112px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 140px;
+    z-index: 2;
+}
+
+.volume-up,
+.volume-down {
+    width: 2px;
+    background-color: #C6DFDF;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.power-button {
+    position: absolute;
+    right: -4px;
+    top: 180px;
+    width: 2px;
+    height: 70px;
+    background-color: #C6DFDF;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.button-container__general {
+    padding-top: 40px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 15px;
+}
+
+.button-container__icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+}
+
+.button-icon {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.button-icon__radio,
+.button-icon__tesla,
+.button-icon__discord,
+.button-icon__github,
+.button-icon__vscode,
+.button-icon__google,
+.button-icon__diya,
+.button-icon__workua,
+.button-icon__phone,
+.button-icon__safari,
+.button-icon__messages,
+.button-icon__appleMusic {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: filter .3s ease;
+}
+
+.button-icon__radio {
+    background-image: url('../img/icons/radio.webp');
+}
+
+.button-icon__tesla {
+    background-image: url('../img/icons/tesla.webp');
+}
+
+.button-icon__discord {
+    background-image: url('../img/icons/discord.webp');
+}
+
+.button-icon__github {
+    background-image: url('../img/icons/github.webp');
+}
+
+.button-icon__vscode {
+    background-image: url('../img/icons/vscode.webp');
+}
+
+.button-icon__google {
+    background-image: url('../img/icons/google.webp');
+}
+
+.button-icon__diya {
+    background-image: url('../img/icons/diya.webp');
+}
+
+.button-icon__workua {
+    background-image: url('../img/icons/workua.webp');
+}
+
+.button-icon__phone {
+    background-image: url('../img/icons/phone.webp');
+}
+
+.button-icon__safari {
+    background-image: url('../img/icons/safari.webp');
+}
+
+.button-icon__messages {
+    background-image: url('../img/icons/messages.webp');
+}
+
+.button-icon__appleMusic {
+    background-image: url('../img/icons/appleMusic.webp');
+}
+
+.button-icon__radio:hover,
+.button-icon__tesla:hover,
+.button-icon__discord:hover,
+.button-icon__github:hover,
+.button-icon__vscode:hover,
+.button-icon__google:hover,
+.button-icon__diya:hover,
+.button-icon__workua:hover,
+.button-icon__phone:hover,
+.button-icon__safari:hover,
+.button-icon__messages:hover,
+.button-icon__appleMusic:hover {
+    filter: brightness(.5);
+}
+
+.button-icon__name {
+    font-family: var(--font-family-text);
+    font-size: 11px;
+    text-align: center;
+    cursor: default;
+    color: #ffffff;
+    padding: 7px 0;
+    width: 100%;
+    background-color: rgba(32, 80, 78, 0);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 0 10px 5px rgba(32, 80, 78, 0);
+}
+
+.hidden {
+    display: none;
+}
+
+.new-screen {
+    position: absolute;
+    top: 5px;
+    left: 5.5px;
+    width: 96.28%;
+    height: 98%;
+    background-image: url('../img/wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 27px;
+    z-index: 10;
+    padding: 20px;
+}
+
+.button__close-page-general {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1111;
+}
+
+.button__close-page {
+    width: 120px;
+    height: 5px;
+    background-color: white;
+    border-radius: 2.5px;
+    z-index: 20;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.button__close-page-general:hover .button__close-page {
+    opacity: 1;
+}
+
+.phone-frame__dark-bottom {
+    width: 96%;
+    height: 98%;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+/* BLOCK BOTTOM GENERAL */
+.button-container__bottom {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgba(32, 80, 78, 0.7);
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    gap: 15px;
+    width: 244.52px;
+    margin: 0 0 10px 10px;
+}
+
+.button-container__icon-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+}
+
+.button-icon__bottom {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* INDICATORS + ANIMATION PAGE*/
+.indicator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(32, 80, 78, 0.4);
+    bottom: 80px;
+    padding: 10px;
+    border-radius: 15px;
+    width: 70px;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#startScreen:hover .indicator-container {
+    opacity: 1;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.indicator.active,
+.indicator:hover {
+    background-color: rgb(25, 53, 52);
+}
+
+.main-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.main-content.hidden {
+    display: none;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.5s forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s forwards;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.5s forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s forwards;
+}
+
+@keyframes slideOutLeft {
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,176 @@
+.mute-switch {
+    height: 18px;
+    width: 40px;
+    background-color: #C6DFDF;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-switch {
+    display: none;
+    position: absolute;
+    top: -50px;
+    cursor: pointer;
+    left: 0;
+    z-index: 10;
+}
+
+.toggle-label {
+    transform: scale(0.75);
+    display: block;
+    width: 40px;
+    height: 64px;
+    background: linear-gradient(to bottom, #9e9e9e 30%, #f4f4f4);
+    border-radius: 20px;
+    box-shadow: 0 1px 0 0 #fff, 0 -1px 0 0 #969494;
+    position: relative;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    margin-left: -40px;
+    top: 23px;
+}
+
+.toggle-label::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: transparent;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.toggle-label:hover {
+    cursor: pointer;
+}
+
+.toggle-label:focus,
+.toggle-label:active {
+    outline: 0;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-background {
+    display: block;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, #8b8c8e 20%, #f4f4f4);
+    border-radius: 20px;
+}
+
+.toggle-background:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 54px;
+    width: 30px;
+    left: 3px;
+    top: 3px;
+    border-radius: 20px;
+    background: #ff0000c6;
+    box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.8);
+    transition: .20s;
+}
+
+.toggle-indicator {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: linear-gradient(to top, #c83d37 20%, #f4f4f4);
+    border-radius: 50%;
+    box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.7), 0 -2.5px 5px 0 #c83d37;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, 6%);
+    transition: .25s;
+}
+
+.toggle-input:checked~.toggle-indicator {
+    top: 44%;
+    background: linear-gradient(to bottom, #5a6f6e 20%, #f4f4f4);
+    box-shadow: 0 -2.5px 5px 0 rgba(0, 0, 0, 0.7), 0 2.5px 5px 0 #3f4f4f;
+}
+
+.toggle-input:checked+.toggle-background:after {
+    background: rgba(32, 80, 78, 0.5);
+    box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.6);
+}
+
+.on,
+.off {
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6em;
+    font-weight: 600;
+    z-index: 2;
+    letter-spacing: 0.5px;
+    transition: .25s;
+}
+
+.on {
+    top: 20%;
+    color: #38c226;
+}
+
+.off {
+    bottom: 15%;
+    color: #ffffff;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+}
+
+.toggle-switch {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.toggle-switch.show {
+    display: block;
+    animation: slideIn 0.5s forwards;
+    opacity: 1;
+}
+
+.toggle-switch.hide {
+    animation: slideOut 0.5s forwards;
+    display: block;
+}
+
+.mute-switch {
+    width: 2px;
+    background-color: #C6DFDF;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
