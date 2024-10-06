@@ -211,7 +211,7 @@ scene.add(directionalLight);
 let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR; // Додаємо змінні для анімацій
 
 const loader = new GLTFLoader().setPath('tesla-model/');
-loader.load('!scene.gltf', (gltf) => {
+loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 

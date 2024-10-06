@@ -1,4 +1,3 @@
-// Lock!!!!!!!!!!!!!
 document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.querySelector('.button__start-page-general');
     const closedLock = document.querySelector('.iphone-lock');

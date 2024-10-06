@@ -18,6 +18,7 @@
   <script src="https://unpkg.com/htmx.org@1.9.10"
     integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
     crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -103,6 +104,11 @@
             </div>
           </div>
           <div class="main-content active" id="content1">
+            <div class="button-container__weather-general">
+              <div class="button-container__weather" id="weatherContainer" onclick="showScreen('weatherScreen')">
+              </div>
+              <p class="button-icon__name-weather">Weather</p>
+            </div>
             <div class="button-container__general">
               <div class="button-container">
                 <div class="button-container__icon">
@@ -154,10 +160,54 @@
 
 
           <div class="main-content hidden" id="content2">
-            <div class="button-container__weather-general">
-              <div class="button-container__weather" id="weatherContainer" onclick="showScreen('weatherScreen')">
+            <div class="button-container__stock-general">
+              <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
               </div>
-              <p class="button-icon__name-weather">Weather</p>
+              <p class="button-icon__name-stock">Stock</p>
+            </div>
+            <div class="button-container__general">
+              <div class="button-container">
+                <div class="button-container__icon">
+                  <button class="button-icon button-icon__tesla" onclick="showScreen('teslaScreen')"></button>
+                  <p class="button-icon__name">Name</p>
+                </div>
+                <div class="button-container__icon">
+                  <button class="button-icon button-icon__radio" onclick="showScreen('radioScreen')"></button>
+                  <p class="button-icon__name">Name</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__github" href="https://github.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Name</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__discord" href="https://discord.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Name</p>
+                </div>
+              </div>
+              <div class="button-container">
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__google" href="https://google.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Name</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__vscode" href="https://code.visualstudio.com/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Name</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__diya" href="https://diia.gov.ua/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Name</p>
+                </div>
+                <div class="button-container__icon">
+                  <a class="button-icon button-icon__workua" href="https://www.work.ua/" target="_blank"
+                    rel="noopener noreferrer"></a>
+                  <p class="button-icon__name">Name</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -167,11 +217,7 @@
 
 
           <div class="main-content hidden" id="content3">
-            <div class="button-container__stock-general">
-              <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
-              </div>
-              <p class="button-icon__name-stock">Stock</p>
-            </div>
+
           </div>
 
 
@@ -502,6 +548,7 @@
 
     </div>
   </div>
+
   <script type="module" src="./js/tesla.js"></script>
   <!-- <script src="./js/index.js"></script> -->
   <script src="./js/icon-page.js"></script>

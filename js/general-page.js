@@ -1,4 +1,3 @@
-// Перехід на нову сторінку приховавши на стару
 function hideScreen() {
     const currentScreen = document.querySelector('.new-screen:not(.hidden)'); // Знаходить поточний відкритий екран
 

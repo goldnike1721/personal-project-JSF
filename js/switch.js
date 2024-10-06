@@ -1,4 +1,3 @@
-// Switch
 document.addEventListener('DOMContentLoaded', () => {
     const muteSwitch = document.getElementById('muteSwitch');
     const toggleSwitch = document.getElementById('toggleSwitch');
@@ -9,28 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     muteSwitch.addEventListener('mouseenter', () => {
         toggleSwitch.classList.add('show');
-        toggleSwitch.classList.remove('hide'); // Показуємо перемикач
+        toggleSwitch.classList.remove('hide');
     });
 
     muteSwitch.addEventListener('mouseleave', () => {
-        toggleSwitch.classList.remove('show'); // Спочатку прибираємо show
-        toggleSwitch.classList.add('hide'); // Додаємо клас hide
+        toggleSwitch.classList.remove('show');
+        toggleSwitch.classList.add('hide');
         setTimeout(() => {
-            toggleSwitch.classList.remove('hide'); // Після анімації видаляємо hide
-        }, 500); // Затримка повинна відповідати тривалості анімації slideOut
+            toggleSwitch.classList.remove('hide');
+        }, 500);
     });
 
     toggleSwitch.addEventListener('mouseenter', () => {
         toggleSwitch.classList.add('show');
-        toggleSwitch.classList.remove('hide'); // Показуємо перемикач
+        toggleSwitch.classList.remove('hide');
     });
 
     toggleSwitch.addEventListener('mouseleave', () => {
-        toggleSwitch.classList.remove('show'); // Спочатку прибираємо show
-        toggleSwitch.classList.add('hide'); // Додаємо клас hide
+        toggleSwitch.classList.remove('show');
+        toggleSwitch.classList.add('hide');
         setTimeout(() => {
-            toggleSwitch.classList.remove('hide'); // Після анімації видаляємо hide
-        }, 500); // Затримка повинна відповідати тривалості анімації slideOut
+            toggleSwitch.classList.remove('hide');
+        }, 500);
     });
 
     toggleInput.addEventListener('change', () => {

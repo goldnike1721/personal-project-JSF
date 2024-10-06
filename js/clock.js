@@ -1,4 +1,3 @@
-// Clock!!!!!!!!!!!!!
 function updateClock() {
     const now = new Date();
 

@@ -48,11 +48,11 @@
 }
 
 .button-icon__door {
-    background-image: url('../img/icons/doorNew.png');
+    background-image: url('../img/tesla-page/doorNew.png');
 }
 
 .button-icon__window {
-    background-image: url('../img/icons/windowNew.png');
+    background-image: url('../img/tesla-page/windowNew.png');
 }
 
 .button-icon__door:hover,

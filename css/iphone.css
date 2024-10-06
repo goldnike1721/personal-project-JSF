@@ -179,13 +179,13 @@
 }
 
 .button-container__general {
-    padding-top: 40px;
+    padding-top: 250px;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 5px;
     gap: 15px;
 }
 

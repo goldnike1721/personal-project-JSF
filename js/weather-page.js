@@ -246,7 +246,7 @@ async function fetchWeatherGeneral(city) {
 `;
 
         weatherContainerGeneral.innerHTML = currentWeatherDisplayGeneral + hourlyForecastGeneral + daysOfWeekList;
-        weatherContainerGeneral.innerHTML += weatherFeelsRainHumidityVisibility; // Додати блок відчуттів окремо
+        weatherContainerGeneral.innerHTML += weatherFeelsRainHumidityVisibility;
 
         const windMapUrl = `https://embed.windy.com/embed2.html?lat=${latGeneral}&lon=${lonGeneral}&detailLat=${latGeneral}&detailLon=${lonGeneral}&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1`;
         const windMapIframe = `
