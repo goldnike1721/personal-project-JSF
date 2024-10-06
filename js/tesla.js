@@ -1,63 +1,3 @@
-// import * as THREE from 'three';
-// import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-// const renderer = new THREE.WebGLRenderer({ antialias: true });
-// renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-// renderer.setSize(window.innerWidth, window.innerHeight);
-// renderer.setClearColor(0x000000);
-// renderer.setPixelRatio(window.devicePixelRatio);
-
-// renderer.shadowMap.enabled = true;
-// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-// document.body.appendChild(renderer.domElement);
-
-// const scene = new THREE.Scene();
-
-// const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-
-// const controls = new OrbitControls(camera, renderer.domElement);
-// controls.enableDamping = true;
-// controls.enablePan = false;
-// controls.minDistance = 3;
-// controls.maxDistance = 20;
-// controls.minPolarAngle = 0.2;
-// controls.maxPolarAngle = 1.5;
-// controls.autoRotate = false;
-
-// const groundGeometry = new THREE.PlaneGeometry(200, 200, 320, 320);
-// groundGeometry.rotateX(-Math.PI / 2);
-// const groundMaterial = new THREE.MeshStandardMaterial({
-//   color: 0x000000,
-//   side: THREE.DoubleSide
-// });
-// const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-// groundMesh.castShadow = false;
-// groundMesh.receiveShadow = true;
-// scene.add(groundMesh);
-
-// // // Додати амбієнтне світло
-// const ambientLight = new THREE.AmbientLight(0xffffff, 2);
-// scene.add(ambientLight);
-
-// const spotLight = new THREE.SpotLight(0xffffff, 70000, 100, 0.1, 0.5);
-// spotLight.position.set(0, 40, 0); // Освітлення в центрі сцени
-// spotLight.castShadow = true;
-// spotLight.shadow.bias = -0.0001;
-// scene.add(spotLight);
-
-
-
-
-
-// // сонце
-// const directionalLight = new THREE.DirectionalLight(0xfff4e5, 90); // Колір і інтенсивність
-// directionalLight.position.set(10, 10, 1); // Позиція
-// scene.add(directionalLight);
-
-
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -76,21 +16,17 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enablePan = false;
-controls.minDistance = 3;
+controls.minDistance = 4;
 controls.maxDistance = 20;
 controls.minPolarAngle = 0.2;
 controls.maxPolarAngle = 1.5;
 controls.autoRotate = false;
 
-
-
-
-// Вершинний шейдер
 const vertexShader = `
 varying vec2 vUv;
 void main() {
@@ -98,16 +34,13 @@ void main() {
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }`;
 
-// Фрагментний шейдер
 const fragmentShader = `
 varying vec2 vUv;
 void main() {
-    // Розмиття з обох боків
     float alpha = 1.0 - smoothstep(0.2, 0.5, length(vUv - 0.5));
-    gl_FragColor = vec4(127.0 / 255.0, 121.0 / 255.0, 121.0 / 255.0, alpha); // Вказаний колір з прозорістю
+    gl_FragColor = vec4(127.0 / 255.0, 121.0 / 255.0, 121.0 / 255.0, alpha);
 }`;
 
-// Матеріал з шейдером
 const groundMaterial = new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
@@ -122,13 +55,6 @@ groundGeometry.rotateX(-Math.PI / 2);
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
-
-
-
-
-
-
-
 // const groundGeometry = new THREE.CircleGeometry(7, 15);
 // groundGeometry.rotateX(-Math.PI / 2);
 // const groundMaterial = new THREE.MeshStandardMaterial({
@@ -141,18 +67,18 @@ scene.add(groundMesh);
 // scene.add(groundMesh);
 
 // Додати амбієнтне світло
-const ambientLight = new THREE.AmbientLight(0xfff4e5, 0.5); // Зменшення інтенсивності до 0.5
+const ambientLight = new THREE.AmbientLight(0xfff4e5, 0.5);
 scene.add(ambientLight);
 
 const spotLight = new THREE.SpotLight(0xfff4e5, 21115, 100, 0.1, 0.5);
-spotLight.position.set(0, 40, 0); // Освітлення в центрі сцени
+spotLight.position.set(0, 40, 0);
 spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
 // Сонце (Directional Light)
-const directionalLight = new THREE.DirectionalLight(0xfff4e5, 20); // Зменшена інтенсивність
-directionalLight.position.set(10, 50, 10); // Позиція "сонця"
+const directionalLight = new THREE.DirectionalLight(0xfff4e5, 20);
+directionalLight.position.set(10, 50, 10);
 directionalLight.castShadow = true;
 
 // Налаштування камери тіней для обмеження області освітлення
@@ -169,15 +95,6 @@ scene.add(directionalLight);
 // Камера тіней для візуалізації (необов'язково, для налагодження)
 // const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
 // scene.add(helper);
-
-
-
-
-
-
-
-
-
 
 // const spotLight1 = new THREE.SpotLight(0xffffff, 30000, 100, 0.2, 0.5);
 // spotLight1.position.set(0, 10, 0); // Освітлення в центрі сцени
@@ -208,7 +125,7 @@ scene.add(directionalLight);
 // spotLight3.shadow.bias = -20.0001;
 // scene.add(spotLight3);
 
-let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR; // Додаємо змінні для анімацій
+let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carstartingTrip;
 
 const loader = new GLTFLoader().setPath('tesla-model/');
 loader.load('scene.gltf', (gltf) => {
@@ -223,21 +140,35 @@ loader.load('scene.gltf', (gltf) => {
   });
 
   mesh.scale.set(2, 2, 2);
-  mesh.position.set(0, 0.65, 0); // Модель розміщена в центрі сцени
-
+  mesh.position.set(0, 0.65, 0);
   scene.add(mesh);
 
-  // Автоматичне позиціювання камери
-  const boundingBox = new THREE.Box3().setFromObject(mesh);
-  const center = boundingBox.getCenter(new THREE.Vector3());
-  const size = boundingBox.getSize(new THREE.Vector3());
-  const maxSize = Math.max(size.x, size.y, size.z);
+  // // Автоматичне позиціювання камери
+  // const boundingBox = new THREE.Box3().setFromObject(mesh);
+  // const center = boundingBox.getCenter(new THREE.Vector3());
+  // const size = boundingBox.getSize(new THREE.Vector3());
+  // const maxSize = Math.max(size.x, size.y, size.z);
+
+
+
+  // Встановлюємо камеру по центру сцени
+  camera.position.set(4, 2, 10); // Налаштуйте параметри (x, y, z) під свої потреби
+  controls.target.set(0, 0.7, 0); // Фокусуємо OrbitControls на центр сцени
+  controls.update();
+
+
+
+
+
+
+
+
 
   // Зміщення камери вліво на 50 одиниць
-  camera.position.set(center.x + 3, center.y + maxSize / 5, center.z + maxSize + 2);
-  controls.target.copy(center); // Орієнтуємо OrbitControls на центр моделі
+  // camera.position.set(center.x + 3, center.y + maxSize / 5, center.z + maxSize + 2);
+  // controls.target.copy(center); // Орієнтуємо OrbitControls на центр моделі
 
-  controls.update();
+  // controls.update();
 
   // Анімації
   mixer = new THREE.AnimationMixer(mesh);
@@ -246,6 +177,10 @@ loader.load('scene.gltf', (gltf) => {
   doorRL = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearLeftDoorAction'));
   doorRR = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearRightDoorAction'));
   doorLC = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDLuggageCompartmentAction'));
+  doorLCSpoiler1 = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarSpoiler1Action'));
+  doorLCSpoiler2 = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarSpoiler2Action'));
+  doorLCSpoiler3 = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarSpoiler3Action'));
+  doorLCSpoiler4 = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarSpoiler4Action'));
   doorLCCylinderL = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDShockAbsorberCylinderLeftAction'));
   doorLCCylinderR = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDShockAbsorberCylinderRightAction'));
   doorLCPistoneL = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDShockAbsorberPistonLeftAction'));
@@ -259,13 +194,19 @@ loader.load('scene.gltf', (gltf) => {
   windowDoorRR = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDWindowRearRightDoorAction'));
   CarWiperLeft = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarWiperLeftAction'));
   CarWiperRight = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarWiperRightAction'));
+  carstartingTrip = mixer.clipAction(gltf.animations.find(clip => clip.name === '$ColladaAutoName$_0Action'));
 
+  // Перевіряємо та запускаємо анімації
+  if (carstartingTrip) {
+    carstartingTrip.clampWhenFinished = true;
+    carstartingTrip.loop = THREE.LoopOnce;
+    carstartingTrip.play(); // Запуск анімації
+  }
 
-  // Додаємо параметри для кожної анімації
-  [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR].forEach(action => {
+  [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carstartingTrip].forEach(action => {
     if (action) {
       action.clampWhenFinished = true;
-      action.loop = THREE.LoopOnce; // Виконується один раз
+      action.loop = THREE.LoopOnce;
     }
   });
 
@@ -539,8 +480,9 @@ toggleDoorButtonRR.addEventListener('click', () => {
 
 // Багажник (LC)
 toggleDoorButtonLC.addEventListener('click', () => {
-  if (doorLC && doorLCCylinderL && doorLCCylinderR && doorLCPistoneL && doorLCPistoneR && doorLCRodL && doorLCRodR) {
+  if (doorLC && doorLCCylinderL && doorLCCylinderR && doorLCPistoneL && doorLCPistoneR && doorLCRodL && doorLCRodR && doorLCSpoiler1 && doorLCSpoiler2 && doorLCSpoiler3 && doorLCSpoiler4) {
     if (doorStates.LC) {
+      // Анімації для всіх елементів, окрім спойлера
       doorLC.timeScale = -1;
       doorLC.paused = false;
       doorLC.play();
@@ -563,13 +505,27 @@ toggleDoorButtonLC.addEventListener('click', () => {
       doorLCRodR.paused = false;
       doorLCRodR.play();
 
-      closeSoundLC.play();
-
+      // Відтермінування запуску анімації для спойлера
       setTimeout(() => {
-      }, doorLC.getClip().duration * 1000);
+        doorLCSpoiler1.timeScale = -1;
+        doorLCSpoiler1.paused = false;
+        doorLCSpoiler1.play();
+        doorLCSpoiler2.timeScale = -1;
+        doorLCSpoiler2.paused = false;
+        doorLCSpoiler2.play();
+        doorLCSpoiler3.timeScale = -1;
+        doorLCSpoiler3.paused = false;
+        doorLCSpoiler3.play();
+        doorLCSpoiler4.timeScale = -1;
+        doorLCSpoiler4.paused = false;
+        doorLCSpoiler4.play();
+      }, 5000); // Затримка на 1 секунду перед запуском анімації спойлера
+
+      closeSoundLC.play();
 
       doorStates.LC = false;
     } else {
+      // Анімації для всіх елементів
       doorLC.timeScale = 1;
       doorLC.paused = false;
       doorLC.play();
@@ -591,6 +547,20 @@ toggleDoorButtonLC.addEventListener('click', () => {
       doorLCRodR.timeScale = 1;
       doorLCRodR.paused = false;
       doorLCRodR.play();
+
+      // Спойлер відкривається без затримки
+      doorLCSpoiler1.timeScale = 1;
+      doorLCSpoiler1.paused = false;
+      doorLCSpoiler1.play();
+      doorLCSpoiler2.timeScale = 1;
+      doorLCSpoiler2.paused = false;
+      doorLCSpoiler2.play();
+      doorLCSpoiler3.timeScale = 1;
+      doorLCSpoiler3.paused = false;
+      doorLCSpoiler3.play();
+      doorLCSpoiler4.timeScale = 1;
+      doorLCSpoiler4.paused = false;
+      doorLCSpoiler4.play();
 
       setTimeout(() => {
         openSoundLC.play();
@@ -629,54 +599,6 @@ toggleDoorButtonHood.addEventListener('click', () => {
 });
 
 // Двірники (Wrapers)
-// document.getElementById('openButtonWipers').addEventListener('click', () => {
-//   if (!doorStates.Wipers && CarWiperLeft && CarWiperRight) {
-//     CarWiperLeft.timeScale = 1;
-//     CarWiperLeft.paused = false;
-//     CarWiperLeft.play();
-//     CarWiperRight.timeScale = 1;
-//     CarWiperRight.paused = false;
-//     CarWiperRight.play();
-//     doorStates.Wipers = true;
-//   }
-// });
-// document.getElementById('closeButtonWipers').addEventListener('click', () => {
-//   if (doorStates.Wipers && CarWiperLeft && CarWiperRight) {
-//     CarWiperLeft.timeScale = -1;
-//     CarWiperLeft.paused = false;
-//     CarWiperLeft.play();
-//     CarWiperRight.timeScale = -1;
-//     CarWiperRight.paused = false;
-//     CarWiperRight.play();
-//     setTimeout(() => {
-//       CarWiperLeft.paused = true;
-//       CarWiperRight.paused = true;
-//       doorStates.Wipers = false;
-//     }, CarWiperLeft.getClip().duration * 1000);
-//   }
-// });
-// 2222222222
-// toggleDoorButtonWipers.addEventListener('click', () => {
-//   if (CarWiperLeft && CarWiperRight) {
-//     if (doorStates.Wipers) {
-//       CarWiperLeft.timeScale = -1;
-//       CarWiperLeft.paused = false;
-//       CarWiperLeft.play();
-//       CarWiperRight.timeScale = -1;
-//       CarWiperRight.paused = false;
-//       CarWiperRight.play();
-//       doorStates.Wipers = false;
-//     } else {
-//       CarWiperLeft.timeScale = 1;
-//       CarWiperLeft.paused = false;
-//       CarWiperLeft.play();
-//       CarWiperRight.timeScale = 1;
-//       CarWiperRight.paused = false;
-//       CarWiperRight.play();
-//       doorStates.Wipers = true;
-//     }
-//   }
-// });
 let isAnimating = {
   buttonDelay2s: false,
   buttonDelay3s: false,
@@ -869,7 +791,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   const delta = clock.getDelta();
-  if (mixer) mixer.update(delta); // Оновлюємо анімацію
+  if (mixer) mixer.update(delta);
 
   controls.update();
   renderer.render(scene, camera);
