@@ -125,10 +125,10 @@ scene.add(directionalLight);
 // spotLight3.shadow.bias = -20.0001;
 // scene.add(spotLight3);
 
-let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carstartingTrip;
+let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carStartingTrip, carStartingTripFLWheel, carStartingTripFRWheel, carStartingTripFLDisc, carStartingTripFRDisc, carStartingTripRLDisc, carStartingTripRRDisc;
 
 const loader = new GLTFLoader().setPath('tesla-model/');
-loader.load('scene.gltf', (gltf) => {
+loader.load('Qscene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
@@ -192,18 +192,42 @@ loader.load('scene.gltf', (gltf) => {
   windowDoorFR = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDWindowFrontRightDoorAction'));
   windowDoorRL = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDWindowRearLeftDoorAction'));
   windowDoorRR = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDWindowRearRightDoorAction'));
-  CarWiperLeft = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarWiperLeftAction'));
-  CarWiperRight = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarWiperRightAction'));
-  carstartingTrip = mixer.clipAction(gltf.animations.find(clip => clip.name === '$ColladaAutoName$_0Action'));
+  carWiperLeft = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarWiperLeftAction'));
+  carWiperRight = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarWiperRightAction'));
+  carStartingTrip = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDCarStartingTripAction'));
+  carStartingTripFLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontLeftWheelAction'));
+  carStartingTripFRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontRightWheelAction'));
+  carStartingTripFLDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontLeftDiscAction'));
+  carStartingTripFRDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontRightDiscAction'));
+  carStartingTripRLDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearLeftDiscAction'));
+  carStartingTripRRDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearRightDiscAction'));
 
   // Перевіряємо та запускаємо анімації
-  if (carstartingTrip) {
-    carstartingTrip.clampWhenFinished = true;
-    carstartingTrip.loop = THREE.LoopOnce;
-    carstartingTrip.play(); // Запуск анімації
+  if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
+    carStartingTrip.clampWhenFinished = true;
+    carStartingTrip.loop = THREE.LoopOnce;
+    carStartingTrip.play();
+    carStartingTripFLWheel.clampWhenFinished = true;
+    carStartingTripFLWheel.loop = THREE.LoopOnce;
+    carStartingTripFLWheel.play();
+    carStartingTripFRWheel.clampWhenFinished = true;
+    carStartingTripFRWheel.loop = THREE.LoopOnce;
+    carStartingTripFRWheel.play();
+    carStartingTripFLDisc.clampWhenFinished = true;
+    carStartingTripFLDisc.loop = THREE.LoopOnce;
+    carStartingTripFLDisc.play();
+    carStartingTripFRDisc.clampWhenFinished = true;
+    carStartingTripFRDisc.loop = THREE.LoopOnce;
+    carStartingTripFRDisc.play();
+    carStartingTripRLDisc.clampWhenFinished = true;
+    carStartingTripRLDisc.loop = THREE.LoopOnce;
+    carStartingTripRLDisc.play();
+    carStartingTripRRDisc.clampWhenFinished = true;
+    carStartingTripRRDisc.loop = THREE.LoopOnce;
+    carStartingTripRRDisc.play();
   }
 
-  [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, CarWiperLeft, CarWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carstartingTrip].forEach(action => {
+  [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4].forEach(action => {
     if (action) {
       action.clampWhenFinished = true;
       action.loop = THREE.LoopOnce;
@@ -614,7 +638,7 @@ let isAnimationRunning = {
 };
 
 function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
-  if (CarWiperLeft && CarWiperRight) {
+  if (carWiperLeft && carWiperRight) {
     for (const key in isAnimating) {
       if (key !== buttonId && isAnimating[key]) {
         isAnimating[key] = false;
@@ -626,20 +650,20 @@ function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
 
     isAnimationRunning[buttonId] = true;
 
-    CarWiperLeft.timeScale = speed;
-    CarWiperRight.timeScale = speed;
-    CarWiperLeft.paused = false;
-    CarWiperRight.paused = false;
-    CarWiperLeft.play();
-    CarWiperRight.play();
+    carWiperLeft.timeScale = speed;
+    carWiperRight.timeScale = speed;
+    carWiperLeft.paused = false;
+    carWiperRight.paused = false;
+    carWiperLeft.play();
+    carWiperRight.play();
 
     setTimeout(() => {
-      CarWiperLeft.timeScale = -speed;
-      CarWiperRight.timeScale = -speed;
-      CarWiperLeft.paused = false;
-      CarWiperRight.paused = false;
-      CarWiperLeft.play();
-      CarWiperRight.play();
+      carWiperLeft.timeScale = -speed;
+      carWiperRight.timeScale = -speed;
+      carWiperLeft.paused = false;
+      carWiperRight.paused = false;
+      carWiperLeft.play();
+      carWiperRight.play();
 
       setTimeout(() => {
         isAnimationRunning[buttonId] = false;
@@ -654,8 +678,8 @@ function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
           isAnimating[buttonId] = false;
           isAnimationRunning[buttonId] = false;
         }
-      }, CarWiperLeft.getClip().duration * 1000 / speed);
-    }, CarWiperLeft.getClip().duration * 1000 / speed);
+      }, carWiperLeft.getClip().duration * 1000 / speed);
+    }, carWiperLeft.getClip().duration * 1000 / speed);
   }
 }
 
