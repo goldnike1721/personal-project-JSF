@@ -393,7 +393,7 @@
 
               <div id="teslaContent2" class="hidden-content" style="display: none;">
                 <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
-                <img id="toggleSuspension1" class="tesla-page__image-door doorFR-tesla-page"
+                <img id="toggleSuspension" class="tesla-page__image-door doorFR-tesla-page"
                   src="img/tesla-page/doorFR.png" alt="">
                 <h2>Tesla Зміст 222222</h2>
                 <p>Це третя секція вмісту.</p>
@@ -401,8 +401,28 @@
 
               <div id="teslaContent3" class="hidden-content" style="display: none;">
                 <!-- Переміщено на той же рівень -->
-                <h2>Tesla Зміст 3</h2>
-                <p>Це третя секція вмісту.</p>
+                <div class="suspension-contsiner">
+                  <div class="suspension-title">
+                    <p class="suspension-title__text">Ride Height</p>
+                  </div>
+                  <div class="clearance-control">
+                    <div class="slider-container">
+                      <div class="clearance-value">
+                        <span id="clearanceValue">Standard (15 cm)</span>
+                      </div>
+                      <div class="clearance-range">
+                        <input type="range" id="clearanceRange" min="1" max="5" value="2" step="1" orient="vertical">
+                        <!-- Риски для зупинок -->
+                        <div class="stop-line-1 stop-lines"></div>
+                        <div class="stop-line-2 stop-lines"></div>
+                        <div class="stop-line-3 stop-lines"></div>
+                        <div class="stop-line-4 stop-lines"></div>
+                        <div class="stop-line-5 stop-lines"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
 

@@ -47,11 +47,9 @@ const groundMaterial = new THREE.ShaderMaterial({
   transparent: true,
 });
 
-// Геометрія підлоги
 const groundGeometry = new THREE.CircleGeometry(7, 320);
 groundGeometry.rotateX(-Math.PI / 2);
 
-// Мішень
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
@@ -66,7 +64,6 @@ scene.add(groundMesh);
 // groundMesh.receiveShadow = true;
 // scene.add(groundMesh);
 
-// Додати амбієнтне світло
 const ambientLight = new THREE.AmbientLight(0xfff4e5, 0.5);
 scene.add(ambientLight);
 
@@ -89,7 +86,6 @@ directionalLight.shadow.camera.bottom = -50;
 directionalLight.shadow.camera.near = 50;
 directionalLight.shadow.camera.far = 50;
 
-// Додавання світла на сцену
 scene.add(directionalLight);
 
 // Камера тіней для візуалізації (необов'язково, для налагодження)
@@ -143,32 +139,9 @@ loader.load('!scene.gltf', (gltf) => {
   mesh.position.set(0, 0.65, 0);
   scene.add(mesh);
 
-  // // Автоматичне позиціювання камери
-  // const boundingBox = new THREE.Box3().setFromObject(mesh);
-  // const center = boundingBox.getCenter(new THREE.Vector3());
-  // const size = boundingBox.getSize(new THREE.Vector3());
-  // const maxSize = Math.max(size.x, size.y, size.z);
-
-
-
-  // Встановлюємо камеру по центру сцени
-  camera.position.set(4, 2, 10); // Налаштуйте параметри (x, y, z) під свої потреби
-  controls.target.set(0, 0.7, 0); // Фокусуємо OrbitControls на центр сцени
+  camera.position.set(4, 2, 10);
+  controls.target.set(0, 0.7, 0);
   controls.update();
-
-
-
-
-
-
-
-
-
-  // Зміщення камери вліво на 50 одиниць
-  // camera.position.set(center.x + 3, center.y + maxSize / 5, center.z + maxSize + 2);
-  // controls.target.copy(center); // Орієнтуємо OrbitControls на центр моделі
-
-  // controls.update();
 
   // Анімації
   mixer = new THREE.AnimationMixer(mesh);
@@ -201,11 +174,11 @@ loader.load('!scene.gltf', (gltf) => {
   carStartingTripFRDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontRightDiscAction'));
   carStartingTripRLDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearLeftDiscAction'));
   carStartingTripRRDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearRightDiscAction'));
-  suspensionCar = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionCar+1Action'));
-  suspensionFLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionFLWheel+1Action'));
-  suspensionFRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionFRWheel+1Action'));
-  suspensionRLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRLWheel+1Action'));
-  suspensionRRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRRWheel+1Action'));
+  suspensionCar = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionCarAction'));
+  suspensionFLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionFLWheelAction'));
+  suspensionFRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionFRWheelAction'));
+  suspensionRLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRLWheelAction'));
+  suspensionRRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRRWheelAction'));
 
   // Перевіряємо та запускаємо анімації
   if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
@@ -250,15 +223,12 @@ const toggleDoorButtonRL = document.getElementById('toggleDoorButtonRL');
 const toggleDoorButtonRR = document.getElementById('toggleDoorButtonRR');
 const toggleDoorButtonLC = document.getElementById('toggleDoorButtonLC');
 const toggleDoorButtonHood = document.getElementById('toggleDoorButtonHood');
-// const toggleDoorButtonWipers = document.getElementById('toggleDoorButtonWipers');
 const toggleDoorButtonWindowFL = document.getElementById('toggleDoorButtonWindowFL');
 const toggleDoorButtonWindowFR = document.getElementById('toggleDoorButtonWindowFR');
 const toggleDoorButtonWindowRL = document.getElementById('toggleDoorButtonWindowRL');
 const toggleDoorButtonWindowRR = document.getElementById('toggleDoorButtonWindowRR');
 const toggleDoorButtonFL = document.getElementById('toggleDoorButtonFL');
 const toggleDoorButtonFR = document.getElementById('toggleDoorButtonFR');
-const toggleSuspension1 = document.getElementById('toggleSuspension1');
-
 
 // Стан дверей: true - відкриті, false - закриті
 const doorStates = {
@@ -272,32 +242,8 @@ const doorStates = {
   WindowFR: false,
   WindowFL: false,
   WindowRL: false,
-  WindowRR: false,
-  Suspensive1: false
+  WindowRR: false
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Функція для часткового відкриття вікна
 function openWindowPartial(windowAction, percentage) {
@@ -311,17 +257,6 @@ function openWindowPartial(windowAction, percentage) {
     windowAction.paused = true;
   }, partialDuration * 1000);
 }
-
-// function closeWindowPartial(windowAction, percentage) {
-//   const duration = windowAction.getClip().duration;
-//   const partialDuration = duration * percentage;
-
-//   windowAction.timeScale = -1;
-//   windowAction.play();
-//   setTimeout(() => {
-//     windowAction.paused = true;
-//   }, partialDuration * 1000);
-// }
 
 const listener = new THREE.AudioListener();
 camera.add(listener);
@@ -533,77 +468,10 @@ toggleDoorButtonRR.addEventListener('click', () => {
   }
 });
 
-
-
-
-
-
-
-toggleSuspension1.addEventListener('click', () => {
-  if (suspensionCar && suspensionFLWheel && suspensionFRWheel && suspensionRLWheel && suspensionRRWheel) {
-    if (doorStates.Suspensive1) {
-      suspensionCar.timeScale = -1;
-      suspensionCar.paused = false;
-      suspensionCar.play();
-
-      suspensionFLWheel.timeScale = -1;
-      suspensionFLWheel.paused = false;
-      suspensionFLWheel.play();
-
-      suspensionFRWheel.timeScale = -1;
-      suspensionFRWheel.paused = false;
-      suspensionFRWheel.play();
-
-      suspensionRLWheel.timeScale = -1;
-      suspensionRLWheel.paused = false;
-      suspensionRLWheel.play();
-
-      suspensionRRWheel.timeScale = -1;
-      suspensionRRWheel.paused = false;
-      suspensionRRWheel.play();
-
-      doorStates.Suspensive1 = false;
-    } else {
-      suspensionCar.timeScale = 1;
-      suspensionCar.paused = false;
-      suspensionCar.play();
-
-      suspensionFLWheel.timeScale = 1;
-      suspensionFLWheel.paused = false;
-      suspensionFLWheel.play();
-
-      suspensionFRWheel.timeScale = 1;
-      suspensionFRWheel.paused = false;
-      suspensionFRWheel.play();
-
-      suspensionRLWheel.timeScale = 1;
-      suspensionRLWheel.paused = false;
-      suspensionRLWheel.play();
-
-      suspensionRRWheel.timeScale = 1;
-      suspensionRRWheel.paused = false;
-      suspensionRRWheel.play();
-
-      doorStates.Suspensive1 = true;
-    }
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
 // Багажник (LC)
 toggleDoorButtonLC.addEventListener('click', () => {
   if (doorLC && doorLCCylinderL && doorLCCylinderR && doorLCPistoneL && doorLCPistoneR && doorLCRodL && doorLCRodR && doorLCSpoiler1 && doorLCSpoiler2 && doorLCSpoiler3 && doorLCSpoiler4) {
     if (doorStates.LC) {
-      // Анімації для всіх елементів, окрім спойлера
       doorLC.timeScale = -1;
       doorLC.paused = false;
       doorLC.play();
@@ -626,7 +494,6 @@ toggleDoorButtonLC.addEventListener('click', () => {
       doorLCRodR.paused = false;
       doorLCRodR.play();
 
-      // Відтермінування запуску анімації для спойлера
       setTimeout(() => {
         doorLCSpoiler1.timeScale = -1;
         doorLCSpoiler1.paused = false;
@@ -640,13 +507,12 @@ toggleDoorButtonLC.addEventListener('click', () => {
         doorLCSpoiler4.timeScale = -1;
         doorLCSpoiler4.paused = false;
         doorLCSpoiler4.play();
-      }, 5000); // Затримка на 1 секунду перед запуском анімації спойлера
+      }, 5000);
 
       closeSoundLC.play();
 
       doorStates.LC = false;
     } else {
-      // Анімації для всіх елементів
       doorLC.timeScale = 1;
       doorLC.paused = false;
       doorLC.play();
@@ -668,8 +534,6 @@ toggleDoorButtonLC.addEventListener('click', () => {
       doorLCRodR.timeScale = 1;
       doorLCRodR.paused = false;
       doorLCRodR.play();
-
-      // Спойлер відкривається без затримки
       doorLCSpoiler1.timeScale = 1;
       doorLCSpoiler1.paused = false;
       doorLCSpoiler1.play();
@@ -898,6 +762,76 @@ toggleDoorButtonWindowRR.addEventListener('click', () => {
       doorStates.WindowRR = true;
     }
   }
+});
+
+let currentClearance = 2;
+
+const clearancePercentages = {
+  1: 0.0,
+  2: 0.25,
+  3: 0.5,
+  4: 0.75,
+  5: 1.0
+};
+
+const clearanceHeights = {
+  1: 'Low (10 cm)',
+  2: 'Standard (15 cm)',
+  3: 'High (20 cm)',
+  4: 'Higher (25 cm)',
+  5: 'Max (30 cm)'
+};
+
+function changeClearance(suspensionAction, fromPercentage, toPercentage, timeScale = 1) {
+  const duration = suspensionAction.getClip().duration;
+  const partialDuration = duration * Math.abs(toPercentage - fromPercentage);
+
+  suspensionAction.time = duration * fromPercentage;
+
+  suspensionAction.timeScale = timeScale;
+  suspensionAction.paused = false;
+  suspensionAction.play();
+
+  setTimeout(() => {
+    suspensionAction.paused = true;
+  }, partialDuration * 1000);
+}
+
+function animateSuspension(fromPosition, toPosition) {
+  const fromPercentage = clearancePercentages[fromPosition];
+  const toPercentage = clearancePercentages[toPosition];
+
+  const timeScale = (fromPosition < toPosition) ? 1 : -1;
+
+  if (suspensionCar && suspensionFLWheel && suspensionFRWheel && suspensionRLWheel && suspensionRRWheel) {
+    [suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel].forEach((suspension) => {
+      suspension.paused = true;
+      suspension.time = 0;
+
+      changeClearance(suspension, fromPercentage, toPercentage, timeScale);
+    });
+  }
+}
+
+document.getElementById('clearanceRange').addEventListener('input', function () {
+  const value = parseInt(this.value);
+
+  document.getElementById('clearanceValue').textContent = clearanceHeights[value];
+
+  const fromPercentage = clearancePercentages[currentClearance];
+  const toPercentage = clearancePercentages[value];
+
+  if (fromPercentage !== toPercentage) {
+    animateSuspension(currentClearance, value);
+  }
+
+  currentClearance = value;
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('clearanceValue').textContent = clearanceHeights[currentClearance];
+
+  document.getElementById('clearanceRange').value = currentClearance;
 });
 
 window.addEventListener('resize', () => {

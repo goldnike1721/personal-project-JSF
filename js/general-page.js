@@ -1,5 +1,5 @@
 function hideScreen() {
-    const currentScreen = document.querySelector('.new-screen:not(.hidden)'); // Знаходить поточний відкритий екран
+    const currentScreen = document.querySelector('.new-screen:not(.hidden)');
 
     if (currentScreen && ['doorScreen', 'windowScreen', 'wrapersScreen'].includes(currentScreen.id)) {
         showScreen('teslaScreen');
@@ -18,7 +18,6 @@ function showScreen(screenId) {
         screen.classList.remove('hidden');
     }
 }
-
 
 
 
@@ -65,7 +64,7 @@ function smoothBrightnessChange(targetBrightness) {
 }
 
 autoButton.addEventListener("click", function () {
-    let randomBrightness = Math.floor(Math.random() * 51) + 50; // Випадкове значення від 50 до 100
+    let randomBrightness = Math.floor(Math.random() * 51) + 50;
     smoothBrightnessChange(randomBrightness);
 });
 
@@ -93,34 +92,23 @@ document.getElementById('teslaContentButton3').addEventListener('click', functio
 });
 
 function showTeslaContent(contentId) {
-    // Сховати всі секції вмісту
     const contents = document.querySelectorAll('.hidden-content');
     contents.forEach(content => {
-        content.style.display = 'none'; // Сховати контент
+        content.style.display = 'none';
     });
 
-    // Відобразити вибраний вміст
     const selectedContent = document.getElementById(contentId);
-    selectedContent.style.display = 'block'; // Відобразити вибраний контент
+    selectedContent.style.display = 'block';
 }
 
-// Відобразити перший контент за замовчуванням
 showTeslaContent('teslaContent1');
 
-// Додайте слухача подій для кожної кнопки
 const buttons = document.querySelectorAll('.tesla-new-button');
 
 buttons.forEach(button => {
     button.addEventListener('click', function () {
-        // Зняти клас 'active' з усіх кнопок
         buttons.forEach(btn => btn.classList.remove('active'));
-        // Додати клас 'active' до натиснутої кнопки
         this.classList.add('active');
-
-        // Ваша функція для перемикання контенту тут
-        // showTeslaContent(this.id); // Приклад
     });
 });
-
-// Встановіть активну кнопку при завантаженні сторінки
 document.getElementById('teslaContentButton1').classList.add('active');

@@ -182,13 +182,6 @@
     background-color: #0056b3;
 }
 
-
-
-
-
-
-
-
 .button-container__tesla {
     position: fixed;
     top: 53px;
@@ -233,7 +226,143 @@
 
 .tesla-new-button.active {
     background-color: #ffffff;
-    /* Колір фону для активної кнопки */
     border: 1px solid #ccc;
-    /* Можна додати рамку для кращого вигляду */
+}
+
+
+
+
+
+
+
+
+.suspension-contsiner {
+    margin-top: 200px;
+}
+
+.clearance-control {
+    display: flex;
+    align-items: center;
+}
+
+.clearance-range input[type="range"] {
+    -webkit-appearance: slider-vertical;
+    width: 30px;
+    height: 150px;
+    writing-mode: bt-lr;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clearance-value {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+.clearance-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.slider-container {
+    position: relative;
+    height: 300px;
+    /* Висота контейнера */
+}
+
+.clearance-range {
+    position: relative;
+    height: 130px;
+    /* Висота слайдера */
+    width: 150px;
+    /* Збільшуємо ширину контейнера */
+}
+
+.clearance-range input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    /* Ширина слайдера */
+    height: 100%;
+    background: transparent;
+    /* Прозорий фон */
+    transform: rotate(-90deg);
+    /* Перетворення для вертикального слайдера */
+}
+
+.clearance-range input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    /* Розмір кружечка */
+    height: 25px;
+    background-color: gray;
+    /* Сірий колір */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.clearance-range input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background-color: gray;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.clearance-range input[type="range"]::-webkit-slider-runnable-track {
+    background-color: lightgray;
+    width: 100%;
+    /* Ширина треку */
+    height: 8px;
+    /* Висота треку */
+}
+
+.clearance-range input[type="range"]::-moz-range-track {
+    background-color: lightgray;
+    width: 100%;
+    height: 8px;
+}
+
+/* Вертикальні риски */
+.clearance-range .stop-lines {
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: black;
+    left: 70px;
+}
+
+.clearance-range .stop-line-1 {
+    top: 0;
+}
+
+.clearance-range .stop-line-2 {
+    top: 25%;
+}
+
+.clearance-range .stop-line-3 {
+    top: 50%;
+}
+
+.clearance-range .stop-line-4 {
+    top: 75%;
+}
+
+.clearance-range .stop-line-5 {
+    top: 100%;
 }
