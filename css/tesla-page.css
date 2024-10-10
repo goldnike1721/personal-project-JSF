@@ -1,61 +1,239 @@
-.button-grid__tesla {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
+.tesla-page {
+    background: linear-gradient(to bottom, rgb(255, 252, 243), rgb(255, 252, 243));
+    padding: 0;
+    overflow: hidden;
 }
 
-.button-container__icon-tesla {
-    flex: 1 1 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1;
+.tesla-page-icon-top__close,
+.tesla-page-icon-top {
+    color: #000000;
+    filter: brightness(0) invert(0);
+
 }
 
-.button-icon__tesla-page {
-    width: 100%;
-    aspect-ratio: 1;
-    border: none;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.tesla-page-icon-top__close {
+    bottom: 0;
+    padding-bottom: 12px;
+    height: 37px;
+}
+
+.button-container__weather-general-page {
+    position: relative;
+    z-index: 11;
+    height: 100%;
+    overflow-y: auto;
+    transform: translateY(7%);
+}
+
+.tesla-page__image-general {
+    margin-top: 150px;
+    transform: scale(0.6);
+}
+
+.tesla-page__image-door {
+    position: fixed;
+    width: 45px;
     cursor: pointer;
-    margin: 0;
+    z-index: 1111;
 }
 
-.button-icon__name-tesla {
+.doorRl-tesla-page {
+    margin-top: -200px;
+    margin-left: 20px;
+}
+
+.doorRR-tesla-page {
+    margin-top: -200px;
+    margin-left: 200px;
+}
+
+.doorFl-tesla-page {
+    width: 47px;
+    height: 45px;
+    margin-left: 20px;
+}
+
+.doorFR-tesla-page {
+    margin-left: 200px;
+}
+
+.tesla-page__image-door {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(0%) hue-rotate(240deg) brightness(162%) contrast(90%);
+    transition: filter 0.3s ease;
+}
+
+.tesla-page__image-door:hover {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(0%) hue-rotate(240deg) brightness(92%) contrast(90%);
+}
+
+.tesla-page-trunk {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+    max-width: 100px;
+    width: auto;
+    margin-left: 83px;
+}
+
+.trunk-back {
+    margin-top: 40px;
+}
+
+.tesla-page-trunk__front {
+
     font-family: var(--font-family-text);
     font-size: 15px;
-    text-align: center;
-    cursor: default;
-    color: #ffffff;
-    padding: 2px 4px;
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(2px);
+    font-weight: 500;
+    color: #333333;
+    cursor: pointer;
+}
+
+.arc {
+    transform: rotate(97deg);
+    transform-origin: center;
+    position: fixed;
+    margin-top: -239px;
+    margin-left: 130px;
+}
+
+.arc2 {
+    transform: rotateY(0deg) rotateX(180deg) rotateZ(-90deg);
+    transform-origin: center;
+    position: fixed;
+    margin-top: -239px;
+    margin-left: -56px;
+}
+
+.brightness-control {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: #e9e9e9;
+    padding: 10px;
+    border-radius: 10px;
+    width: 225.72px;
+    margin: 20px 0 0 20px;
+}
+
+.brightness-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+.brightness-value {
+    display: flex;
+    min-width: 46.71px;
+}
+
+#brightnessValue {
+    font-size: 15px;
+    font-family: var(--font-family-text);
     border-radius: 5px;
-    display: inline-block;
-    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0);
+    width: 40px;
+    text-align: center;
+    margin-left: 8px;
 }
 
-.button-icon__door,
-.button-icon__window {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: filter .3s ease;
+#brightnessRange {
+    display: flex;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80%;
+    height: 27.5px;
+    background: #cccccc;
+    border-radius: 5px;
+    outline: none;
+    margin: 0 auto;
 }
 
-.button-icon__door {
-    background-image: url('../img/tesla-page/doorNew.png');
+#brightnessRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 27.5px;
+    background: #ffffff;
+    border: 2px solid #cccccc;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.button-icon__window {
-    background-image: url('../img/tesla-page/windowNew.png');
+.auto-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 10px;
+    cursor: pointer;
 }
 
-.button-icon__door:hover,
-.button-icon__window:hover {
-    filter: brightness(.5);
+.auto-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+.button-container__tesla {
+    position: fixed;
+    top: 53px;
+    display: flex;
+    overflow-x: auto;
+    width: 245px;
+    white-space: nowrap;
+    margin: 0 auto;
+    gap: 2px;
+    margin-left: 10px;
+    background-color: #c7c7c7;
+    height: 50px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.button-container__tesla-menu {
+    margin: 0 10px;
+}
+
+.tesla-new-button {
+    height: 30px;
+    padding: 0 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s;
+}
+
+.tesla-new-button:active,
+.tesla-new-button:focus,
+.tesla-new-button:hover {
+    background-color: #e9e9e9;
+}
+
+.button-container__tesla::-webkit-scrollbar {
+    display: none;
+}
+
+.tesla-new-button.active {
+    background-color: #ffffff;
+    /* Колір фону для активної кнопки */
+    border: 1px solid #ccc;
+    /* Можна додати рамку для кращого вигляду */
 }

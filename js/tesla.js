@@ -125,10 +125,10 @@ scene.add(directionalLight);
 // spotLight3.shadow.bias = -20.0001;
 // scene.add(spotLight3);
 
-let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carStartingTrip, carStartingTripFLWheel, carStartingTripFRWheel, carStartingTripFLDisc, carStartingTripFRDisc, carStartingTripRLDisc, carStartingTripRRDisc;
+let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carStartingTrip, carStartingTripFLWheel, carStartingTripFRWheel, carStartingTripFLDisc, carStartingTripFRDisc, carStartingTripRLDisc, carStartingTripRRDisc, suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel;
 
 const loader = new GLTFLoader().setPath('tesla-model/');
-loader.load('Qscene.gltf', (gltf) => {
+loader.load('!scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
@@ -201,6 +201,11 @@ loader.load('Qscene.gltf', (gltf) => {
   carStartingTripFRDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontRightDiscAction'));
   carStartingTripRLDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearLeftDiscAction'));
   carStartingTripRRDisc = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDRearRightDiscAction'));
+  suspensionCar = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionCar+1Action'));
+  suspensionFLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionFLWheel+1Action'));
+  suspensionFRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionFRWheel+1Action'));
+  suspensionRLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRLWheel+1Action'));
+  suspensionRRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRRWheel+1Action'));
 
   // Перевіряємо та запускаємо анімації
   if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
@@ -227,7 +232,7 @@ loader.load('Qscene.gltf', (gltf) => {
     carStartingTripRRDisc.play();
   }
 
-  [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4].forEach(action => {
+  [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel].forEach(action => {
     if (action) {
       action.clampWhenFinished = true;
       action.loop = THREE.LoopOnce;
@@ -252,6 +257,8 @@ const toggleDoorButtonWindowRL = document.getElementById('toggleDoorButtonWindow
 const toggleDoorButtonWindowRR = document.getElementById('toggleDoorButtonWindowRR');
 const toggleDoorButtonFL = document.getElementById('toggleDoorButtonFL');
 const toggleDoorButtonFR = document.getElementById('toggleDoorButtonFR');
+const toggleSuspension1 = document.getElementById('toggleSuspension1');
+
 
 // Стан дверей: true - відкриті, false - закриті
 const doorStates = {
@@ -265,8 +272,32 @@ const doorStates = {
   WindowFR: false,
   WindowFL: false,
   WindowRL: false,
-  WindowRR: false
+  WindowRR: false,
+  Suspensive1: false
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Функція для часткового відкриття вікна
 function openWindowPartial(windowAction, percentage) {
@@ -501,6 +532,72 @@ toggleDoorButtonRR.addEventListener('click', () => {
     }
   }
 });
+
+
+
+
+
+
+
+toggleSuspension1.addEventListener('click', () => {
+  if (suspensionCar && suspensionFLWheel && suspensionFRWheel && suspensionRLWheel && suspensionRRWheel) {
+    if (doorStates.Suspensive1) {
+      suspensionCar.timeScale = -1;
+      suspensionCar.paused = false;
+      suspensionCar.play();
+
+      suspensionFLWheel.timeScale = -1;
+      suspensionFLWheel.paused = false;
+      suspensionFLWheel.play();
+
+      suspensionFRWheel.timeScale = -1;
+      suspensionFRWheel.paused = false;
+      suspensionFRWheel.play();
+
+      suspensionRLWheel.timeScale = -1;
+      suspensionRLWheel.paused = false;
+      suspensionRLWheel.play();
+
+      suspensionRRWheel.timeScale = -1;
+      suspensionRRWheel.paused = false;
+      suspensionRRWheel.play();
+
+      doorStates.Suspensive1 = false;
+    } else {
+      suspensionCar.timeScale = 1;
+      suspensionCar.paused = false;
+      suspensionCar.play();
+
+      suspensionFLWheel.timeScale = 1;
+      suspensionFLWheel.paused = false;
+      suspensionFLWheel.play();
+
+      suspensionFRWheel.timeScale = 1;
+      suspensionFRWheel.paused = false;
+      suspensionFRWheel.play();
+
+      suspensionRLWheel.timeScale = 1;
+      suspensionRLWheel.paused = false;
+      suspensionRLWheel.play();
+
+      suspensionRRWheel.timeScale = 1;
+      suspensionRRWheel.paused = false;
+      suspensionRRWheel.play();
+
+      doorStates.Suspensive1 = true;
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
+
 
 // Багажник (LC)
 toggleDoorButtonLC.addEventListener('click', () => {

@@ -290,26 +290,26 @@
       <!-- <section data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="index.door.partial.html"></section> -->
       <!-- <section data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="index.window.partial.html"></section> -->
 
-      <div id="teslaScreen" class="new-screen hidden">
+      <div id="teslaScreen" class="new-screen hidden tesla-page">
         <div class="phone-frame__dark">
-          <div class="clock">
+          <div class="clock tesla-page-icon-top">
             <div class="time" id="time-tesla"></div>
           </div>
           <div class="phone-notch">
             <div class="camera"></div>
           </div>
           <div class="iphone-battery">
-            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+            <img class="iphone-battery__image tesla-page-icon-top" src="img/battery.png" alt="Battery iPhone">
           </div>
           <div class="iphone-wifi">
-            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+            <img class="iphone-wifi__image tesla-page-icon-top" src="img/wifi.png" alt="Wifi image">
           </div>
           <div class="iphone-signal">
-            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+            <img class="iphone-signal__image tesla-page-icon-top" src="img/communication-signal.png"
+              alt="Communication Signal">
           </div>
         </div>
-        <h2 class="phone-screen__title-window">Tesla</h2>
-        <div class="button-grid__tesla">
+        <!-- <div class="button-grid__tesla">
           <div class="button-container__icon-tesla">
             <button class="button-icon__tesla-page button-icon__door" onclick="showScreen('doorScreen')"></button>
             <p class="button-icon__name-tesla">Door</p>
@@ -328,9 +328,116 @@
             <button class="button-icon__tesla-page button-icon__NEW" onclick="showScreen('')"></button>
             <p class="button-icon__name-tesla">NEW</p>
           </div>
+        </div> -->
+        <div class="">
+          <div class="button-container__tesla-general-page">
+            <div class="button-container__tesla">
+              <div class="button-container__tesla-menu">
+                <button id="teslaContentButton1" class="tesla-new-button active">Controls</button>
+                <button id="teslaContentButton2" class="tesla-new-button">Window</button>
+                <button id="teslaContentButton3" class="tesla-new-button">Wrapers</button>
+                <button id="teslaContentButton4" class="tesla-new-button">Suspension</button>
+                <button id="teslaContentButton5" class="tesla-new-button">Tesla Зміст 5</button>
+                <button id="teslaContentButton6" class="tesla-new-button">Tesla Зміст 6</button>
+                <button id="teslaContentButton7" class="tesla-new-button">Tesla Зміст 7</button>
+                <button id="teslaContentButton8" class="tesla-new-button">Tesla Зміст 8</button>
+                <button id="teslaContentButton9" class="tesla-new-button">Tesla Зміст 9</button>
+              </div>
+            </div>
+
+
+            <div id="mainTeslaContent">
+              <div id="teslaContent1" class="hidden-content" style="display: block;">
+                <!-- Перше вміст відображається за замовчуванням -->
+                <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
+
+                <div class="">
+                  <div class="button-container__tesla-general-page">
+                    <img id="toggleDoorButtonFL" class="tesla-page__image-door doorFl-tesla-page"
+                      src="img/tesla-page/doorFL.png" alt="">
+                    <img id="toggleDoorButtonFR" class="tesla-page__image-door doorFR-tesla-page"
+                      src="img/tesla-page/doorFR.png" alt="">
+                    <img id="toggleDoorButtonRL" class="tesla-page__image-door doorRl-tesla-page"
+                      src="img/tesla-page/doorRL.png" alt="">
+                    <img id="toggleDoorButtonRR" class="tesla-page__image-door doorRR-tesla-page"
+                      src="img/tesla-page/doorRR.png" alt="">
+                  </div>
+                  <div class="tesla-page-trunk">
+                    <p id="toggleDoorButtonHood" class="tesla-page-trunk__front">Front Trunk</p>
+                    <p id="toggleDoorButtonLC" class="tesla-page-trunk__front trunk-back">Trunk</p>
+                  </div>
+                  <svg class="arc" width="200" height="100">
+                    <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
+                      stroke-dasharray="5, 5" />
+                  </svg>
+                  <svg class="arc2" width="200" height="100">
+                    <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
+                      stroke-dasharray="5, 5" />
+                  </svg>
+                  <div class="brightness-control">
+                    <div class="icon-container">
+                      <img src="img/tesla-page/icon-sun.png" alt="Low Brightness" class="brightness-icon">
+                    </div>
+                    <div class="slider-container">
+                      <div class="brightness-value">
+                        <span id="brightnessValue"></span>%
+                      </div>
+                      <div class="brightness-range">
+                        <input type="range" id="brightnessRange" min="0" max="100" value="28">
+                      </div>
+                    </div>
+                    <button class="auto-button" id="autoButton">AUTO</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="teslaContent2" class="hidden-content" style="display: none;">
+                <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
+                <img id="toggleSuspension1" class="tesla-page__image-door doorFR-tesla-page"
+                  src="img/tesla-page/doorFR.png" alt="">
+                <h2>Tesla Зміст 222222</h2>
+                <p>Це третя секція вмісту.</p>
+              </div>
+
+              <div id="teslaContent3" class="hidden-content" style="display: none;">
+                <!-- Переміщено на той же рівень -->
+                <h2>Tesla Зміст 3</h2>
+                <p>Це третя секція вмісту.</p>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!-- <div id="teslaContent1" class="hidden-content">
+                <h2>Tesla Зміст 1</h2>
+                <p>Це перша секція вмісту.</p>
+              </div>
+
+              <div id="teslaContent2" class="hidden-content" style="display:none;">
+                <h2>Tesla Зміст 2</h2>
+                <p>Це друга секція вмісту.</p>
+              </div>
+
+              <div id="teslaContent3" class="hidden-content" style="display:none;">
+                <h2>Tesla Зміст 3</h2>
+                <p>Це третя секція вмісту.</p>
+              </div>
+            </div> -->
+
+
+
+
+          </div>
         </div>
-        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
-          onclick="hideScreen()">
+        <div class="button__close-page-general tesla-page-icon-top__close" ontouchstart="startTouch(event)"
+          ontouchend="endTouch(event)" onclick="hideScreen()">
           <div class="button__close-page"></div>
         </div>
       </div>

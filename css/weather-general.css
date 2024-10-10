@@ -303,8 +303,9 @@
 }
 
 .weather-page__close {
-    bottom: 9px;
-    height: 10px;
+    bottom: 0;
+    height: 19px;
+    padding-bottom: 9px;
 }
 
 .city-weather__line {
