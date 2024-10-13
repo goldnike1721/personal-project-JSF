@@ -764,6 +764,7 @@ toggleDoorButtonWindowRR.addEventListener('click', () => {
   }
 });
 
+// Кліренс
 let currentClearance = 2;
 
 const clearancePercentages = {
@@ -774,26 +775,36 @@ const clearancePercentages = {
   5: 1.0
 };
 
-const clearanceHeights = {
-  1: 'Low (10 cm)',
-  2: 'Standard (15 cm)',
-  3: 'High (20 cm)',
-  4: 'Higher (25 cm)',
-  5: 'Max (30 cm)'
-};
-
 function changeClearance(suspensionAction, fromPercentage, toPercentage, timeScale = 1) {
   const duration = suspensionAction.getClip().duration;
   const partialDuration = duration * Math.abs(toPercentage - fromPercentage);
 
   suspensionAction.time = duration * fromPercentage;
-
   suspensionAction.timeScale = timeScale;
   suspensionAction.paused = false;
   suspensionAction.play();
 
+  const video = document.getElementById('myVideoMov');
+  const videoDuration = video.duration;
+  video.currentTime = videoDuration * fromPercentage;
+
+  if (timeScale === 1) {
+    video.play();
+  } else {
+    video.pause();
+    let reverseInterval = setInterval(() => {
+      if (video.currentTime <= videoDuration * toPercentage) {
+        clearInterval(reverseInterval);
+        video.pause();
+      } else {
+        video.currentTime -= (videoDuration * Math.abs(toPercentage - fromPercentage)) / (partialDuration * 1000 / 20);
+      }
+    }, 100);
+  }
+
   setTimeout(() => {
     suspensionAction.paused = true;
+    video.pause();
   }, partialDuration * 1000);
 }
 
@@ -816,8 +827,6 @@ function animateSuspension(fromPosition, toPosition) {
 document.getElementById('clearanceRange').addEventListener('input', function () {
   const value = parseInt(this.value);
 
-  document.getElementById('clearanceValue').textContent = clearanceHeights[value];
-
   const fromPercentage = clearancePercentages[currentClearance];
   const toPercentage = clearancePercentages[value];
 
@@ -829,8 +838,6 @@ document.getElementById('clearanceRange').addEventListener('input', function () 
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('clearanceValue').textContent = clearanceHeights[currentClearance];
-
   document.getElementById('clearanceRange').value = currentClearance;
 });
 

@@ -1,0 +1,28 @@
+{
+    "windows": [
+        {
+            "position": "Front left",
+            "state": "Switchpack state",
+            "open": false,
+            "calibrate": false
+        },
+        {
+            "position": "Front right",
+            "state": "Switch state",
+            "open": false,
+            "calibrate": false
+        },
+        {
+            "position": "Rear left",
+            "state": "Switch state",
+            "open": false,
+            "calibrate": false
+        },
+        {
+            "position": "Rear right",
+            "state": "Switch state",
+            "open": false,
+            "calibrate": false
+        }
+    ]
+}
