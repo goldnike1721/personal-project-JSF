@@ -5,9 +5,6 @@ function updateClock() {
     document.getElementById('time-general').innerText = time;
     document.getElementById('time-tesla').innerText = time;
     document.getElementById('time-radio').innerText = time;
-    // document.getElementById('time-tesla__door').innerText = time;
-    // document.getElementById('time-tesla__window').innerText = time;
-    // document.getElementById('time-tesla__wrapers').innerText = time;
     document.getElementById('time-weather').innerText = time;
     document.getElementById('time-stock').innerText = time;
 

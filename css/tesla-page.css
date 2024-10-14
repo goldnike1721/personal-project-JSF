@@ -425,12 +425,6 @@
     margin-bottom: 40px;
 }
 
-
-
-
-
-
-
 .front-left,
 .front-right,
 .rear-left,
@@ -441,8 +435,7 @@
     flex-direction: column;
     border: 2px solid #000000;
     padding-bottom: 5px;
-    /* Ліві кути однакові, правий - півмісяць */
-    /* Контур */
+    z-index: 112212;
 }
 
 .tesla-window__image {
@@ -454,11 +447,9 @@
 
 .tesla-window__door {
     position: fixed;
-    z-index: 11;
+    z-index: 12212112;
     width: 90px;
-    /* Ширина кожного блоку */
     height: 95px;
-    /* Висота кожного блоку */
 }
 
 .front-left {
@@ -501,9 +492,6 @@
     color: #333333;
 }
 
-
-
-
 .tesla-window__door-open {
     margin-top: 5px;
 }
@@ -536,17 +524,12 @@
     transform: scale(1.02);
 }
 
-
 .outer-circle {
     width: 12px;
-    /* Ширина великого круга */
     height: 12px;
-    /* Висота великого круга */
     background-color: transparent;
-    /* Колір великого круга */
     border-radius: 50%;
     border: 1px solid #333333;
-    /* Зробити елемент круглим */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -554,13 +537,9 @@
 
 .inner-circle {
     width: 6px;
-    /* Ширина маленького круга */
     height: 6px;
-    /* Висота маленького круга */
     background-color: #333333;
-    /* Колір маленького круга */
     border-radius: 50%;
-    /* Зробити елемент круглим */
 }
 
 .circle-front-left {
@@ -583,4 +562,78 @@
 .circle-rear-right {
     position: fixed;
     top: 345px;
+}
+
+.outer-circle {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.outer-circle.show {
+    opacity: 1;
+    visibility: visible;
+    animation: borderChange 0.7s infinite alternate;
+}
+
+.inner-circle {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.inner-circle.show {
+    opacity: 1;
+    visibility: visible;
+    animation: colorChange 0.7s infinite alternate;
+}
+
+@keyframes colorChange {
+    from {
+        background-color: rgb(255, 0, 0);
+    }
+
+    to {
+        background-color: #333333;
+    }
+}
+
+@keyframes borderChange {
+    from {
+        border: 1px solid rgb(255, 0, 0);
+    }
+
+    to {
+        border: 1px solid #333333;
+    }
+}
+
+.arc-tesla {
+    position: fixed;
+    z-index: -21;
+    pointer-events: none;
+}
+
+.arc-front-left {
+    top: 123px;
+    left: -120px;
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(244deg);
+}
+
+.arc-front-right {
+    top: 123px;
+    left: 86px;
+    transform: rotateY(180deg) rotateX(0deg) rotateZ(244deg);
+}
+
+.arc-rear-left {
+    top: 362px;
+    left: -120px;
+    transform: rotateY(0deg) rotateX(180deg) rotateZ(244deg);
+}
+
+.arc-rear-right {
+    top: 362px;
+    left: 86px;
+    transform: rotateY(180deg) rotateX(180deg) rotateZ(244deg);
 }

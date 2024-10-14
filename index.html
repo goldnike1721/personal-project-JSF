@@ -18,6 +18,8 @@
   <script src="https://unpkg.com/htmx.org@1.9.10"
     integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
     crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+
 
 </head>
 
@@ -29,7 +31,6 @@
   <div id="progress-container">
     <div id="progress">Attracting a model...</div>
   </div>
-
 
 
   <div class="phone-frame">
@@ -156,9 +157,6 @@
           </div>
 
 
-
-
-
           <div class="main-content hidden" id="content2">
             <div class="button-container__stock-general">
               <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
@@ -212,14 +210,8 @@
           </div>
 
 
-
-
-
-
           <div class="main-content hidden" id="content3">
-
           </div>
-
 
 
           <div class="button-container__bottom">
@@ -287,8 +279,7 @@
           <div class="button__close-page"></div>
         </div>
       </div>
-      <!-- <section data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="index.door.partial.html"></section> -->
-      <!-- <section data-hx-trigger="load" data-hx-swap="outerHTML" data-hx-get="index.window.partial.html"></section> -->
+
 
       <div id="teslaScreen" class="new-screen hidden tesla-page">
         <div class="phone-frame__dark">
@@ -309,145 +300,120 @@
               alt="Communication Signal">
           </div>
         </div>
-        <!-- <div class="button-grid__tesla">
-          <div class="button-container__icon-tesla">
-            <button class="button-icon__tesla-page button-icon__door" onclick="showScreen('doorScreen')"></button>
-            <p class="button-icon__name-tesla">Door</p>
-          </div>
-          <div class="button-container__icon-tesla">
-            <button class="button-icon__tesla-page button-icon__window" onclick="showScreen('windowScreen')"></button>
-            <p class="button-icon__name-tesla">Window</p>
+        <div class="button-container__tesla-general-page">
+          <div class="button-container__tesla">
+            <div class="button-container__tesla-menu">
+              <button id="teslaContentButton1" class="tesla-new-button active">Controls</button>
+              <button id="teslaContentButton2" class="tesla-new-button">Window</button>
+              <button id="teslaContentButton3" class="tesla-new-button">Wrapers</button>
+              <button id="teslaContentButton4" class="tesla-new-button">Suspension</button>
+              <button id="teslaContentButton5" class="tesla-new-button">Tesla Зміст 5</button>
+              <button id="teslaContentButton6" class="tesla-new-button">Tesla Зміст 6</button>
+              <button id="teslaContentButton7" class="tesla-new-button">Tesla Зміст 7</button>
+              <button id="teslaContentButton8" class="tesla-new-button">Tesla Зміст 8</button>
+              <button id="teslaContentButton9" class="tesla-new-button">Tesla Зміст 9</button>
+            </div>
           </div>
 
-          <div class="button-container__icon-tesla">
-            <button class="button-icon__tesla-page button-icon__wrapers" onclick="showScreen('wrapersScreen')"></button>
-            <p class="button-icon__name-tesla">Wrapers</p>
-          </div>
 
-          <div class="button-container__icon-tesla">
-            <button class="button-icon__tesla-page button-icon__NEW" onclick="showScreen('')"></button>
-            <p class="button-icon__name-tesla">NEW</p>
-          </div>
-        </div> -->
-        <div class="">
-          <div class="button-container__tesla-general-page">
-            <div class="button-container__tesla">
-              <div class="button-container__tesla-menu">
-                <button id="teslaContentButton1" class="tesla-new-button active">Controls</button>
-                <button id="teslaContentButton2" class="tesla-new-button">Window</button>
-                <button id="teslaContentButton3" class="tesla-new-button">Wrapers</button>
-                <button id="teslaContentButton4" class="tesla-new-button">Suspension</button>
-                <button id="teslaContentButton5" class="tesla-new-button">Tesla Зміст 5</button>
-                <button id="teslaContentButton6" class="tesla-new-button">Tesla Зміст 6</button>
-                <button id="teslaContentButton7" class="tesla-new-button">Tesla Зміст 7</button>
-                <button id="teslaContentButton8" class="tesla-new-button">Tesla Зміст 8</button>
-                <button id="teslaContentButton9" class="tesla-new-button">Tesla Зміст 9</button>
+          <div id="mainTeslaContent">
+            <div id="teslaContent1" class="hidden-content" style="display: block;">
+              <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
+              <div class="button-container__tesla-general-page">
+                <img id="toggleDoorButtonFL" class="tesla-page__image-door doorFl-tesla-page"
+                  src="img/tesla-page/doorFL.png" alt="">
+                <img id="toggleDoorButtonFR" class="tesla-page__image-door doorFR-tesla-page"
+                  src="img/tesla-page/doorFR.png" alt="">
+                <img id="toggleDoorButtonRL" class="tesla-page__image-door doorRl-tesla-page"
+                  src="img/tesla-page/doorRL.png" alt="">
+                <img id="toggleDoorButtonRR" class="tesla-page__image-door doorRR-tesla-page"
+                  src="img/tesla-page/doorRR.png" alt="">
+              </div>
+              <div class="tesla-page-trunk">
+                <p id="toggleDoorButtonHood" class="tesla-page-trunk__front">Front Trunk</p>
+                <p id="toggleDoorButtonLC" class="tesla-page-trunk__front trunk-back">Trunk</p>
+              </div>
+              <svg class="arc" width="200" height="100">
+                <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
+                  stroke-dasharray="5, 5" />
+              </svg>
+              <svg class="arc2" width="200" height="100">
+                <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
+                  stroke-dasharray="5, 5" />
+              </svg>
+              <div class="brightness-control">
+                <div class="icon-container">
+                  <img src="img/tesla-page/icon-sun.png" alt="Low Brightness" class="brightness-icon">
+                </div>
+                <div class="slider-container">
+                  <div class="brightness-value">
+                    <span id="brightnessValue"></span>%
+                  </div>
+                  <div class="brightness-range">
+                    <input type="range" id="brightnessRange" min="0" max="100" value="28">
+                  </div>
+                </div>
+                <button class="auto-button" id="autoButton">AUTO</button>
               </div>
             </div>
 
 
-            <div id="mainTeslaContent">
-              <div id="teslaContent1" class="hidden-content" style="display: block;">
-                <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
-                <div class="button-container__tesla-general-page">
-                  <img id="toggleDoorButtonFL" class="tesla-page__image-door doorFl-tesla-page"
-                    src="img/tesla-page/doorFL.png" alt="">
-                  <img id="toggleDoorButtonFR" class="tesla-page__image-door doorFR-tesla-page"
-                    src="img/tesla-page/doorFR.png" alt="">
-                  <img id="toggleDoorButtonRL" class="tesla-page__image-door doorRl-tesla-page"
-                    src="img/tesla-page/doorRL.png" alt="">
-                  <img id="toggleDoorButtonRR" class="tesla-page__image-door doorRR-tesla-page"
-                    src="img/tesla-page/doorRR.png" alt="">
+            <div id="teslaContent2" class="hidden-content">
+              <img class="tesla-window__image" src="img/tesla-page/window-tesla.png" alt="Window Tesla Model X">
+              <div class="tesla-window__container">
+              </div>
+            </div>
+
+
+            <div id="teslaContent3" class="hidden-content">
+              <h2>Wrapers</h2>
+            </div>
+
+
+            <div id="teslaContent4" class="hidden-content">
+              <div class="suspension-contsiner">
+                <video id="myVideoMov">
+                  <source src="video/suspension.webm" type="video/webm">
+                </video>
+                <div class="suspension-title">
+                  <p class="suspension-title__text">Ride Height</p>
                 </div>
-                <div class="tesla-page-trunk">
-                  <p id="toggleDoorButtonHood" class="tesla-page-trunk__front">Front Trunk</p>
-                  <p id="toggleDoorButtonLC" class="tesla-page-trunk__front trunk-back">Trunk</p>
-                </div>
-                <svg class="arc" width="200" height="100">
-                  <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
-                    stroke-dasharray="5, 5" />
-                </svg>
-                <svg class="arc2" width="200" height="100">
-                  <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
-                    stroke-dasharray="5, 5" />
-                </svg>
-                <div class="brightness-control">
-                  <div class="icon-container">
-                    <img src="img/tesla-page/icon-sun.png" alt="Low Brightness" class="brightness-icon">
-                  </div>
-                  <div class="slider-container">
-                    <div class="brightness-value">
-                      <span id="brightnessValue"></span>%
+                <div class="clearance-control">
+                  <div class="vertical-slider-container">
+                    <div class="clearance-value">
+                      <span id="clearanceValue"></span>
                     </div>
-                    <div class="brightness-range">
-                      <input type="range" id="brightnessRange" min="0" max="100" value="28">
-                    </div>
-                  </div>
-                  <button class="auto-button" id="autoButton">AUTO</button>
-                </div>
-              </div>
-
-
-              <div id="teslaContent2" class="hidden-content">
-                <img class="tesla-window__image" src="img/tesla-page/window-tesla.png" alt="Window Tesla Model X">
-                <div class="tesla-window__container">
-                </div>
-              </div>
-
-
-              <div id="teslaContent3" class="hidden-content">
-                <!-- <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
-                <img id="toggleSuspension" class="tesla-page__image-door doorFR-tesla-page"
-                  src="img/tesla-page/doorFR.png" alt=""> -->
-                <h2>Wrapers</h2>
-              </div>
-
-
-              <div id="teslaContent4" class="hidden-content">
-                <div class="suspension-contsiner">
-                  <video id="myVideoMov">
-                    <source src="video/0000-0060.webm" type="video/webm">
-                  </video>
-                  <div class="suspension-title">
-                    <p class="suspension-title__text">Ride Height</p>
-                  </div>
-                  <div class="clearance-control">
-                    <div class="vertical-slider-container">
-                      <div class="clearance-value">
-                        <span id="clearanceValue"></span>
+                    <div class="clearance-range">
+                      <input type="range" id="clearanceRange" min="1" max="5" value="2" step="1" orient="vertical">
+                      <div class="stop-line-1 stop-lines">
+                        <span class="label-text">Very High</span>
+                        <span class="label-text__bottom">24cm</span>
+                        <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
+                          until 24 km/h</span>
                       </div>
-                      <div class="clearance-range">
-                        <input type="range" id="clearanceRange" min="1" max="5" value="2" step="1" orient="vertical">
-                        <div class="stop-line-1 stop-lines">
-                          <span class="label-text">Very High</span>
-                          <span class="label-text__bottom">24cm</span>
-                          <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
-                            until 24 km/h</span>
-                        </div>
-                        <div class="stop-line-2 stop-lines">
-                          <span class="label-text">High</span>
-                          <span class="label-text__bottom">21cm</span>
-                          <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
-                            until 56 km/h</span>
-                        </div>
-                        <div class="stop-line-3 stop-lines">
-                          <span class="label-text">Standard</span>
-                          <span class="label-text__bottom">19cm</span>
-                          <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
-                            until 40 km/h</span>
-                        </div>
-                        <div class="stop-line-4 stop-lines">
-                          <span class="label-text">Low</span>
-                          <span class="label-text__bottom">17cm</span>
-                          <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
-                            until 20 km/h</span>
-                        </div>
-                        <div class="stop-line-5 stop-lines">
-                          <span class="label-text">Very Low</span>
-                          <span class="label-text__bottom">15cm</span>
-                          <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
-                            until 10 km/h</span>
-                        </div>
+                      <div class="stop-line-2 stop-lines">
+                        <span class="label-text">High</span>
+                        <span class="label-text__bottom">21cm</span>
+                        <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
+                          until 56 km/h</span>
+                      </div>
+                      <div class="stop-line-3 stop-lines">
+                        <span class="label-text">Standard</span>
+                        <span class="label-text__bottom">19cm</span>
+                        <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
+                          until 40 km/h</span>
+                      </div>
+                      <div class="stop-line-4 stop-lines">
+                        <span class="label-text">Low</span>
+                        <span class="label-text__bottom">17cm</span>
+                        <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
+                          until 20 km/h</span>
+                      </div>
+                      <div class="stop-line-5 stop-lines">
+                        <span class="label-text">Very Low</span>
+                        <span class="label-text__bottom">15cm</span>
+                        <span class="label-text__bottom-new"><span class="label-text__bottom-new-span">Keep</span>
+                          until 10 km/h</span>
                       </div>
                     </div>
                   </div>
@@ -458,92 +424,6 @@
         </div>
         <div class="button__close-page-general tesla-page-icon-top__close" ontouchstart="startTouch(event)"
           ontouchend="endTouch(event)" onclick="hideScreen()">
-          <div class="button__close-page"></div>
-        </div>
-      </div>
-
-
-      <!-- <div id="doorScreen" class="new-screen hidden">
-        <div class="phone-frame__dark page__door">
-          <div class="clock">
-            <div class="time" id="time-tesla__door"></div>
-          </div>
-          <div class="phone-notch">
-            <div class="camera"></div>
-          </div>
-          <div class="iphone-battery">
-            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-          </div>
-          <div class="iphone-wifi">
-            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-          </div>
-          <div class="iphone-signal">
-            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-          </div>
-        </div>
-        <h2 class="phone-screen__title-door">Door</h2>
-        <div class="button-container__door">
-          <div class="button-container__icon-door door-LC">
-            <button id="toggleDoorButtonLC" class="button-icon__door-page doorLC"></button>
-          </div>
-          <div class="button-container__icon-door">
-            <button id="toggleDoorButtonFL" class="button-icon__door-page doorFL"></button>
-          </div>
-          <div class="button-container__icon-door">
-            <button id="toggleDoorButtonFR" class="button-icon__door-page doorFR"></button>
-          </div>
-          <div class="button-container__icon-door">
-            <button id="toggleDoorButtonRL" class="button-icon__door-page doorRL"></button>
-          </div>
-          <div class="button-container__icon-door">
-            <button id="toggleDoorButtonRR" class="button-icon__door-page doorRR"></button>
-          </div>
-          <div class="button-container__icon-door door-H">
-            <button id="toggleDoorButtonHood" class="button-icon__door-page doorH"></button>
-          </div>
-        </div>
-        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
-          onclick="hideScreen()">
-          <div class="button__close-page"></div>
-        </div>
-      </div> -->
-
-
-      <div id="windowScreen" class="new-screen hidden">
-        <div class="phone-frame__dark page__window">
-          <div class="clock">
-            <div class="time" id="time-tesla__window"></div>
-          </div>
-          <div class="phone-notch">
-            <div class="camera"></div>
-          </div>
-          <div class="iphone-battery">
-            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-          </div>
-          <div class="iphone-wifi">
-            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-          </div>
-          <div class="iphone-signal">
-            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-          </div>
-        </div>
-        <!-- <h2 class="phone-screen__title-window">Window</h2>
-        <div class="button-container__window">
-          <div class="button-container__icon-window">
-            <button id="toggleDoorButtonWindowFL" class="button-icon__window-page windowFL"></button>
-          </div>
-          <div class="button-container__icon-window">
-            <button id="toggleDoorButtonWindowFR" class="button-icon__window-page windowFR"></button>
-          </div>
-          <div class="button-container__icon-window">
-            <button id="toggleDoorButtonWindowRL" class="button-icon__window-page windowRL"></button>
-          </div>
-          <div class="button-container__icon-window">
-            <button id="toggleDoorButtonWindowRR" class="button-icon__window-page windowRR"></button>
-          </div>
-        </div> -->
-        <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
-          onclick="hideScreen()">
           <div class="button__close-page"></div>
         </div>
       </div>
@@ -633,10 +513,6 @@
       </div>
 
 
-
-
-
-
       <div id="stockScreen" class="new-screen hidden stock-page">
         <div class="phone-frame__dark">
           <div class="clock">
@@ -655,12 +531,6 @@
             <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
           </div>
         </div>
-        <!-- <div class="button-container__weather-general-page">
-          <div class="button-container__weather-page" id="weatherContainerPage">
-          </div>
-        </div> -->
-
-
 
 
         <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
@@ -668,24 +538,12 @@
           <div class="button__close-page"></div>
         </div>
       </div>
-
-
-
-
-
     </div>
   </div>
-
-  <script type="module" src="./js/tesla.js"></script>
-  <!-- <script src="./js/index.js"></script> -->
-  <script src="./js/general-page.js"></script>
-  <script src="./js/icon-page.js"></script>
-  <script src="./js/weather.js"></script>
-  <script src="./js/weather-page.js"></script>
-  <script src="./js/switch.js"></script>
-  <script src="./js/clock.js"></script>
-  <script src="./js/lock.js"></script>
-  <script src="./js/stock.js"></script>
+  <script type="module" src="./js/tesla/tesla.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/phone/start-phone.js"></script>
+  <script src="./js/phone/icon-page.js"></script>
 
 </body>
 

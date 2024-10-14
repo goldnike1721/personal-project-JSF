@@ -4,25 +4,57 @@
             "position": "Front left",
             "state": "Switchpack state",
             "open": false,
-            "calibrate": false
+            "calibrate": false,
+            "arc": {
+                "startX": 40,
+                "startY": 60,
+                "radiusX": 60,
+                "radiusY": 30,
+                "endX": 140,
+                "endY": 50
+            }
         },
         {
             "position": "Front right",
             "state": "Switch state",
             "open": false,
-            "calibrate": false
+            "calibrate": false,
+            "arc": {
+                "startX": 40,
+                "startY": 60,
+                "radiusX": 60,
+                "radiusY": 30,
+                "endX": 140,
+                "endY": 50
+            }
         },
         {
             "position": "Rear left",
             "state": "Switch state",
             "open": false,
-            "calibrate": false
+            "calibrate": false,
+            "arc": {
+                "startX": 58,
+                "startY": 70,
+                "radiusX": 60,
+                "radiusY": 30,
+                "endX": 140,
+                "endY": 50
+            }
         },
         {
             "position": "Rear right",
             "state": "Switch state",
             "open": false,
-            "calibrate": false
+            "calibrate": false,
+            "arc": {
+                "startX": 58,
+                "startY": 70,
+                "radiusX": 60,
+                "radiusY": 30,
+                "endX": 140,
+                "endY": 50
+            }
         }
     ]
 }

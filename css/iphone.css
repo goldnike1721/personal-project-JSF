@@ -77,7 +77,7 @@
 .iphone-battery {
     position: fixed;
     top: 6px;
-    right: 10px;
+    right: 13px;
     z-index: 1000;
 }
 
@@ -101,7 +101,7 @@
 .iphone-signal {
     position: fixed;
     top: 11px;
-    right: 55px;
+    right: 53px;
     z-index: 1000;
 }
 

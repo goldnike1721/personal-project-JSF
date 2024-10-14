@@ -124,7 +124,7 @@ scene.add(directionalLight);
 let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carStartingTrip, carStartingTripFLWheel, carStartingTripFRWheel, carStartingTripFLDisc, carStartingTripFRDisc, carStartingTripRLDisc, carStartingTripRRDisc, suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel;
 
 const loader = new GLTFLoader().setPath('tesla-model/');
-loader.load('!scene.gltf', (gltf) => {
+loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
@@ -229,8 +229,10 @@ const toggleDoorButtonWindowRL = document.getElementById('toggleDoorButtonWindow
 const toggleDoorButtonWindowRR = document.getElementById('toggleDoorButtonWindowRR');
 const toggleDoorButtonFL = document.getElementById('toggleDoorButtonFL');
 const toggleDoorButtonFR = document.getElementById('toggleDoorButtonFR');
-
-// Стан дверей: true - відкриті, false - закриті
+const toggleDoorButtonWindowFLCalibrate = document.getElementById('toggleDoorButtonWindowFLCalibrate');
+const toggleDoorButtonWindowFRCalibrate = document.getElementById('toggleDoorButtonWindowFRCalibrate');
+const toggleDoorButtonWindowRLCalibrate = document.getElementById('toggleDoorButtonWindowRLCalibrate');
+const toggleDoorButtonWindowRRCalibrate = document.getElementById('toggleDoorButtonWindowRRCalibrate');
 const doorStates = {
   FL: false,
   FR: false,
@@ -245,7 +247,6 @@ const doorStates = {
   WindowRR: false
 };
 
-// Функція для часткового відкриття вікна
 function openWindowPartial(windowAction, percentage) {
   const duration = windowAction.getClip().duration;
   const partialDuration = duration * percentage;
@@ -261,81 +262,69 @@ function openWindowPartial(windowAction, percentage) {
 const listener = new THREE.AudioListener();
 camera.add(listener);
 
-// Звуки для передніх дверей
 const openSoundFront = new THREE.Audio(listener);
 const closeSoundFront = new THREE.Audio(listener);
-
-// Звуки для задніх дверей
 const openSoundRear = new THREE.Audio(listener);
 const closeSoundRear = new THREE.Audio(listener);
-
-// Звуки для капота
 const openSoundH = new THREE.Audio(listener);
 const closeSoundH = new THREE.Audio(listener);
-
-// Звуки для багажника
 const openSoundLC = new THREE.Audio(listener);
 const closeSoundLC = new THREE.Audio(listener);
-
-// Звуки для вікое
 const openSoundWindow = new THREE.Audio(listener);
 const closeSoundWindow = new THREE.Audio(listener);
-
+const suspensionSoundForward = new THREE.Audio(listener);
+const suspensionSoundReverse = new THREE.Audio(listener);
 const audioLoader = new THREE.AudioLoader();
 
-// Завантаження звуків для передніх дверей
 audioLoader.load('mp3/doorOpenFront.mp3', function (buffer) {
   openSoundFront.setBuffer(buffer);
   openSoundFront.setVolume(0.5);
 });
-
 audioLoader.load('mp3/doorCloseFront.mp3', function (buffer) {
   closeSoundFront.setBuffer(buffer);
   closeSoundFront.setVolume(0.3);
 });
-
-// Завантаження звуків для задніх дверей
 audioLoader.load('mp3/doorOpenRear.mp3', function (buffer) {
   openSoundRear.setBuffer(buffer);
   openSoundRear.setVolume(0.3);
 });
-
 audioLoader.load('mp3/doorCloseRear.mp3', function (buffer) {
   closeSoundRear.setBuffer(buffer);
   closeSoundRear.setVolume(0.5);
 });
-
-// Завантаження звуків для капота
 audioLoader.load('mp3/doorOpenH.mp3', function (buffer) {
   openSoundH.setBuffer(buffer);
   openSoundH.setVolume(0.7);
 });
-
 audioLoader.load('mp3/doorCloseH.mp3', function (buffer) {
   closeSoundH.setBuffer(buffer);
   closeSoundH.setVolume(0.5);
 });
-
-// Завантаження звуків для багажника
 audioLoader.load('mp3/doorOpenLC.mp3', function (buffer) {
   openSoundLC.setBuffer(buffer);
   openSoundLC.setVolume(0.5);
 });
-
 audioLoader.load('mp3/doorCloseLC.mp3', function (buffer) {
   closeSoundLC.setBuffer(buffer);
   closeSoundLC.setVolume(0.5);
 });
-
-// Завантаження звуків для вікон
 audioLoader.load('mp3/windowOpen.mp3', function (buffer) {
   openSoundWindow.setBuffer(buffer);
   openSoundWindow.setVolume(0.4);
 });
-
 audioLoader.load('mp3/windowClose.mp3', function (buffer) {
   closeSoundWindow.setBuffer(buffer);
   closeSoundWindow.setVolume(0.4);
+});
+audioLoader.load('mp3/suspension.mp3', function (buffer) {
+  suspensionSoundForward.setBuffer(buffer);
+  suspensionSoundForward.setVolume(0.3);
+  suspensionSoundForward.setLoop(false);
+});
+audioLoader.load('mp3/suspension.mp3', function (buffer) {
+  suspensionSoundReverse.setBuffer(buffer);
+  suspensionSoundReverse.setVolume(0.3);
+  suspensionSoundReverse.setLoop(false);
 });
 
 // Передні ліві двері (FL)
@@ -424,7 +413,7 @@ toggleDoorButtonRL.addEventListener('click', () => {
 
       setTimeout(() => {
         closeSoundRear.play();
-      }, doorRL.getClip().duration * 1000);
+      }, 3630);
 
       doorStates.RL = false;
     } else {
@@ -451,7 +440,7 @@ toggleDoorButtonRR.addEventListener('click', () => {
 
       setTimeout(() => {
         closeSoundRear.play();
-      }, doorRR.getClip().duration * 1000);
+      }, 3630);
 
       doorStates.RR = false;
     } else {
@@ -507,7 +496,7 @@ toggleDoorButtonLC.addEventListener('click', () => {
         doorLCSpoiler4.timeScale = -1;
         doorLCSpoiler4.paused = false;
         doorLCSpoiler4.play();
-      }, 5000);
+      }, 5300);
 
       closeSoundLC.play();
 
@@ -549,7 +538,7 @@ toggleDoorButtonLC.addEventListener('click', () => {
 
       setTimeout(() => {
         openSoundLC.play();
-      }, 150);
+      }, 70);
 
       doorStates.LC = true;
     }
@@ -566,7 +555,7 @@ toggleDoorButtonHood.addEventListener('click', () => {
 
       setTimeout(() => {
         closeSoundH.play();
-      }, doorHood.getClip().duration * 1000);
+      }, 3650);
 
       doorStates.H = false;
     } else {
@@ -676,22 +665,86 @@ document.getElementById('buttonFirstModeWrapersOne').addEventListener('click', (
 toggleDoorButtonWindowFL.addEventListener('click', () => {
   if (windowDoorFL) {
     if (doorStates.WindowFL) {
-      windowDoorFL.timeScale = -1;
+      windowDoorFL.timeScale = -0.5;
       windowDoorFL.paused = false;
       windowDoorFL.play();
 
-      closeSoundWindow.play();
+      closeSoundWindow.playbackRate = 1.35;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 150);
 
       doorStates.WindowFL = false;
     } else {
-      windowDoorFL.timeScale = 1;
+      windowDoorFL.timeScale = 0.5;
       windowDoorFL.paused = false;
       windowDoorFL.play();
 
-      openSoundWindow.play();
+      openSoundWindow.playbackRate = 1;
+      setTimeout(() => {
+        openSoundWindow.play();
+      }, 150);
 
       doorStates.WindowFL = true;
     }
+  }
+});
+
+// Вікно переднє ліве Calibrate
+toggleDoorButtonWindowFLCalibrate.addEventListener('click', () => {
+  if (windowDoorFL) {
+    windowDoorFL.timeScale = 1;
+    windowDoorFL.paused = false;
+    windowDoorFL.play();
+
+    openSoundWindow.playbackRate = 1.9;
+    setTimeout(() => {
+      openSoundWindow.play();
+    }, 150);
+
+    setTimeout(() => {
+      windowDoorFL.timeScale = -1;
+      windowDoorFL.play();
+
+      closeSoundWindow.playbackRate = 2.7;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 150);
+
+      setTimeout(() => {
+        windowDoorFL.timeScale = 0.5;
+        windowDoorFL.paused = false;
+        windowDoorFL.play();
+
+        openSoundWindow.play();
+
+        setTimeout(() => {
+          windowDoorFL.timeScale = -0.5;
+          windowDoorFL.play();
+
+          closeSoundWindow.play();
+
+          setTimeout(() => {
+            windowDoorFL.timeScale = 0.33;
+            windowDoorFL.paused = false;
+            windowDoorFL.play();
+
+            openSoundWindow.play();
+
+            setTimeout(() => {
+              windowDoorFL.timeScale = -0.33;
+              windowDoorFL.play();
+
+              closeSoundWindow.play();
+            }, 2000);
+
+          }, 2400);
+
+        }, 2000);
+
+      }, 2400);
+
+    }, 2400);
   }
 });
 
@@ -699,22 +752,86 @@ toggleDoorButtonWindowFL.addEventListener('click', () => {
 toggleDoorButtonWindowFR.addEventListener('click', () => {
   if (windowDoorFR) {
     if (doorStates.WindowFR) {
-      windowDoorFR.timeScale = -1;
+      windowDoorFR.timeScale = -0.5;
       windowDoorFR.paused = false;
       windowDoorFR.play();
 
-      closeSoundWindow.play();
+      closeSoundWindow.playbackRate = 1.35;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 150);
 
       doorStates.WindowFR = false;
     } else {
-      windowDoorFR.timeScale = 1;
+      windowDoorFR.timeScale = 0.5;
       windowDoorFR.paused = false;
       windowDoorFR.play();
 
-      openSoundWindow.play();
+      openSoundWindow.playbackRate = 1;
+      setTimeout(() => {
+        openSoundWindow.play();
+      }, 150);
 
       doorStates.WindowFR = true;
     }
+  }
+});
+
+// Вікно переднє праве Calibrate
+toggleDoorButtonWindowFRCalibrate.addEventListener('click', () => {
+  if (windowDoorFR) {
+    windowDoorFR.timeScale = 1;
+    windowDoorFR.paused = false;
+    windowDoorFR.play();
+
+    openSoundWindow.playbackRate = 1.9;
+    setTimeout(() => {
+      openSoundWindow.play();
+    }, 150);
+
+    setTimeout(() => {
+      windowDoorFR.timeScale = -1;
+      windowDoorFR.play();
+
+      closeSoundWindow.playbackRate = 2.7;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 150);
+
+      setTimeout(() => {
+        windowDoorFR.timeScale = 0.5;
+        windowDoorFR.paused = false;
+        windowDoorFR.play();
+
+        openSoundWindow.play();
+
+        setTimeout(() => {
+          windowDoorFR.timeScale = -0.5;
+          windowDoorFR.play();
+
+          closeSoundWindow.play();
+
+          setTimeout(() => {
+            windowDoorFR.timeScale = 0.33;
+            windowDoorFR.paused = false;
+            windowDoorFR.play();
+
+            openSoundWindow.play();
+
+            setTimeout(() => {
+              windowDoorFR.timeScale = -0.33;
+              windowDoorFR.play();
+
+              closeSoundWindow.play();
+            }, 2000);
+
+          }, 2400);
+
+        }, 2000);
+
+      }, 2400);
+
+    }, 2400);
   }
 });
 
@@ -722,22 +839,86 @@ toggleDoorButtonWindowFR.addEventListener('click', () => {
 toggleDoorButtonWindowRL.addEventListener('click', () => {
   if (windowDoorRL) {
     if (doorStates.WindowRL) {
-      windowDoorRL.timeScale = -1;
+      windowDoorRL.timeScale = -0.77;
       windowDoorRL.paused = false;
       windowDoorRL.play();
 
-      closeSoundWindow.play();
+      closeSoundWindow.playbackRate = 1.75;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 150);
 
       doorStates.WindowRL = false;
     } else {
-      windowDoorRL.timeScale = 1;
+      windowDoorRL.timeScale = 0.77;
       windowDoorRL.paused = false;
       windowDoorRL.play();
 
-      openSoundWindow.play();
+      openSoundWindow.playbackRate = 1;
+      setTimeout(() => {
+        openSoundWindow.play();
+      }, 10);
 
       doorStates.WindowRL = true;
     }
+  }
+});
+
+// Вікно заднє ліве Calibrate
+toggleDoorButtonWindowRLCalibrate.addEventListener('click', () => {
+  if (windowDoorRL) {
+    windowDoorRL.timeScale = 1;
+    windowDoorRL.paused = false;
+    windowDoorRL.play();
+
+    openSoundWindow.playbackRate = 1.75;
+    setTimeout(() => {
+      openSoundWindow.play();
+    }, 10);
+
+    setTimeout(() => {
+      windowDoorRL.timeScale = -1;
+      windowDoorRL.play();
+
+      closeSoundWindow.playbackRate = 3.55;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 10);
+
+      setTimeout(() => {
+        windowDoorRL.timeScale = 1;
+        windowDoorRL.paused = false;
+        windowDoorRL.play();
+
+        openSoundWindow.play();
+
+        setTimeout(() => {
+          windowDoorRL.timeScale = -1;
+          windowDoorRL.play();
+
+          closeSoundWindow.play();
+
+          setTimeout(() => {
+            windowDoorRL.timeScale = 0.75;
+            windowDoorRL.paused = false;
+            windowDoorRL.play();
+
+            openSoundWindow.play();
+
+            setTimeout(() => {
+              windowDoorRL.timeScale = -0.75;
+              windowDoorRL.play();
+
+              closeSoundWindow.play();
+            }, 2000);
+
+          }, 2400);
+
+        }, 2000);
+
+      }, 2400);
+
+    }, 2400);
   }
 });
 
@@ -745,22 +926,86 @@ toggleDoorButtonWindowRL.addEventListener('click', () => {
 toggleDoorButtonWindowRR.addEventListener('click', () => {
   if (windowDoorRR) {
     if (doorStates.WindowRR) {
-      windowDoorRR.timeScale = -1;
+      windowDoorRR.timeScale = -0.77;
       windowDoorRR.paused = false;
       windowDoorRR.play();
 
-      closeSoundWindow.play();
+      closeSoundWindow.playbackRate = 1.75;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 150);
 
       doorStates.WindowRR = false;
     } else {
-      windowDoorRR.timeScale = 1;
+      windowDoorRR.timeScale = 0.77;
       windowDoorRR.paused = false;
       windowDoorRR.play();
 
-      openSoundWindow.play();
+      openSoundWindow.playbackRate = 1;
+      setTimeout(() => {
+        openSoundWindow.play();
+      }, 10);
 
       doorStates.WindowRR = true;
     }
+  }
+});
+
+// Вікно заднє праве Calibrate
+toggleDoorButtonWindowRRCalibrate.addEventListener('click', () => {
+  if (windowDoorRR) {
+    windowDoorRR.timeScale = 1;
+    windowDoorRR.paused = false;
+    windowDoorRR.play();
+
+    openSoundWindow.playbackRate = 1.75;
+    setTimeout(() => {
+      openSoundWindow.play();
+    }, 10);
+
+    setTimeout(() => {
+      windowDoorRR.timeScale = -1;
+      windowDoorRR.play();
+
+      closeSoundWindow.playbackRate = 3;
+      setTimeout(() => {
+        closeSoundWindow.play();
+      }, 10);
+
+      setTimeout(() => {
+        windowDoorRR.timeScale = 1;
+        windowDoorRR.paused = false;
+        windowDoorRR.play();
+
+        openSoundWindow.play();
+
+        setTimeout(() => {
+          windowDoorRR.timeScale = -1;
+          windowDoorRR.play();
+
+          closeSoundWindow.play();
+
+          setTimeout(() => {
+            windowDoorRR.timeScale = 0.75;
+            windowDoorRR.paused = false;
+            windowDoorRR.play();
+
+            openSoundWindow.play();
+
+            setTimeout(() => {
+              windowDoorRR.timeScale = -0.75;
+              windowDoorRR.play();
+
+              closeSoundWindow.play();
+            }, 2000);
+
+          }, 2400);
+
+        }, 2000);
+
+      }, 2400);
+
+    }, 2400);
   }
 });
 
@@ -790,8 +1035,10 @@ function changeClearance(suspensionAction, fromPercentage, toPercentage, timeSca
 
   if (timeScale === 1) {
     video.play();
+    suspensionSoundForward.play();
   } else {
     video.pause();
+    suspensionSoundReverse.play();
     let reverseInterval = setInterval(() => {
       if (video.currentTime <= videoDuration * toPercentage) {
         clearInterval(reverseInterval);
@@ -805,6 +1052,8 @@ function changeClearance(suspensionAction, fromPercentage, toPercentage, timeSca
   setTimeout(() => {
     suspensionAction.paused = true;
     video.pause();
+    suspensionSoundForward.stop();
+    suspensionSoundReverse.stop();
   }, partialDuration * 1000);
 }
 

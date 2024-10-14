@@ -1,12 +1,2 @@
-function init() {
-    import("./icon-page.js");
-    import("./weather-page.js");
-}
-
-const totalPartials = document.querySelectorAll('[hx-trigger="load"], [data-hx-trigger="load"]').length;
-let loadedPartialsCount = 0;
-
-document.body.addEventListener('htmx:afterOnLoad', () => {
-    loadedPartialsCount++;
-    if (loadedPartialsCount === totalPartials) init();
-});
+import("./phone/phone-general.js");
+import("./tesla/tesla-general.js");
