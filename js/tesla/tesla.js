@@ -274,6 +274,8 @@ const openSoundWindow = new THREE.Audio(listener);
 const closeSoundWindow = new THREE.Audio(listener);
 const suspensionSoundForward = new THREE.Audio(listener);
 const suspensionSoundReverse = new THREE.Audio(listener);
+const wrapersSound = new THREE.Audio(listener);
+
 const audioLoader = new THREE.AudioLoader();
 
 audioLoader.load('mp3/doorOpenFront.mp3', function (buffer) {
@@ -326,7 +328,10 @@ audioLoader.load('mp3/suspension.mp3', function (buffer) {
   suspensionSoundReverse.setVolume(0.3);
   suspensionSoundReverse.setLoop(false);
 });
-
+audioLoader.load('mp3/wrapers.mp3', function (buffer) {
+  wrapersSound.setBuffer(buffer);
+  wrapersSound.setVolume(0.4);
+});
 // Передні ліві двері (FL)
 toggleDoorButtonFL.addEventListener('click', () => {
   if (doorFL && windowDoorFL) {
@@ -574,20 +579,20 @@ toggleDoorButtonHood.addEventListener('click', () => {
 
 // Двірники (Wrapers)
 let isAnimating = {
-  buttonDelay2s: false,
-  buttonDelay3s: false,
-  buttonDelay5s: false,
-  buttonOneTime: false,
+  buttonFirstModeWrapers: false,
+  buttonSecondModeWrapers: false,
+  buttonThirdModeWrapers: false,
+  buttonFirstModeWrapersOne: false,
 };
 
 let isAnimationRunning = {
-  buttonDelay2s: false,
-  buttonDelay3s: false,
-  buttonDelay5s: false,
-  buttonOneTime: false,
+  buttonFirstModeWrapers: false,
+  buttonSecondModeWrapers: false,
+  buttonThirdModeWrapers: false,
+  buttonFirstModeWrapersOne: false,
 };
 
-function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
+function animateWipersWithDelay(delay, speed, buttonId, oneTime = false, soundSpeed = 1) {
   if (carWiperLeft && carWiperRight) {
     for (const key in isAnimating) {
       if (key !== buttonId && isAnimating[key]) {
@@ -599,6 +604,9 @@ function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
     if (!isAnimating[buttonId] || isAnimationRunning[buttonId]) return;
 
     isAnimationRunning[buttonId] = true;
+
+    wrapersSound.playbackRate = soundSpeed;
+    wrapersSound.play();
 
     carWiperLeft.timeScale = speed;
     carWiperRight.timeScale = speed;
@@ -621,7 +629,7 @@ function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
         if (!oneTime) {
           if (isAnimating[buttonId]) {
             setTimeout(() => {
-              animateWipersWithDelay(delay, speed, buttonId);
+              animateWipersWithDelay(delay, speed, buttonId, false, soundSpeed);
             }, delay);
           }
         } else {
@@ -636,28 +644,28 @@ function animateWipersWithDelay(delay, speed, buttonId, oneTime = false) {
 document.getElementById('buttonFirstModeWrapers').addEventListener('click', () => {
   isAnimating.buttonFirstModeWrapers = !isAnimating.buttonFirstModeWrapers;
   if (isAnimating.buttonFirstModeWrapers) {
-    animateWipersWithDelay(600, 3, 'buttonFirstModeWrapers');
+    animateWipersWithDelay(600, 3, 'buttonFirstModeWrapers', false, 0.65);
   }
 });
 
 document.getElementById('buttonSecondModeWrapers').addEventListener('click', () => {
   isAnimating.buttonSecondModeWrapers = !isAnimating.buttonSecondModeWrapers;
   if (isAnimating.buttonSecondModeWrapers) {
-    animateWipersWithDelay(300, 3.7, 'buttonSecondModeWrapers');
+    animateWipersWithDelay(300, 3.7, 'buttonSecondModeWrapers', false, 0.8);
   }
 });
 
 document.getElementById('buttonThirdModeWrapers').addEventListener('click', () => {
   isAnimating.buttonThirdModeWrapers = !isAnimating.buttonThirdModeWrapers;
   if (isAnimating.buttonThirdModeWrapers) {
-    animateWipersWithDelay(0, 4.7, 'buttonThirdModeWrapers');
+    animateWipersWithDelay(0, 4.7, 'buttonThirdModeWrapers', false, 1.03);
   }
 });
 
 document.getElementById('buttonFirstModeWrapersOne').addEventListener('click', () => {
   if (!isAnimating.buttonFirstModeWrapersOne) {
     isAnimating.buttonFirstModeWrapersOne = true;
-    animateWipersWithDelay(600, 3, 'buttonFirstModeWrapersOne', true);
+    animateWipersWithDelay(600, 3, 'buttonFirstModeWrapersOne', true, 0.65);
   }
 });
 
@@ -1035,10 +1043,20 @@ function changeClearance(suspensionAction, fromPercentage, toPercentage, timeSca
 
   if (timeScale === 1) {
     video.play();
+
+    if (suspensionSoundForward.isPlaying) {
+      suspensionSoundForward.stop();
+    }
     suspensionSoundForward.play();
+
   } else {
     video.pause();
+
+    if (suspensionSoundReverse.isPlaying) {
+      suspensionSoundReverse.stop();
+    }
     suspensionSoundReverse.play();
+
     let reverseInterval = setInterval(() => {
       if (video.currentTime <= videoDuration * toPercentage) {
         clearInterval(reverseInterval);
@@ -1052,6 +1070,7 @@ function changeClearance(suspensionAction, fromPercentage, toPercentage, timeSca
   setTimeout(() => {
     suspensionAction.paused = true;
     video.pause();
+
     suspensionSoundForward.stop();
     suspensionSoundReverse.stop();
   }, partialDuration * 1000);
@@ -1060,7 +1079,6 @@ function changeClearance(suspensionAction, fromPercentage, toPercentage, timeSca
 function animateSuspension(fromPosition, toPosition) {
   const fromPercentage = clearancePercentages[fromPosition];
   const toPercentage = clearancePercentages[toPosition];
-
   const timeScale = (fromPosition < toPosition) ? 1 : -1;
 
   if (suspensionCar && suspensionFLWheel && suspensionFRWheel && suspensionRLWheel && suspensionRRWheel) {
@@ -1075,7 +1093,6 @@ function animateSuspension(fromPosition, toPosition) {
 
 document.getElementById('clearanceRange').addEventListener('input', function () {
   const value = parseInt(this.value);
-
   const fromPercentage = clearancePercentages[currentClearance];
   const toPercentage = clearancePercentages[value];
 

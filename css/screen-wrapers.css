@@ -1,27 +1,92 @@
-.phone-screen__title-wrapers {
-    display: flex;
-    justify-content: center;
-    font-size: 45px;
-    font-family: var(--font-family-text);
-    font-weight: 500;
-    padding-top: 20px;
-    color: #ffffff;
+#teslaContent3 {
+    margin-left: 21px;
 }
 
-.button-container__wrapers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 70px;
-    gap: 10px;
-}
-
-.button-container__icon-wrapers {
-    width: 95px;
-    text-align: center;
-    margin: 5px;
-}
-
-.page__wrapers {
+#myVideoMovWrapers {
+    position: relative;
+    transform: scale(3.1);
+    margin: 178px 0px 0px 38px;
     z-index: -1;
+}
+
+.video-wrapers {
+    width: 150px;
+    height: 150px;
+}
+
+.tesla-wrapers__button-ones {
+    transform: rotate(8deg);
+    margin: -76px 0 0 168px;
+}
+
+.tesla-wrapers__button-1st {
+    transform: rotate(-6deg);
+    margin: -93px 0 0 165px;
+}
+
+.tesla-wrapers__button-2st {
+    transform: rotate(-17deg);
+    margin: -102px 0 0 162px;
+}
+
+.tesla-wrapers__button-3st {
+    transform: rotate(-28deg);
+    margin: -111px 0 0 159px;
+}
+
+.tesla-wrapers__button-ones,
+.tesla-wrapers__button-1st,
+.tesla-wrapers__button-2st,
+.tesla-wrapers__button-3st {
+    position: fixed;
+    width: 55px;
+    height: 5.5px;
+    background: transparent;
+    border: none;
+    outline: none;
+    outline: 1.5px dashed #33333385;
+    z-index: 1111;
+    border-top-right-radius: 20%;
+    border-bottom-right-radius: 20%;
+    clip-path: inset(-25% -35% -25% 41%);
+    transition: outline-color 0.3s ease;
+}
+
+.tesla-wrapers__button-ones:hover,
+.tesla-wrapers__button-1st:hover,
+.tesla-wrapers__button-2st:hover,
+.tesla-wrapers__button-3st:hover {
+    outline: 1.5px dashed #333333;
+    cursor: pointer;
+}
+
+.tesla-wrapers__button-ones.active,
+.tesla-wrapers__button-1st.active,
+.tesla-wrapers__button-2st.active,
+.tesla-wrapers__button-3st.active {
+    outline: 1.5px dashed #333333;
+    background-color: #737373;
+}
+
+.tesla-wrapers__signal {
+    position: fixed;
+    width: 77px;
+    height: 65px;
+    margin: -101px 0px 0px 70px;
+    clip-path: polygon(50% 0%,
+            73% 3%,
+            99% 12%,
+            100% 26%,
+            88% 60%,
+            69% 100%,
+            31% 100%,
+            13% 62%,
+            0% 29%,
+            0% 13%,
+            25% 3%);
+    transition: background-color 0.01s ease;
+}
+
+.tesla-wrapers__signal.active {
+    background-color: #33333375;
 }

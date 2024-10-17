@@ -1,0 +1,32 @@
+{
+    "clearanceControl": {
+        "value": 2,
+        "stops": [
+            {
+                "label": "Very High",
+                "height": "24cm",
+                "keep": "Keep until 24 km/h"
+            },
+            {
+                "label": "High",
+                "height": "21cm",
+                "keep": "Keep until 56 km/h"
+            },
+            {
+                "label": "Standard",
+                "height": "19cm",
+                "keep": "Keep until 40 km/h"
+            },
+            {
+                "label": "Low",
+                "height": "17cm",
+                "keep": "Keep until 20 km/h"
+            },
+            {
+                "label": "Very Low",
+                "height": "15cm",
+                "keep": "Keep until 10 km/h"
+            }
+        ]
+    }
+}

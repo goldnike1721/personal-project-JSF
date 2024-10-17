@@ -10,14 +10,11 @@
     height: 100%;
     overflow-y: auto;
     transform: translateY(7%);
+    scrollbar-width: none;
 }
 
 .button-container__weather-general-page::-webkit-scrollbar {
     display: none;
-}
-
-.button-container__weather-general-page {
-    scrollbar-width: none;
 }
 
 .weather-city__page {

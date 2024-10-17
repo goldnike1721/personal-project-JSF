@@ -1,103 +1,218 @@
-.phone-screen__title-window {
+.front-left,
+.front-right,
+.rear-left,
+.rear-right {
     display: flex;
-    justify-content: center;
-    font-size: 45px;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #000000;
+    padding-bottom: 5px;
+    z-index: 112212;
+}
+
+.tesla-window__image {
+    position: relative;
+    z-index: 1;
+    margin: 120px 0 0 2px;
+    transform: rotate(180deg) scale(0.77);
+}
+
+.tesla-window__door {
+    position: fixed;
+    z-index: 12212112;
+    width: 90px;
+    height: 95px;
+}
+
+.front-left {
+    top: 125px;
+    left: 10px;
+    border-radius: 7px 7px 30% 7px;
+}
+
+.front-right {
+    top: 125px;
+    left: 166px;
+    border-radius: 7px 7px 7px 30%;
+}
+
+.rear-left {
+    top: 415px;
+    left: 10px;
+    border-radius: 7px 30% 7px 7px;
+}
+
+.rear-right {
+    top: 415px;
+    left: 166px;
+    border-radius: 30% 7px 7px 7px;
+}
+
+.tesla-window__door-title-text {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font-family-text);
+    color: #333333;
+    padding: 0 3px 7px 3px;
+    background-color: rgb(255, 252, 243);
+}
+
+.tesla-window__paragraph-text {
+    font-size: 10px;
+    font-weight: 500;
+    font-family: var(--font-family-text);
+    color: #333333;
+}
+
+.tesla-window__door-open {
+    margin-top: 5px;
+}
+
+.tesla-window__open-button {
+    background-color: #333333;
+}
+
+.tesla-window__calibrate-button {
+    background-color: #494949;
+}
+
+.tesla-window__open-button,
+.tesla-window__calibrate-button {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px;
     font-family: var(--font-family-text);
     font-weight: 500;
-    padding-top: 20px;
-    color: #ffffff;
-}
-
-.page__window {
-    z-index: -1;
-}
-
-.button-container__window {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 70px;
-    gap: 10px;
-}
-
-.button-container__icon-window {
-    width: 95px;
-    text-align: center;
-    margin: 5px;
-}
-
-.windowFL,
-.windowFR,
-.windowRL,
-.windowRR {
-    background-size: 100% auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #BFBFBF;
-}
-
-.windowFL {
-    background-image: url('../img/window-page/windowFL.png');
-}
-
-.windowFR {
-    background-image: url('../img/window-page/windowFR.png');
-}
-
-.windowRL {
-    background-image: url('../img/window-page/windowRL.png');
-}
-
-.windowRR {
-    background-image: url('../img/window-page/windowRR.png');
-}
-
-.button-icon__window-page {
-    width: 95px;
-    height: 70px;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
-    background-color: #BFBFBF;
-    background-size: 100% auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: background-size 0.7s ease, box-shadow 0.7s ease, border 0.7s ease;
-    overflow: hidden;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 3px 0;
 }
 
-.windowFL,
-.windowRR {
-    background-position: 30% center;
-    transition: background-size 0.7s ease, background-position 0.7s ease, border 0.7s ease;
+.tesla-window__open-button:hover,
+.tesla-window__calibrate-button:hover {
+    background-color: #000000;
+    transform: scale(1.02);
 }
 
-.windowFR,
-.windowRL {
-    background-position: 80% center;
-    transition: background-size 0.7s ease, background-position 0.7s ease, border 0.7s ease;
+.outer-circle {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.windowFL:hover,
-.windowFR:hover,
-.windowRL:hover,
-.windowRR:hover {
-    background-size: 250% auto;
-    border: 2px solid #000000;
+.inner-circle {
+    width: 6px;
+    height: 6px;
+    background-color: #333333;
+    border-radius: 50%;
 }
 
-.windowFL:hover {
-    background-position: 40% -30%;
+.circle-front-left {
+    position: fixed;
+    top: 300px;
+    left: 71px;
 }
 
-.windowRR:hover {
-    background-position: 25% -30%;
+.circle-front-right {
+    position: fixed;
+    top: 300px;
 }
 
-.windowFR:hover {
-    background-position: 60% -30%;
+.circle-rear-left {
+    position: fixed;
+    top: 345px;
+    left: 71px;
 }
 
-.windowRL:hover {
-    background-position: 75% -30%;
+.circle-rear-right {
+    position: fixed;
+    top: 345px;
+}
+
+.outer-circle {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.outer-circle.show {
+    opacity: 1;
+    visibility: visible;
+    animation: borderChange 0.7s infinite alternate;
+}
+
+.inner-circle {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.inner-circle.show {
+    opacity: 1;
+    visibility: visible;
+    animation: colorChange 0.7s infinite alternate;
+}
+
+@keyframes colorChange {
+    from {
+        background-color: rgb(255, 0, 0);
+    }
+
+    to {
+        background-color: #333333;
+    }
+}
+
+@keyframes borderChange {
+    from {
+        border: 1px solid rgb(255, 0, 0);
+    }
+
+    to {
+        border: 1px solid #333333;
+    }
+}
+
+.arc-tesla {
+    position: fixed;
+    z-index: -21;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tesla-window__door:hover .arc-tesla {
+    opacity: 1;
+}
+
+.arc-front-left {
+    top: 123px;
+    left: -120px;
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(244deg);
+}
+
+.arc-front-right {
+    top: 123px;
+    left: 86px;
+    transform: rotateY(180deg) rotateX(0deg) rotateZ(244deg);
+}
+
+.arc-rear-left {
+    top: 362px;
+    left: -120px;
+    transform: rotateY(0deg) rotateX(180deg) rotateZ(244deg);
+}
+
+.arc-rear-right {
+    top: 362px;
+    left: 86px;
+    transform: rotateY(180deg) rotateX(180deg) rotateZ(244deg);
 }
