@@ -4,21 +4,18 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
-
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1000);
-
 const controls = new OrbitControls(camera, renderer.domElement);
+
 controls.enableDamping = true;
 controls.enablePan = false;
 controls.minDistance = 4;
@@ -53,17 +50,6 @@ groundGeometry.rotateX(-Math.PI / 2);
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
-// const groundGeometry = new THREE.CircleGeometry(7, 15);
-// groundGeometry.rotateX(-Math.PI / 2);
-// const groundMaterial = new THREE.MeshStandardMaterial({
-//   color: 0x000000,
-//   side: THREE.DoubleSide
-// });
-// const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-// groundMesh.castShadow = false;
-// groundMesh.receiveShadow = true;
-// scene.add(groundMesh);
-
 const ambientLight = new THREE.AmbientLight(0xfff4e5, 0.5);
 scene.add(ambientLight);
 
@@ -88,45 +74,14 @@ directionalLight.shadow.camera.far = 50;
 
 scene.add(directionalLight);
 
-// Камера тіней для візуалізації (необов'язково, для налагодження)
-// const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
-// scene.add(helper);
-
-// const spotLight1 = new THREE.SpotLight(0xffffff, 30000, 100, 0.2, 0.5);
-// spotLight1.position.set(0, 10, 0); // Освітлення в центрі сцени
-// spotLight1.castShadow = true;
-// spotLight1.shadow.bias = -0.0001;
-// scene.add(spotLight1);
-
-// const spotLight2 = new THREE.SpotLight(0xffffff, 700000, 10000, 10.2, 0.5);
-// spotLight2.position.set(0, 1, 30); // Освітлення в центрі сцени
-// spotLight2.castShadow = true;
-// spotLight2.shadow.bias = -0.0001;
-// scene.add(spotLight2);
-// const spotLight1 = new THREE.SpotLight(0xffffff, 3000, 100, 0.2, 0.5);
-// spotLight1.position.set(10, 10, 0); // Освітлення в центрі сцени
-// spotLight1.castShadow = true;
-// spotLight1.shadow.bias = -20.0001;
-// scene.add(spotLight1);
-
-// const spotLight2 = new THREE.SpotLight(0xffffff, 3000, 100, 0.2, 0.5);
-// spotLight2.position.set(0, 10, 10); // Освітлення в центрі сцени
-// spotLight2.castShadow = true;
-// spotLight2.shadow.bias = -20.0001;
-// scene.add(spotLight2);
-
-// const spotLight3 = new THREE.SpotLight(0xffffff, 3000, 100, 0.2, 0.5);
-// spotLight3.position.set(0, 10, -10); // Освітлення в центрі сцени
-// spotLight3.castShadow = true;
-// spotLight3.shadow.bias = -20.0001;
-// scene.add(spotLight3);
-
 let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, carStartingTrip, carStartingTripFLWheel, carStartingTripFRWheel, carStartingTripFLDisc, carStartingTripFRDisc, carStartingTripRLDisc, carStartingTripRRDisc, suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel;
 
 const loader = new GLTFLoader().setPath('tesla-model/');
 loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
+  // Перевірка чи є елементи для додавання
+  console.log('Model loaded:', mesh);
 
   mesh.traverse((child) => {
     if (child.isMesh) {
@@ -212,11 +167,34 @@ loader.load('scene.gltf', (gltf) => {
     }
   });
 
-  document.getElementById('progress-container').style.display = 'none';
+  // Перевірка наявності контейнера та його приховання
+  // Ховати індикатор прогресу після завершення завантаження
 }, (xhr) => {
-  console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
+  const percentComplete = Math.round((xhr.loaded / xhr.total) * 100);
+  document.getElementById('progress-text').textContent = `Loading ${percentComplete}%`;
+  console.log(`Loading progress: ${percentComplete}%`);
+
+  // Оновлення ширини прогрес-бару
+  const progressBar = document.getElementById('progress-bar');
+  if (progressBar) {
+    progressBar.style.width = `${percentComplete}%`;
+  }
+
+  // Приховуємо прогрес-бар, коли досягнуто 100%
+  if (percentComplete === 100) {
+    const progressContainer = document.getElementById('progress-container');
+    if (progressContainer) {
+      progressContainer.style.display = 'none'; // або visibility: hidden;
+    }
+  }
+
 }, (error) => {
-  console.error(error);
+  console.error('Error loading model:', error);
+  const progressContainer = document.getElementById('progress-container');
+  if (progressContainer) {
+    console.log("Hiding progress container due to error");
+    progressContainer.style.display = 'none'; // Або visibility: hidden;
+  }
 });
 
 const toggleDoorButtonRL = document.getElementById('toggleDoorButtonRL');
