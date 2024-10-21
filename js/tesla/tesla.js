@@ -59,12 +59,10 @@ spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
-// Сонце (Directional Light)
 const directionalLight = new THREE.DirectionalLight(0xfff4e5, 20);
 directionalLight.position.set(10, 50, 10);
 directionalLight.castShadow = true;
 
-// Налаштування камери тіней для обмеження області освітлення
 directionalLight.shadow.camera.left = -50;
 directionalLight.shadow.camera.right = 50;
 directionalLight.shadow.camera.top = 50;
@@ -78,10 +76,7 @@ let mixer, doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windo
 
 const loader = new GLTFLoader().setPath('tesla-model/');
 loader.load('scene.gltf', (gltf) => {
-  console.log('loading model');
   const mesh = gltf.scene;
-  // Перевірка чи є елементи для додавання
-  console.log('Model loaded:', mesh);
 
   mesh.traverse((child) => {
     if (child.isMesh) {
@@ -98,7 +93,6 @@ loader.load('scene.gltf', (gltf) => {
   controls.target.set(0, 0.7, 0);
   controls.update();
 
-  // Анімації
   mixer = new THREE.AnimationMixer(mesh);
   doorFL = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontLeftDoorAction'));
   doorFR = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDFrontRightDoorAction'));
@@ -135,31 +129,6 @@ loader.load('scene.gltf', (gltf) => {
   suspensionRLWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRLWheelAction'));
   suspensionRRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRRWheelAction'));
 
-  // Перевіряємо та запускаємо анімації
-  // if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
-  //   carStartingTrip.clampWhenFinished = true;
-  //   carStartingTrip.loop = THREE.LoopOnce;
-  //   carStartingTrip.play();
-  //   carStartingTripFLWheel.clampWhenFinished = true;
-  //   carStartingTripFLWheel.loop = THREE.LoopOnce;
-  //   carStartingTripFLWheel.play();
-  //   carStartingTripFRWheel.clampWhenFinished = true;
-  //   carStartingTripFRWheel.loop = THREE.LoopOnce;
-  //   carStartingTripFRWheel.play();
-  //   carStartingTripFLDisc.clampWhenFinished = true;
-  //   carStartingTripFLDisc.loop = THREE.LoopOnce;
-  //   carStartingTripFLDisc.play();
-  //   carStartingTripFRDisc.clampWhenFinished = true;
-  //   carStartingTripFRDisc.loop = THREE.LoopOnce;
-  //   carStartingTripFRDisc.play();
-  //   carStartingTripRLDisc.clampWhenFinished = true;
-  //   carStartingTripRLDisc.loop = THREE.LoopOnce;
-  //   carStartingTripRLDisc.play();
-  //   carStartingTripRRDisc.clampWhenFinished = true;
-  //   carStartingTripRRDisc.loop = THREE.LoopOnce;
-  //   carStartingTripRRDisc.play();
-  // }
-
   [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel].forEach(action => {
     if (action) {
       action.clampWhenFinished = true;
@@ -167,38 +136,30 @@ loader.load('scene.gltf', (gltf) => {
     }
   });
 
-  // Перевірка наявності контейнера та його приховання
   const progressContainer = document.getElementById('progress-container');
   const progressFill = document.getElementById('progress-fill');
   const progressText = document.getElementById('progress-text');
-
-  if (progressContainer) {
-    progressContainer.style.display = 'block'; // Показати контейнер на початку завантаження
-  }
-
   const loadModel = new Promise((resolve, reject) => {
-    // Імітація завантаження моделі
-    let xhr = { loaded: 0, total: 100 }; // Замінити на реальний xhr об'єкт
+    let xhr = { loaded: 0, total: 100 };
     let interval = setInterval(() => {
       if (xhr.loaded < xhr.total) {
-        xhr.loaded += 1; // Збільшити завантаження
+        xhr.loaded += 1;
         const percentComplete = Math.round((xhr.loaded / xhr.total) * 100);
         progressText.textContent = `Loading ${percentComplete}%`;
         progressFill.style.width = `${percentComplete}%`;
         console.log(`Loading progress: ${percentComplete}%`);
       } else {
         clearInterval(interval);
-        resolve(); // Завантаження завершене
+        resolve();
       }
-    }, 300);
+    }, 30);
   });
 
   loadModel.then(() => {
-    // Приховати прогрес-бар після завершення завантаження
     if (progressContainer) {
       setTimeout(() => {
         progressContainer.style.display = 'none';
-        startAnimations(); // Запустити анімації після завантаження
+        startAnimations();
       }, 500);
     }
   }).catch((error) => {
@@ -354,7 +315,7 @@ audioLoader.load('mp3/wrapers.mp3', function (buffer) {
   wrapersSound.setBuffer(buffer);
   wrapersSound.setVolume(0.4);
 });
-// Передні ліві двері (FL)
+
 toggleDoorButtonFL.addEventListener('click', () => {
   if (doorFL && windowDoorFL) {
     if (doorStates.FL) {
@@ -392,7 +353,6 @@ toggleDoorButtonFL.addEventListener('click', () => {
   }
 });
 
-// Передні праві двері (FR)
 toggleDoorButtonFR.addEventListener('click', () => {
   if (doorFR && windowDoorFR) {
     if (doorStates.FR) {
@@ -430,7 +390,6 @@ toggleDoorButtonFR.addEventListener('click', () => {
   }
 });
 
-// Задні ліві двері (RL)
 toggleDoorButtonRL.addEventListener('click', () => {
   if (doorRL) {
     if (doorStates.RL) {
@@ -457,7 +416,6 @@ toggleDoorButtonRL.addEventListener('click', () => {
   }
 });
 
-// Задні праві двері (RR)
 toggleDoorButtonRR.addEventListener('click', () => {
   if (doorRR) {
     if (doorStates.RR) {
@@ -484,7 +442,6 @@ toggleDoorButtonRR.addEventListener('click', () => {
   }
 });
 
-// Багажник (LC)
 toggleDoorButtonLC.addEventListener('click', () => {
   if (doorLC && doorLCCylinderL && doorLCCylinderR && doorLCPistoneL && doorLCPistoneR && doorLCRodL && doorLCRodR && doorLCSpoiler1 && doorLCSpoiler2 && doorLCSpoiler3 && doorLCSpoiler4) {
     if (doorStates.LC) {
@@ -572,7 +529,6 @@ toggleDoorButtonLC.addEventListener('click', () => {
   }
 });
 
-// Капот (Hood)
 toggleDoorButtonHood.addEventListener('click', () => {
   if (doorHood) {
     if (doorStates.H) {
@@ -599,7 +555,6 @@ toggleDoorButtonHood.addEventListener('click', () => {
   }
 });
 
-// Двірники (Wrapers)
 let isAnimating = {
   buttonFirstModeWrapers: false,
   buttonSecondModeWrapers: false,
@@ -691,7 +646,6 @@ document.getElementById('buttonFirstModeWrapersOne').addEventListener('click', (
   }
 });
 
-// Вікно переднє ліве
 toggleDoorButtonWindowFL.addEventListener('click', () => {
   if (windowDoorFL) {
     if (doorStates.WindowFL) {
@@ -720,7 +674,6 @@ toggleDoorButtonWindowFL.addEventListener('click', () => {
   }
 });
 
-// Вікно переднє ліве Calibrate
 toggleDoorButtonWindowFLCalibrate.addEventListener('click', () => {
   if (windowDoorFL) {
     windowDoorFL.timeScale = 1;
@@ -778,7 +731,6 @@ toggleDoorButtonWindowFLCalibrate.addEventListener('click', () => {
   }
 });
 
-// Вікно переднє праве
 toggleDoorButtonWindowFR.addEventListener('click', () => {
   if (windowDoorFR) {
     if (doorStates.WindowFR) {
@@ -807,7 +759,6 @@ toggleDoorButtonWindowFR.addEventListener('click', () => {
   }
 });
 
-// Вікно переднє праве Calibrate
 toggleDoorButtonWindowFRCalibrate.addEventListener('click', () => {
   if (windowDoorFR) {
     windowDoorFR.timeScale = 1;
@@ -865,7 +816,6 @@ toggleDoorButtonWindowFRCalibrate.addEventListener('click', () => {
   }
 });
 
-// Вікно заднє ліве
 toggleDoorButtonWindowRL.addEventListener('click', () => {
   if (windowDoorRL) {
     if (doorStates.WindowRL) {
@@ -894,7 +844,6 @@ toggleDoorButtonWindowRL.addEventListener('click', () => {
   }
 });
 
-// Вікно заднє ліве Calibrate
 toggleDoorButtonWindowRLCalibrate.addEventListener('click', () => {
   if (windowDoorRL) {
     windowDoorRL.timeScale = 1;
@@ -952,7 +901,6 @@ toggleDoorButtonWindowRLCalibrate.addEventListener('click', () => {
   }
 });
 
-// Вікно заднє праве
 toggleDoorButtonWindowRR.addEventListener('click', () => {
   if (windowDoorRR) {
     if (doorStates.WindowRR) {
@@ -981,7 +929,6 @@ toggleDoorButtonWindowRR.addEventListener('click', () => {
   }
 });
 
-// Вікно заднє праве Calibrate
 toggleDoorButtonWindowRRCalibrate.addEventListener('click', () => {
   if (windowDoorRR) {
     windowDoorRR.timeScale = 1;
@@ -1039,7 +986,6 @@ toggleDoorButtonWindowRRCalibrate.addEventListener('click', () => {
   }
 });
 
-// Кліренс
 let currentClearance = 2;
 
 const clearancePercentages = {

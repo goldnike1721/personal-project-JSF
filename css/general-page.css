@@ -7,10 +7,14 @@ body {
     position: fixed;
     width: 100%;
     padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .border {
-    background: linear-gradient(90deg, gray, 90%, black);
+    background: linear-gradient(90deg, black, gray, 90%, black);
     height: 2px;
     width: 80vw;
     margin-top: 4px;
@@ -33,62 +37,18 @@ h1 {
     align-items: center;
 }
 
-/* 
-#progress {
-    font-family: var(--font-family-text);
-    font-size: 32px;
-    color: white;
-}
-
 #progress-container {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 9999;
-}
-
-#progress-bar {
-    width: 300px;
-    height: 20px;
-    background-color: #fff;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-#progress-bar::after {
-    content: '';
-    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    width: 0;
-    background-color: #00ff00;
-    border-radius: 10px;
-}
-
-#progress-text {
-    font-size: 16px;
-} */
-
-
-#progress-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     z-index: 9999;
@@ -97,9 +57,10 @@ h1 {
 #progress-bar {
     width: 300px;
     height: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 #progress-fill {
@@ -108,10 +69,11 @@ h1 {
     background-color: #00ff00;
     border-radius: 10px;
     transition: width 0.3s ease;
-    /* Додаємо плавну анімацію */
 }
 
 #progress-text {
-    font-size: 16px;
-    margin-top: 10px;
+    font-size: 24px;
+    font-family: var(--font-family-text);
+    margin-bottom: 10px;
+    color: #ffffff;
 }
