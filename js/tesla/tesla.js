@@ -136,29 +136,29 @@ loader.load('scene.gltf', (gltf) => {
   suspensionRRWheel = mixer.clipAction(gltf.animations.find(clip => clip.name === 'IDSuspensionRRWheelAction'));
 
   // Перевіряємо та запускаємо анімації
-  if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
-    carStartingTrip.clampWhenFinished = true;
-    carStartingTrip.loop = THREE.LoopOnce;
-    carStartingTrip.play();
-    carStartingTripFLWheel.clampWhenFinished = true;
-    carStartingTripFLWheel.loop = THREE.LoopOnce;
-    carStartingTripFLWheel.play();
-    carStartingTripFRWheel.clampWhenFinished = true;
-    carStartingTripFRWheel.loop = THREE.LoopOnce;
-    carStartingTripFRWheel.play();
-    carStartingTripFLDisc.clampWhenFinished = true;
-    carStartingTripFLDisc.loop = THREE.LoopOnce;
-    carStartingTripFLDisc.play();
-    carStartingTripFRDisc.clampWhenFinished = true;
-    carStartingTripFRDisc.loop = THREE.LoopOnce;
-    carStartingTripFRDisc.play();
-    carStartingTripRLDisc.clampWhenFinished = true;
-    carStartingTripRLDisc.loop = THREE.LoopOnce;
-    carStartingTripRLDisc.play();
-    carStartingTripRRDisc.clampWhenFinished = true;
-    carStartingTripRRDisc.loop = THREE.LoopOnce;
-    carStartingTripRRDisc.play();
-  }
+  // if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
+  //   carStartingTrip.clampWhenFinished = true;
+  //   carStartingTrip.loop = THREE.LoopOnce;
+  //   carStartingTrip.play();
+  //   carStartingTripFLWheel.clampWhenFinished = true;
+  //   carStartingTripFLWheel.loop = THREE.LoopOnce;
+  //   carStartingTripFLWheel.play();
+  //   carStartingTripFRWheel.clampWhenFinished = true;
+  //   carStartingTripFRWheel.loop = THREE.LoopOnce;
+  //   carStartingTripFRWheel.play();
+  //   carStartingTripFLDisc.clampWhenFinished = true;
+  //   carStartingTripFLDisc.loop = THREE.LoopOnce;
+  //   carStartingTripFLDisc.play();
+  //   carStartingTripFRDisc.clampWhenFinished = true;
+  //   carStartingTripFRDisc.loop = THREE.LoopOnce;
+  //   carStartingTripFRDisc.play();
+  //   carStartingTripRLDisc.clampWhenFinished = true;
+  //   carStartingTripRLDisc.loop = THREE.LoopOnce;
+  //   carStartingTripRLDisc.play();
+  //   carStartingTripRRDisc.clampWhenFinished = true;
+  //   carStartingTripRRDisc.loop = THREE.LoopOnce;
+  //   carStartingTripRRDisc.play();
+  // }
 
   [doorFL, doorFR, doorRL, doorRR, doorLC, doorHood, windowDoorFR, windowDoorFL, carWiperLeft, carWiperRight, windowDoorRL, windowDoorRR, doorLCCylinderL, doorLCCylinderR, doorLCPistoneL, doorLCPistoneR, doorLCRodL, doorLCRodR, doorLCSpoiler1, doorLCSpoiler2, doorLCSpoiler3, doorLCSpoiler4, suspensionCar, suspensionFLWheel, suspensionFRWheel, suspensionRLWheel, suspensionRRWheel].forEach(action => {
     if (action) {
@@ -168,34 +168,78 @@ loader.load('scene.gltf', (gltf) => {
   });
 
   // Перевірка наявності контейнера та його приховання
-  // Ховати індикатор прогресу після завершення завантаження
-}, (xhr) => {
-  const percentComplete = Math.round((xhr.loaded / xhr.total) * 100);
-  document.getElementById('progress-text').textContent = `Loading ${percentComplete}%`;
-  console.log(`Loading progress: ${percentComplete}%`);
-
-  // Оновлення ширини прогрес-бару
-  const progressBar = document.getElementById('progress-bar');
-  if (progressBar) {
-    progressBar.style.width = `${percentComplete}%`;
-  }
-
-  // Приховуємо прогрес-бар, коли досягнуто 100%
-  if (percentComplete === 100) {
-    const progressContainer = document.getElementById('progress-container');
-    if (progressContainer) {
-      progressContainer.style.display = 'none'; // або visibility: hidden;
-    }
-  }
-
-}, (error) => {
-  console.error('Error loading model:', error);
   const progressContainer = document.getElementById('progress-container');
+  const progressFill = document.getElementById('progress-fill');
+  const progressText = document.getElementById('progress-text');
+
   if (progressContainer) {
-    console.log("Hiding progress container due to error");
-    progressContainer.style.display = 'none'; // Або visibility: hidden;
+    progressContainer.style.display = 'block'; // Показати контейнер на початку завантаження
   }
+
+  const loadModel = new Promise((resolve, reject) => {
+    // Імітація завантаження моделі
+    let xhr = { loaded: 0, total: 100 }; // Замінити на реальний xhr об'єкт
+    let interval = setInterval(() => {
+      if (xhr.loaded < xhr.total) {
+        xhr.loaded += 1; // Збільшити завантаження
+        const percentComplete = Math.round((xhr.loaded / xhr.total) * 100);
+        progressText.textContent = `Loading ${percentComplete}%`;
+        progressFill.style.width = `${percentComplete}%`;
+        console.log(`Loading progress: ${percentComplete}%`);
+      } else {
+        clearInterval(interval);
+        resolve(); // Завантаження завершене
+      }
+    }, 300);
+  });
+
+  loadModel.then(() => {
+    // Приховати прогрес-бар після завершення завантаження
+    if (progressContainer) {
+      setTimeout(() => {
+        progressContainer.style.display = 'none';
+        startAnimations(); // Запустити анімації після завантаження
+      }, 500);
+    }
+  }).catch((error) => {
+    console.error('Error loading model:', error);
+    if (progressContainer) {
+      progressContainer.style.display = 'none';
+    }
+  });
 });
+
+function startAnimations() {
+  if (carStartingTrip && carStartingTripFLWheel && carStartingTripFLDisc && carStartingTripFRDisc && carStartingTripRLDisc && carStartingTripRRDisc) {
+    carStartingTrip.clampWhenFinished = true;
+    carStartingTrip.loop = THREE.LoopOnce;
+    carStartingTrip.play();
+
+    carStartingTripFLWheel.clampWhenFinished = true;
+    carStartingTripFLWheel.loop = THREE.LoopOnce;
+    carStartingTripFLWheel.play();
+
+    carStartingTripFRWheel.clampWhenFinished = true;
+    carStartingTripFRWheel.loop = THREE.LoopOnce;
+    carStartingTripFRWheel.play();
+
+    carStartingTripFLDisc.clampWhenFinished = true;
+    carStartingTripFLDisc.loop = THREE.LoopOnce;
+    carStartingTripFLDisc.play();
+
+    carStartingTripFRDisc.clampWhenFinished = true;
+    carStartingTripFRDisc.loop = THREE.LoopOnce;
+    carStartingTripFRDisc.play();
+
+    carStartingTripRLDisc.clampWhenFinished = true;
+    carStartingTripRLDisc.loop = THREE.LoopOnce;
+    carStartingTripRLDisc.play();
+
+    carStartingTripRRDisc.clampWhenFinished = true;
+    carStartingTripRRDisc.loop = THREE.LoopOnce;
+    carStartingTripRRDisc.play();
+  }
+}
 
 const toggleDoorButtonRL = document.getElementById('toggleDoorButtonRL');
 const toggleDoorButtonRR = document.getElementById('toggleDoorButtonRR');

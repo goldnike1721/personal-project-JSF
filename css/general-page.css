@@ -33,6 +33,7 @@ h1 {
     align-items: center;
 }
 
+/* 
 #progress {
     font-family: var(--font-family-text);
     font-size: 32px;
@@ -74,4 +75,43 @@ h1 {
 
 #progress-text {
     font-size: 16px;
+} */
+
+
+#progress-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+#progress-bar {
+    width: 300px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: #00ff00;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    /* Додаємо плавну анімацію */
+}
+
+#progress-text {
+    font-size: 16px;
+    margin-top: 10px;
 }

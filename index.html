@@ -19,6 +19,8 @@
     integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
 
 
 </head>
@@ -31,10 +33,21 @@
   <!-- <div id="progress-container">
     <div id="progress">Attracting a model...</div>
   </div> -->
-  <div id="progress-container"
+  <!-- <div id="progress-container"
     style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
     <div id="progress-text" style="font-size: 24px; color: white;">Loading 0%</div>
+  </div> -->
+  <div id="progress-container"
+    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; background-color: rgba(0, 0, 0, 0.8); padding: 20px; border-radius: 10px; z-index: 9999;">
+    <div id="progress-text" style="font-size: 24px; color: white;">Loading 0%</div>
+    <div id="progress-bar"
+      style="width: 300px; height: 20px; background-color: #fff; border-radius: 10px; overflow: hidden; margin-top: 10px;">
+      <div id="progress-fill" style="height: 100%; width: 0; background-color: #00ff00; border-radius: 10px;"></div>
+    </div>
   </div>
+
+
+
 
 
 
