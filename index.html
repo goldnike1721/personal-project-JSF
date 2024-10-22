@@ -21,6 +21,13 @@
 </head>
 
 <body>
+  <div id="confirmation-modal">
+    <p class="title-module__window">Do you want to turn on the sound?</p>
+    <div class="window-button__container">
+      <button class="title-module__window-button" id="confirm-sound">Yes</button>
+      <button class="title-module__window-button" id="cancel-sound">No</button>
+    </div>
+  </div>
   <div id="heading">
     <h1 class="title-page">Tesla Model X</h1>
     <div class="border"></div>
@@ -29,13 +36,6 @@
     <div id="progress-text">Loading 0%</div>
     <div id="progress-bar">
       <div id="progress-fill"></div>
-    </div>
-  </div>
-  <div id="confirmation-modal">
-    <p class="title-module__window">Do you want to turn on the sound?</p>
-    <div class="window-button__container">
-      <button class="title-module__window-button" id="confirm-sound">Yes</button>
-      <button class="title-module__window-button" id="cancel-sound">No</button>
     </div>
   </div>
   <button class="toggle-phone-btn" id="togglePhoneBtn">
@@ -430,10 +430,20 @@
     </div>
   </div>
   <script type="module" src="./js/tesla/tesla.js"></script>
-  <script src="./js/index.js"></script>
-  <script src="./js/phone/start-phone.js"></script>
   <script src="./js/phone/icon-page.js"></script>
-
+  <script src="./js/tesla/wrapers-tesla.js"></script>
+  <script src="./js/tesla/brightness-tesla.js"></script>
+  <script src="./js/tesla/radio-tesla.js"></script>
+  <script src="./js/tesla/suspension-tesla.js"></script>
+  <script type="module" src="./js/tesla/start-page-tesla.js"></script>
+  <script src="./js/tesla/window-tesla.js"></script>
+  <script src="./js/phone/start-phone.js"></script>
+  <script src="./js/phone/clock.js"></script>
+  <script src="./js/phone/lock.js"></script>
+  <script src="./js/phone/stock.js"></script>
+  <script src="./js/phone/switch.js"></script>
+  <script src="./js/phone/weather-page.js"></script>
+  <script src="./js/phone/weather.js"></script>
 </body>
 
 </html>
