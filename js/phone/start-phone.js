@@ -23,18 +23,16 @@ const darkStart = document.querySelector('.phone-frame__dark-start');
 const darkContent = document.querySelector('.phone-frame__dark');
 
 darkStart.addEventListener('mouseenter', () => {
-    darkStart.classList.add('show-image'); // Додаємо клас для зміни фону
-    darkContent.style.display = 'block'; // Показуємо контент
+    darkStart.classList.add('show-image');
+    darkContent.style.display = 'block';
 });
 
 darkStart.addEventListener('mouseleave', () => {
-    darkStart.classList.remove('show-image'); // Видаляємо клас для повернення до чорного фону
+    darkStart.classList.remove('show-image');
     setTimeout(() => {
-        darkContent.style.display = 'none'; // Приховуємо контент з затримкою
-    }, 300); // Затримка для плавності (можете змінити на бажану тривалість)
+        darkContent.style.display = 'none';
+    }, 300);
 });
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const generalProject = document.querySelector('.general-project');

@@ -18,6 +18,10 @@ document.getElementById('teslaContentButton5').addEventListener('click', functio
     showTeslaContent('teslaContent5');
 });
 
+document.getElementById('teslaContentButton6').addEventListener('click', function () {
+    showTeslaContent('teslaContent6');
+});
+
 function showTeslaContent(contentId) {
     const contents = document.querySelectorAll('.hidden-content');
     contents.forEach(content => {

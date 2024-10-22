@@ -160,7 +160,7 @@ loader.load('scene.gltf', (gltf) => {
           clearInterval(interval);
           resolve();
         }
-      }, 2);
+      }, 200);
     });
 
     loadModel.then(() => {
@@ -233,6 +233,7 @@ const toggleDoorButtonWindowFLCalibrate = document.getElementById('toggleDoorBut
 const toggleDoorButtonWindowFRCalibrate = document.getElementById('toggleDoorButtonWindowFRCalibrate');
 const toggleDoorButtonWindowRLCalibrate = document.getElementById('toggleDoorButtonWindowRLCalibrate');
 const toggleDoorButtonWindowRRCalibrate = document.getElementById('toggleDoorButtonWindowRRCalibrate');
+const toggleDanceCarButton = document.getElementById('toggleDanceCar');
 const doorStates = {
   FL: false,
   FR: false,
@@ -276,8 +277,6 @@ const suspensionSoundForward = new THREE.Audio(listener);
 const suspensionSoundReverse = new THREE.Audio(listener);
 const wrapersSound = new THREE.Audio(listener);
 const startCarSound = new THREE.Audio(listener);
-
-
 const audioLoader = new THREE.AudioLoader();
 audioLoader.load('mp3/start-car.mp3', function (buffer) {
   startCarSound.setBuffer(buffer);
@@ -1095,6 +1094,445 @@ document.getElementById('clearanceRange').addEventListener('input', function () 
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('clearanceRange').value = currentClearance;
+});
+
+toggleDanceCarButton.addEventListener('click', () => {
+  if (doorRR && doorRL && doorFR && doorFL && doorLC && windowDoorRR && windowDoorRL && windowDoorFR && windowDoorFL && suspensionFLWheel && suspensionFRWheel && suspensionRLWheel && suspensionRRWheel && suspensionCar && doorLCSpoiler1 && doorLCSpoiler2 && doorLCSpoiler3 && doorLCSpoiler4 && doorLCCylinderL && doorLCCylinderR && doorLCPistoneL && doorLCPistoneR && doorLCRodL && doorLCRodR) {
+    const repeatAnimation = (count, isFirstRun = true) => {
+      if (count > 0) {
+        doorRR.timeScale = 1;
+        doorRR.paused = false;
+        doorRR.play();
+
+        doorRL.timeScale = 1;
+        doorRL.paused = false;
+        doorRL.play();
+
+        doorFR.timeScale = 1;
+        doorFR.paused = false;
+        doorFR.play();
+
+        doorFL.timeScale = 1;
+        doorFL.paused = false;
+        doorFL.play();
+
+        doorLC.timeScale = 1;
+        doorLC.paused = false;
+        doorLC.play();
+
+        windowDoorRR.timeScale = 1;
+        windowDoorRR.paused = false;
+        windowDoorRR.play();
+
+        windowDoorRL.timeScale = 1;
+        windowDoorRL.paused = false;
+        windowDoorRL.play();
+
+        windowDoorFR.timeScale = 1;
+        windowDoorFR.paused = false;
+        windowDoorFR.play();
+
+        windowDoorFL.timeScale = 1;
+        windowDoorFL.paused = false;
+        windowDoorFL.play();
+
+        suspensionFLWheel.timeScale = 1;
+        suspensionFLWheel.paused = false;
+        suspensionFLWheel.play();
+
+        suspensionFRWheel.timeScale = 1;
+        suspensionFRWheel.paused = false;
+        suspensionFRWheel.play();
+
+        suspensionRLWheel.timeScale = 1;
+        suspensionRLWheel.paused = false;
+        suspensionRLWheel.play();
+
+        suspensionRRWheel.timeScale = 1;
+        suspensionRRWheel.paused = false;
+        suspensionRRWheel.play();
+
+        suspensionCar.timeScale = 1;
+        suspensionCar.paused = false;
+        suspensionCar.play();
+
+        doorLCSpoiler1.timeScale = 1;
+        doorLCSpoiler1.paused = false;
+        doorLCSpoiler1.play();
+
+        doorLCSpoiler2.timeScale = 1;
+        doorLCSpoiler2.paused = false;
+        doorLCSpoiler2.play();
+
+        doorLCSpoiler3.timeScale = 1;
+        doorLCSpoiler3.paused = false;
+        doorLCSpoiler3.play();
+
+        doorLCSpoiler4.timeScale = 1;
+        doorLCSpoiler4.paused = false;
+        doorLCSpoiler4.play();
+
+        doorLCCylinderL.timeScale = 1;
+        doorLCCylinderL.paused = false;
+        doorLCCylinderL.play();
+
+        doorLCCylinderR.timeScale = 1;
+        doorLCCylinderR.paused = false;
+        doorLCCylinderR.play();
+
+        doorLCPistoneL.timeScale = 1;
+        doorLCPistoneL.paused = false;
+        doorLCPistoneL.play();
+
+        doorLCPistoneR.timeScale = 1;
+        doorLCPistoneR.paused = false;
+        doorLCPistoneR.play();
+
+        doorLCRodL.timeScale = 1;
+        doorLCRodL.paused = false;
+        doorLCRodL.play();
+
+        doorLCRodR.timeScale = 1;
+        doorLCRodR.paused = false;
+        doorLCRodR.play();
+        setTimeout(() => {
+          doorRR.timeScale = -0.6;
+          doorRR.paused = false;
+          doorRR.play();
+
+          doorRL.timeScale = -0.6;
+          doorRL.paused = false;
+          doorRL.play();
+
+          doorFR.timeScale = -0.6;
+          doorFR.paused = false;
+          doorFR.play();
+
+          doorFL.timeScale = -0.6;
+          doorFL.paused = false;
+          doorFL.play();
+
+          doorLC.timeScale = -0.6;
+          doorLC.paused = false;
+          doorLC.play();
+
+          windowDoorRR.timeScale = -0.6;
+          windowDoorRR.paused = false;
+          windowDoorRR.play();
+
+          windowDoorRL.timeScale = -0.6;
+          windowDoorRL.paused = false;
+          windowDoorRL.play();
+
+          windowDoorFR.timeScale = -0.6;
+          windowDoorFR.paused = false;
+          windowDoorFR.play();
+
+          windowDoorFL.timeScale = -0.6;
+          windowDoorFL.paused = false;
+          windowDoorFL.play();
+
+          suspensionFLWheel.timeScale = -0.6;
+          suspensionFLWheel.paused = false;
+          suspensionFLWheel.play();
+
+          suspensionFRWheel.timeScale = -0.6;
+          suspensionFRWheel.paused = false;
+          suspensionFRWheel.play();
+
+          suspensionRLWheel.timeScale = -0.6;
+          suspensionRLWheel.paused = false;
+          suspensionRLWheel.play();
+
+          suspensionRRWheel.timeScale = -0.6;
+          suspensionRRWheel.paused = false;
+          suspensionRRWheel.play();
+
+          suspensionCar.timeScale = -0.6;
+          suspensionCar.paused = false;
+          suspensionCar.play();
+
+          doorLCSpoiler1.timeScale = -0.6;
+          doorLCSpoiler1.paused = false;
+          doorLCSpoiler1.play();
+
+          doorLCSpoiler2.timeScale = -0.6;
+          doorLCSpoiler2.paused = false;
+          doorLCSpoiler2.play();
+
+          doorLCSpoiler3.timeScale = -0.6;
+          doorLCSpoiler3.paused = false;
+          doorLCSpoiler3.play();
+
+          doorLCSpoiler4.timeScale = -0.6;
+          doorLCSpoiler4.paused = false;
+          doorLCSpoiler4.play();
+
+          doorLCCylinderL.timeScale = -0.6;
+          doorLCCylinderL.paused = false;
+          doorLCCylinderL.play();
+
+          doorLCCylinderR.timeScale = -0.6;
+          doorLCCylinderR.paused = false;
+          doorLCCylinderR.play();
+
+          doorLCPistoneL.timeScale = -0.6;
+          doorLCPistoneL.paused = false;
+          doorLCPistoneL.play();
+
+          doorLCPistoneR.timeScale = -0.6;
+          doorLCPistoneR.paused = false;
+          doorLCPistoneR.play();
+
+          doorLCRodL.timeScale = -0.6;
+          doorLCRodL.paused = false;
+          doorLCRodL.play();
+
+          doorLCRodR.timeScale = -0.6;
+          doorLCRodR.paused = false;
+          doorLCRodR.play();
+          setTimeout(() => {
+            doorRR.paused = true;
+            doorRL.paused = true;
+            doorFR.paused = true;
+            doorFL.paused = true;
+            doorLC.paused = true;
+            windowDoorRR.paused = true;
+            windowDoorRL.paused = true;
+            windowDoorFR.paused = true;
+            windowDoorFL.paused = true;
+            suspensionFLWheel.paused = true;
+            suspensionFRWheel.paused = true;
+            suspensionRLWheel.paused = true;
+            suspensionRRWheel.paused = true;
+            suspensionCar.paused = true;
+            doorLCSpoiler1.paused = true;
+            doorLCSpoiler2.paused = true;
+            doorLCSpoiler3.paused = true;
+            doorLCSpoiler4.paused = true;
+            doorLCCylinderL.paused = true;
+            doorLCCylinderR.paused = true;
+            doorLCPistoneL.paused = true;
+            doorLCPistoneR.paused = true;
+            doorLCRodL.paused = true;
+            doorLCRodR.paused = true;
+
+            setTimeout(() => {
+              doorRR.timeScale = 1;
+              doorRR.paused = false;
+              doorRR.play();
+
+              doorRL.timeScale = 1;
+              doorRL.paused = false;
+              doorRL.play();
+
+              doorFR.timeScale = 1;
+              doorFR.paused = false;
+              doorFR.play();
+
+              doorFL.timeScale = 1;
+              doorFL.paused = false;
+              doorFL.play();
+
+              doorLC.timeScale = 1;
+              doorLC.paused = false;
+              doorLC.play();
+
+              windowDoorRR.timeScale = 1;
+              windowDoorRR.paused = false;
+              windowDoorRR.play();
+
+              windowDoorRL.timeScale = 1;
+              windowDoorRL.paused = false;
+              windowDoorRL.play();
+
+              windowDoorFR.timeScale = 1;
+              windowDoorFR.paused = false;
+              windowDoorFR.play();
+
+              windowDoorFL.timeScale = 1;
+              windowDoorFL.paused = false;
+              windowDoorFL.play();
+
+              suspensionFLWheel.timeScale = 1;
+              suspensionFLWheel.paused = false;
+              suspensionFLWheel.play();
+
+              suspensionFRWheel.timeScale = 1;
+              suspensionFRWheel.paused = false;
+              suspensionFRWheel.play();
+
+              suspensionRLWheel.timeScale = 1;
+              suspensionRLWheel.paused = false;
+              suspensionRLWheel.play();
+
+              suspensionRRWheel.timeScale = 1;
+              suspensionRRWheel.paused = false;
+              suspensionRRWheel.play();
+
+              suspensionCar.timeScale = 1;
+              suspensionCar.paused = false;
+              suspensionCar.play();
+
+              doorLCSpoiler1.timeScale = 1;
+              doorLCSpoiler1.paused = false;
+              doorLCSpoiler1.play();
+
+              doorLCSpoiler2.timeScale = 1;
+              doorLCSpoiler2.paused = false;
+              doorLCSpoiler2.play();
+
+              doorLCSpoiler3.timeScale = 1;
+              doorLCSpoiler3.paused = false;
+              doorLCSpoiler3.play();
+
+              doorLCSpoiler4.timeScale = 1;
+              doorLCSpoiler4.paused = false;
+              doorLCSpoiler4.play();
+
+              doorLCCylinderL.timeScale = 1;
+              doorLCCylinderL.paused = false;
+              doorLCCylinderL.play();
+
+              doorLCCylinderR.timeScale = 1;
+              doorLCCylinderR.paused = false;
+              doorLCCylinderR.play();
+
+              doorLCPistoneL.timeScale = 1;
+              doorLCPistoneL.paused = false;
+              doorLCPistoneL.play();
+
+              doorLCPistoneR.timeScale = 1;
+              doorLCPistoneR.paused = false;
+              doorLCPistoneR.play();
+
+              doorLCRodL.timeScale = 1;
+              doorLCRodL.paused = false;
+              doorLCRodL.play();
+
+              doorLCRodR.timeScale = 1;
+              doorLCRodR.paused = false;
+              doorLCRodR.play();
+              repeatAnimation(count - 1, false);
+            }, 70);
+
+          }, 2000);
+
+        }, isFirstRun ? 4000 : 1500);
+      } else {
+        setTimeout(() => {
+          doorRR.timeScale = -0.6;
+          doorRR.paused = false;
+          doorRR.play();
+
+          doorRL.timeScale = -0.6;
+          doorRL.paused = false;
+          doorRL.play();
+
+          doorFR.timeScale = -0.6;
+          doorFR.paused = false;
+          doorFR.play();
+
+          doorFL.timeScale = -0.6;
+          doorFL.paused = false;
+          doorFL.play();
+
+          doorLC.timeScale = -0.6;
+          doorLC.paused = false;
+          doorLC.play();
+
+          windowDoorRR.timeScale = -0.6;
+          windowDoorRR.paused = false;
+          windowDoorRR.play();
+
+          windowDoorRL.timeScale = -0.6;
+          windowDoorRL.paused = false;
+          windowDoorRL.play();
+
+          windowDoorFR.timeScale = -0.6;
+          windowDoorFR.paused = false;
+          windowDoorFR.play();
+
+          windowDoorFL.timeScale = -0.6;
+          windowDoorFL.paused = false;
+          windowDoorFL.play();
+
+          suspensionFLWheel.timeScale = -0.6;
+          suspensionFLWheel.paused = false;
+          suspensionFLWheel.play();
+
+          suspensionFRWheel.timeScale = -0.6;
+          suspensionFRWheel.paused = false;
+          suspensionFRWheel.play();
+
+          suspensionRLWheel.timeScale = -0.6;
+          suspensionRLWheel.paused = false;
+          suspensionRLWheel.play();
+
+          suspensionRRWheel.timeScale = -0.6;
+          suspensionRRWheel.paused = false;
+          suspensionRRWheel.play();
+
+          suspensionCar.timeScale = -0.6;
+          suspensionCar.paused = false;
+          suspensionCar.play();
+
+          doorLCSpoiler1.timeScale = -0.6;
+          doorLCSpoiler1.paused = false;
+          doorLCSpoiler1.play();
+
+          doorLCSpoiler2.timeScale = -0.6;
+          doorLCSpoiler2.paused = false;
+          doorLCSpoiler2.play();
+
+          doorLCSpoiler3.timeScale = -0.6;
+          doorLCSpoiler3.paused = false;
+          doorLCSpoiler3.play();
+
+          doorLCSpoiler4.timeScale = -0.6;
+          doorLCSpoiler4.paused = false;
+          doorLCSpoiler4.play();
+
+          doorLCCylinderL.timeScale = -0.6;
+          doorLCCylinderL.paused = false;
+          doorLCCylinderL.play();
+
+          doorLCCylinderR.timeScale = -0.6;
+          doorLCCylinderR.paused = false;
+          doorLCCylinderR.play();
+
+          doorLCPistoneL.timeScale = -0.6;
+          doorLCPistoneL.paused = false;
+          doorLCPistoneL.play();
+
+          doorLCPistoneR.timeScale = -0.6;
+          doorLCPistoneR.paused = false;
+          doorLCPistoneR.play();
+
+          doorLCRodL.timeScale = -0.6;
+          doorLCRodL.paused = false;
+          doorLCRodL.play();
+
+          doorLCRodR.timeScale = -0.6;
+          doorLCRodR.paused = false;
+          doorLCRodR.play();
+
+        }, 1500);
+      }
+    };
+    repeatAnimation(7);
+  }
+});
+
+document.getElementById('toggleDanceCar').addEventListener('click', function () {
+  const audio = document.getElementById('danceSound');
+
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+  }
 });
 
 window.addEventListener('resize', () => {

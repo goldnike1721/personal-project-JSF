@@ -165,11 +165,9 @@
                 </div>
               </div>
             </div>
-
-
             <div class="main-content hidden" id="content2">
               <div class="button-container__stock-general">
-                <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
+                <div class="button-container__stock" id="stockContainer">
                 </div>
                 <p class="button-icon__name-stock">Stock</p>
               </div>
@@ -225,8 +223,6 @@
                 </div>
               </div>
             </div>
-
-
             <div class="main-content hidden" id="content3">
               <div class="button-container__general-three">
                 <div class="button-container">
@@ -254,8 +250,6 @@
                 </div>
               </div>
             </div>
-
-
             <div class="button-container__bottom">
               <div class="button-container__icon-bottom">
                 <button class="button-icon__bottom button-icon__phone"></button>
@@ -278,7 +272,6 @@
           </div>
         </div>
       </div>
-      <!-- Новий екран -->
       <div id="teslaScreen" class="new-screen hidden tesla-page">
         <div class="phone-frame__dark">
           <div class="clock tesla-page-icon-top">
@@ -306,6 +299,7 @@
               <button id="teslaContentButton3" class="tesla-new-button">Wipers</button>
               <button id="teslaContentButton4" class="tesla-new-button">Suspension</button>
               <button id="teslaContentButton5" class="tesla-new-button">Radio</button>
+              <button id="teslaContentButton6" class="tesla-new-button">Dance</button>
             </div>
           </div>
           <div id="mainTeslaContent">
@@ -378,6 +372,13 @@
               <div id="targetContainer">
               </div>
             </div>
+            <div id="teslaContent6" class="hidden-content">
+              <div class="tesla-dance__container">
+                <img id="toggleDanceCar" class="tesla-dance__image" src="./img/tesla-page/dance.png"
+                  alt="Dance Tesla image">
+              </div>
+              <audio id="danceSound" src="./mp3/dance-sound.mp3"></audio>
+            </div>
           </div>
           <div class="button__close-page-general tesla-page-icon-top__close" ontouchstart="startTouch(event)"
             ontouchend="endTouch(event)" onclick="hideScreen()">
@@ -385,8 +386,6 @@
           </div>
         </div>
       </div>
-
-
       <div id="weatherScreen" class="new-screen hidden weather-page">
         <div class="phone-frame__dark">
           <div class="clock">
@@ -423,33 +422,6 @@
           <button class="city-button__weather" data-city="Tokyo"></button>
           <button class="city-button__weather" data-city="Istanbul"></button>
         </div>
-        <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
-          ontouchend="endTouch(event)" onclick="hideScreen()">
-          <div class="button__close-page"></div>
-        </div>
-      </div>
-
-
-      <div id="stockScreen" class="new-screen hidden stock-page">
-        <div class="phone-frame__dark">
-          <div class="clock">
-            <div class="time" id="time-stock"></div>
-          </div>
-          <div class="phone-notch">
-            <div class="camera"></div>
-          </div>
-          <div class="iphone-battery">
-            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-          </div>
-          <div class="iphone-wifi">
-            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-          </div>
-          <div class="iphone-signal">
-            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-          </div>
-        </div>
-
-
         <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
           ontouchend="endTouch(event)" onclick="hideScreen()">
           <div class="button__close-page"></div>

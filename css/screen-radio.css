@@ -141,3 +141,13 @@
     font-family: var(--font-family-text);
     font-weight: 600;
 }
+
+.tesla-dance__image {
+    position: relative;
+    z-index: 1111;
+    width: 390px;
+    height: 220px;
+    top: 168px;
+    overflow: hidden;
+    left: -54px;
+}

@@ -5,7 +5,6 @@ function updateClock() {
     document.getElementById('time-general').innerText = time;
     document.getElementById('time-tesla').innerText = time;
     document.getElementById('time-weather').innerText = time;
-    document.getElementById('time-stock').innerText = time;
 
     const time1 = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'long' });
