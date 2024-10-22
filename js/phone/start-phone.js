@@ -31,3 +31,25 @@ darkStart.addEventListener('mouseleave', () => {
     darkStart.style.backgroundImage = 'none';
     darkContent.style.display = 'none';
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const generalProject = document.querySelector('.general-project');
+    const togglePhoneBtn = document.getElementById('togglePhoneBtn');
+    const arrowImage = document.getElementById('arrowImage');
+
+    togglePhoneBtn.addEventListener('click', function () {
+        if (generalProject.classList.contains('active')) {
+            generalProject.classList.remove('active');
+            setTimeout(function () {
+                generalProject.classList.add('hidden');
+                arrowImage.src = './img/right-arrow.png';
+            }, 500);
+        } else {
+            generalProject.classList.remove('hidden');
+            setTimeout(function () {
+                generalProject.classList.add('active');
+                arrowImage.src = './img/left-arrow.png';
+            }, 10);
+        }
+    });
+});

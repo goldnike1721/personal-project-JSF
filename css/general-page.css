@@ -115,3 +115,38 @@ body {
     font-family: var(--font-family-text);
     color: black;
 }
+
+.general-project {
+    position: fixed;
+    transform: translateX(-500px);
+    top: 50px;
+    transition: transform 0.5s ease;
+    opacity: 1;
+}
+
+.general-project.hidden {
+    transform: translateX(-500px);
+}
+
+.general-project.active {
+    transform: translateX(0);
+}
+
+.toggle-phone-btn {
+    position: fixed;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    background-color: #000000;
+}
+
+#arrowImage {
+    filter: invert(1);
+    transition: transform 0.3s ease;
+}
+
+#togglePhoneBtn:hover #arrowImage {
+    transform: scale(1.1);
+}
