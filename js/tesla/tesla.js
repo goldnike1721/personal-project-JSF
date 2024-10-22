@@ -160,7 +160,7 @@ loader.load('scene.gltf', (gltf) => {
           clearInterval(interval);
           resolve();
         }
-      }, 2);
+      }, 200);
     });
 
     loadModel.then(() => {
