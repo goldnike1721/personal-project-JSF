@@ -160,7 +160,7 @@ loader.load('scene.gltf', (gltf) => {
           clearInterval(interval);
           resolve();
         }
-      }, 200);
+      }, 2);
     });
 
     loadModel.then(() => {
@@ -262,6 +262,7 @@ function openWindowPartial(windowAction, percentage) {
 
 const listener = new THREE.AudioListener();
 camera.add(listener);
+const audioLoader = new THREE.AudioLoader();
 
 const openSoundFront = new THREE.Audio(listener);
 const closeSoundFront = new THREE.Audio(listener);
@@ -277,7 +278,8 @@ const suspensionSoundForward = new THREE.Audio(listener);
 const suspensionSoundReverse = new THREE.Audio(listener);
 const wrapersSound = new THREE.Audio(listener);
 const startCarSound = new THREE.Audio(listener);
-const audioLoader = new THREE.AudioLoader();
+
+
 audioLoader.load('mp3/start-car.mp3', function (buffer) {
   startCarSound.setBuffer(buffer);
   startCarSound.setVolume(1);
