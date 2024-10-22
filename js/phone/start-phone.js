@@ -23,14 +23,15 @@ const darkStart = document.querySelector('.phone-frame__dark-start');
 const darkContent = document.querySelector('.phone-frame__dark');
 
 darkStart.addEventListener('mouseenter', () => {
-    darkStart.style.backgroundImage = "url('../img/wallpaper.jpg')";
-    darkContent.style.display = 'block';
+    darkStart.classList.add('show-image'); // Додаємо клас для зміни фону
+    darkContent.style.display = 'block'; // Показуємо контент
 });
 
 darkStart.addEventListener('mouseleave', () => {
-    darkStart.style.backgroundImage = 'none';
-    darkContent.style.display = 'none';
+    darkStart.classList.remove('show-image'); // Видаляємо клас для повернення до чорного фону
+    darkContent.style.display = 'none'; // Приховуємо контент
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const generalProject = document.querySelector('.general-project');
