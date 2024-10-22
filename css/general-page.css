@@ -20,7 +20,7 @@ body {
     margin-top: 4px;
 }
 
-h1 {
+.title-page {
     color: rgb(215, 215, 215);
     font-family: var(--font-family-text);
     font-size: 55px;
@@ -76,4 +76,42 @@ h1 {
     font-family: var(--font-family-text);
     margin-bottom: 10px;
     color: #ffffff;
+}
+
+#confirmation-modal {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10000;
+}
+
+#confirm-sound {
+    margin-right: 10px;
+}
+
+.window-button__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 50px;
+}
+
+.title-module__window-button {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.title-module__window,
+.title-module__window-button {
+    font-size: 20px;
+    font-family: var(--font-family-text);
+    color: black;
 }

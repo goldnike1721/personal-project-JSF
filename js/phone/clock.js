@@ -4,7 +4,6 @@ function updateClock() {
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     document.getElementById('time-general').innerText = time;
     document.getElementById('time-tesla').innerText = time;
-    document.getElementById('time-radio').innerText = time;
     document.getElementById('time-weather').innerText = time;
     document.getElementById('time-stock').innerText = time;
 

@@ -18,16 +18,11 @@
   <script src="https://unpkg.com/htmx.org@1.9.10"
     integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
-
-
 </head>
 
 <body>
   <div id="heading">
-    <h1>Tesla Model X</h1>
+    <h1 class="title-page">Tesla Model X</h1>
     <div class="border"></div>
   </div>
   <div id="progress-container">
@@ -36,28 +31,35 @@
       <div id="progress-fill"></div>
     </div>
   </div>
-  <div class="phone-frame">
-    <div class="phone-buttons">
-      <div class="volume-buttons">
-        <div class="mute-switch" id="muteSwitch"></div>
-        <div class="volume-up"></div>
-        <div class="volume-down"></div>
-        <div class="toggle-switch" id="toggleSwitch">
-          <label class="toggle-label">
-            <input type="checkbox" class="toggle-input" checked />
-            <div class="toggle-background">
-              <span class="on">On</span>
-              <span class="off">Off</span>
-            </div>
-            <i class="toggle-indicator"></i>
-          </label>
-        </div>
-      </div>
-      <div class="power-button"></div>
+  <div id="confirmation-modal">
+    <p class="title-module__window">Do you want to turn on the sound?</p>
+    <div class="window-button__container">
+      <button class="title-module__window-button" id="confirm-sound">Yes</button>
+      <button class="title-module__window-button" id="cancel-sound">No</button>
     </div>
-    <div class="phone-frame__dark-start">
-      <div>
-        <div class="phone-frame__dark">
+  </div>
+  <div class="general-project">
+    <div class="phone-frame">
+      <div class="phone-buttons">
+        <div class="volume-buttons">
+          <div class="mute-switch" id="muteSwitch"></div>
+          <div class="volume-up"></div>
+          <div class="volume-down"></div>
+          <div class="toggle-switch" id="toggleSwitch">
+            <label class="toggle-label">
+              <input type="checkbox" class="toggle-input" checked />
+              <div class="toggle-background">
+                <span class="on">On</span>
+                <span class="off">Off</span>
+              </div>
+              <i class="toggle-indicator"></i>
+            </label>
+          </div>
+        </div>
+        <div class="power-button"></div>
+      </div>
+      <div class="phone-frame__dark-start">
+        <div class="phone-frame__dark hidden">
           <p class="cellular-communication">lifecell</p>
           <div class="iphone-lock">
             <img class="iphone-lock__image" src="img/lock-close.png" alt="Lock close image">
@@ -86,373 +88,376 @@
           </div>
         </div>
       </div>
+      <div class="new-screen hidden" id="startScreen">
+        <div class="phone-frame__dark">
+          <div class="phone-screen">
+            <div class="general-phone__top">
+              <div class="clock">
+                <div class="time" id="time-general"></div>
+              </div>
+              <div class="phone-notch">
+                <div class="camera"></div>
+              </div>
+              <div class="iphone-battery">
+                <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+              </div>
+              <div class="iphone-wifi">
+                <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+              </div>
+              <div class="iphone-signal">
+                <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+              </div>
+            </div>
+            <div class="main-content active" id="content1">
+              <div class="button-container__weather-general">
+                <div class="button-container__weather" id="weatherContainer" onclick="showScreen('weatherScreen')">
+                </div>
+                <p class="button-icon__name-weather">Weather</p>
+              </div>
+              <div class="button-container__general">
+                <div class="button-container">
+                  <div class="button-container__icon">
+                    <button class="button-icon button-icon__tesla" onclick="showScreen('teslaScreen')"></button>
+                    <p class="button-icon__name">Tesla</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__vscode" href="https://code.visualstudio.com/" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">VSCode</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__github" href="https://github.com/" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">GitHub</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__discord" href="https://discord.com/" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Discord</p>
+                  </div>
+                </div>
+                <div class="button-container">
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__google" href="https://google.com/" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Google</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__xcode"
+                      href="https://apps.apple.com/us/app/xcode/id497799835?mt=12" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Xcode</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__face-time"
+                      href="https://apps.apple.com/ru/app/facetime/id1110145091" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">FaceTime</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__x" href="https://x.com/?lang=uk" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">X</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="main-content hidden" id="content2">
+              <div class="button-container__stock-general">
+                <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
+                </div>
+                <p class="button-icon__name-stock">Stock</p>
+              </div>
+              <div class="button-container__general">
+                <div class="button-container">
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__books"
+                      href="https://apps.apple.com/ru/app/apple-books/id364709193" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Books</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__tv" href="https://apps.apple.com/ru/app/apple-tv/id1174078549"
+                      target="_blank" rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">TV</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__ahouse"
+                      href="https://apps.apple.com/ua/app/a-house/id1612046100?l=ru" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">A-HOUSE</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__wallet"
+                      href="https://apps.apple.com/ru/app/apple-wallet/id1160481993" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Wallet</p>
+                  </div>
+                </div>
+                <div class="button-container">
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__locator"
+                      href="https://apps.apple.com/ru/app/%D0%BB%D0%BE%D0%BA%D0%B0%D1%82%D0%BE%D1%80/id1514844621"
+                      target="_blank" rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Locator</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__watch" href="https://apps.apple.com/us/app/watch/id1069511734"
+                      target="_blank" rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Watch</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__free-form"
+                      href="https://apps.apple.com/us/app/freeform/id6443742539" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Freeform</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__workua" href="https://www.work.ua/" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Work.ua</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="main-content hidden" id="content3">
+              <div class="button-container__general-three">
+                <div class="button-container">
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__key-note"
+                      href="https://apps.apple.com/ru/app/keynote/id361285480" target="_blank"
+                      rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Keynote</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__clips" href="https://apps.apple.com/us/app/clips/id1212699939"
+                      target="_blank" rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Clips</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__imovie" href="https://apps.apple.com/ru/app/imovie/id377298193"
+                      target="_blank" rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">iMovie</p>
+                  </div>
+                  <div class="button-container__icon">
+                    <a class="button-icon button-icon__pages" href="https://apps.apple.com/ru/app/pages/id361309726"
+                      target="_blank" rel="noopener noreferrer"></a>
+                    <p class="button-icon__name">Pages</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="button-container__bottom">
+              <div class="button-container__icon-bottom">
+                <button class="button-icon__bottom button-icon__phone"></button>
+              </div>
+              <div class="button-container__icon-bottom">
+                <button class="button-icon__bottom button-icon__safari"></button>
+              </div>
+              <div class="button-container__icon-bottom">
+                <button class="button-icon__bottom button-icon__messages"></button>
+              </div>
+              <div class="button-container__icon-bottom">
+                <button class="button-icon__bottom button-icon__appleMusic"></button>
+              </div>
+            </div>
+          </div>
+          <div class="indicator-container">
+            <span class="indicator active" onclick="showContent(1)"></span>
+            <span class="indicator" onclick="showContent(2)"></span>
+            <span class="indicator" onclick="showContent(3)"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Новий екран -->
+      <div id="teslaScreen" class="new-screen hidden tesla-page">
+        <div class="phone-frame__dark">
+          <div class="clock tesla-page-icon-top">
+            <div class="time" id="time-tesla"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image tesla-page-icon-top" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image tesla-page-icon-top" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image tesla-page-icon-top" src="img/communication-signal.png"
+              alt="Communication Signal">
+          </div>
+        </div>
+        <div class="button-container__tesla-general-page">
+          <div class="button-container__tesla">
+            <div class="button-container__tesla-menu">
+              <button id="teslaContentButton1" class="tesla-new-button active">Controls</button>
+              <button id="teslaContentButton2" class="tesla-new-button">Window</button>
+              <button id="teslaContentButton3" class="tesla-new-button">Wipers</button>
+              <button id="teslaContentButton4" class="tesla-new-button">Suspension</button>
+              <button id="teslaContentButton5" class="tesla-new-button">Radio</button>
+            </div>
+          </div>
+          <div id="mainTeslaContent">
+            <div id="teslaContent1" class="hidden-content" style="display: block;">
+              <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
+              <div class="button-container__tesla-general-page">
+                <div class="tesla-controls__circleFL"></div>
+                <img id="toggleDoorButtonFL" class="tesla-page__image-door doorFl-tesla-page"
+                  src="img/tesla-page/doorFL.png" alt="Tesla front left door image">
+                <p class="tesla-controls__name-doorFL">Driver</p>
+                <div class="tesla-controls__circleFR"></div>
+                <img id="toggleDoorButtonFR" class="tesla-page__image-door doorFR-tesla-page"
+                  src="img/tesla-page/doorFR.png" alt="Tesla front right door image">
+                <p class="tesla-controls__name-doorFR">Passenger</p>
+                <div class="tesla-controls__circleRL"></div>
+                <img id="toggleDoorButtonRL" class="tesla-page__image-door doorRl-tesla-page"
+                  src="img/tesla-page/doorRL.png" alt="Tesla rear left door image">
+                <div class="tesla-controls__circleRR"></div>
+                <img id="toggleDoorButtonRR" class="tesla-page__image-door doorRR-tesla-page"
+                  src="img/tesla-page/doorRR.png" alt="Tesla rear right door image">
+              </div>
+              <div class="tesla-page-trunk">
+                <p id="toggleDoorButtonHood" class="tesla-page-trunk__front">Front Trunk</p>
+                <p id="toggleDoorButtonLC" class="tesla-page-trunk__front trunk-back">Trunk</p>
+              </div>
+              <svg class="arc" width="200" height="100">
+                <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="#333333" stroke-width="2" fill="transparent"
+                  stroke-dasharray="5, 5" />
+              </svg>
+              <svg class="arc2" width="200" height="100">
+                <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="#333333" stroke-width="2" fill="transparent"
+                  stroke-dasharray="5, 5" />
+              </svg>
+              <div class="brightness-control">
+                <div class="icon-container">
+                  <img src="img/tesla-page/icon-sun.png" alt="Low Brightness" class="brightness-icon">
+                </div>
+                <div class="slider-container">
+                  <div class="brightness-value">
+                    <span id="brightnessValue"></span>%
+                  </div>
+                  <div class="brightness-range">
+                    <input type="range" id="brightnessRange" min="0" max="100" value="28">
+                  </div>
+                </div>
+                <button class="auto-button" id="autoButton">AUTO</button>
+              </div>
+            </div>
+            <div id="teslaContent2" class="hidden-content">
+              <img class="tesla-window__image" src="img/tesla-page/window-tesla.png" alt="Window Tesla Model X">
+              <div class="tesla-window__container"></div>
+            </div>
+            <div id="teslaContent3" class="hidden-content">
+              <video class="video-wrapers" id="myVideoMovWrapers">
+                <source src="./video/wipers.webm" type="video/webm">
+              </video>
+              <div class="tesla-wrapers__button">
+                <div id="buttonFirstModeWrapersOne" class="tesla-wrapers__button-ones"></div>
+                <div id="buttonFirstModeWrapers" class="tesla-wrapers__button-1st"></div>
+                <div id="buttonSecondModeWrapers" class="tesla-wrapers__button-2st"></div>
+                <div id="buttonThirdModeWrapers" class="tesla-wrapers__button-3st"></div>
+                <audio id="signalSound" src="mp3/signal-car.mp3"></audio>
+                <div class="tesla-wrapers__signal"></div>
+              </div>
+            </div>
+            <div id="teslaContent4" class="hidden-content">
+              <div class="suspension-container"></div>
+            </div>
+            <div id="teslaContent5" class="hidden-content">
+              <div id="targetContainer">
+              </div>
+            </div>
+          </div>
+          <div class="button__close-page-general tesla-page-icon-top__close" ontouchstart="startTouch(event)"
+            ontouchend="endTouch(event)" onclick="hideScreen()">
+            <div class="button__close-page"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="weatherScreen" class="new-screen hidden weather-page">
+        <div class="phone-frame__dark">
+          <div class="clock">
+            <div class="time" id="time-weather"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+        <div class="button-container__weather-general-page">
+          <div class="button-container__weather-page" id="weatherContainerPage"></div>
+        </div>
+        <div class="city-indicators__weather">
+          <hr class="city-weather__line" />
+          <button class="city-button__weather" data-city="Lviv"></button>
+          <button class="city-button__weather" data-city="Kyiv"></button>
+          <button class="city-button__weather" data-city="London"></button>
+          <button class="city-button__weather" data-city="New York"></button>
+          <button class="city-button__weather" data-city="Bangkok"></button>
+          <button class="city-button__weather" data-city="Paris"></button>
+          <button class="city-button__weather" data-city="Dubai"></button>
+          <button class="city-button__weather" data-city="Singapore"></button>
+          <button class="city-button__weather" data-city="Seoul"></button>
+          <button class="city-button__weather" data-city="Kuala Lumpur"></button>
+          <button class="city-button__weather" data-city="Tokyo"></button>
+          <button class="city-button__weather" data-city="Istanbul"></button>
+        </div>
+        <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
+          ontouchend="endTouch(event)" onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
+
+
+      <div id="stockScreen" class="new-screen hidden stock-page">
+        <div class="phone-frame__dark">
+          <div class="clock">
+            <div class="time" id="time-stock"></div>
+          </div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+          </div>
+          <div class="iphone-battery">
+            <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
+          </div>
+          <div class="iphone-wifi">
+            <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
+          </div>
+          <div class="iphone-signal">
+            <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
+          </div>
+        </div>
+
+
+        <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
+          ontouchend="endTouch(event)" onclick="hideScreen()">
+          <div class="button__close-page"></div>
+        </div>
+      </div>
     </div>
-    <div class="new-screen hidden" id="startScreen">
-      <div class="phone-frame__dark">
-        <div class="phone-screen">
-          <div class="general-phone__top">
-            <div class="clock">
-              <div class="time" id="time-general"></div>
-            </div>
-            <div class="phone-notch">
-              <div class="camera"></div>
-            </div>
-            <div class="iphone-battery">
-              <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-            </div>
-            <div class="iphone-wifi">
-              <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-            </div>
-            <div class="iphone-signal">
-              <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-            </div>
-          </div>
-          <div class="main-content active" id="content1">
-            <div class="button-container__weather-general">
-              <div class="button-container__weather" id="weatherContainer" onclick="showScreen('weatherScreen')">
-              </div>
-              <p class="button-icon__name-weather">Weather</p>
-            </div>
-            <div class="button-container__general">
-              <div class="button-container">
-                <div class="button-container__icon">
-                  <button class="button-icon button-icon__tesla" onclick="showScreen('teslaScreen')"></button>
-                  <p class="button-icon__name">Tesla</p>
-                </div>
-                <div class="button-container__icon">
-                  <button class="button-icon button-icon__radio" onclick="showScreen('radioScreen')"></button>
-                  <p class="button-icon__name">Radio</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__github" href="https://github.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">GitHub</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__discord" href="https://discord.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Discord</p>
-                </div>
-              </div>
-              <div class="button-container">
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__google" href="https://google.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Chrome</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__vscode" href="https://code.visualstudio.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">VSCode</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__diya" href="https://diia.gov.ua/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Дія</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__workua" href="https://www.work.ua/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Work.ua</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="main-content hidden" id="content2">
-            <div class="button-container__stock-general">
-              <div class="button-container__stock" id="stockContainer" onclick="showScreen('stockScreen')">
-              </div>
-              <p class="button-icon__name-stock">Stock</p>
-            </div>
-            <div class="button-container__general">
-              <div class="button-container">
-                <div class="button-container__icon">
-                  <button class="button-icon button-icon__tesla" onclick="showScreen('teslaScreen')"></button>
-                  <p class="button-icon__name">Name</p>
-                </div>
-                <div class="button-container__icon">
-                  <button class="button-icon button-icon__radio" onclick="showScreen('radioScreen')"></button>
-                  <p class="button-icon__name">Name</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__github" href="https://github.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Name</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__discord" href="https://discord.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Name</p>
-                </div>
-              </div>
-              <div class="button-container">
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__google" href="https://google.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Name</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__vscode" href="https://code.visualstudio.com/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Name</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__diya" href="https://diia.gov.ua/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Name</p>
-                </div>
-                <div class="button-container__icon">
-                  <a class="button-icon button-icon__workua" href="https://www.work.ua/" target="_blank"
-                    rel="noopener noreferrer"></a>
-                  <p class="button-icon__name">Name</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="main-content hidden" id="content3">
-          </div>
-
-
-          <div class="button-container__bottom">
-            <div class="button-container__icon-bottom">
-              <button class="button-icon__bottom button-icon__phone"></button>
-            </div>
-            <div class="button-container__icon-bottom">
-              <button class="button-icon__bottom button-icon__safari"></button>
-            </div>
-            <div class="button-container__icon-bottom">
-              <button class="button-icon__bottom button-icon__messages"></button>
-            </div>
-            <div class="button-container__icon-bottom">
-              <button class="button-icon__bottom button-icon__appleMusic"></button>
-            </div>
-          </div>
-        </div>
-        <div class="indicator-container">
-          <span class="indicator active" onclick="showContent(1)"></span>
-          <span class="indicator" onclick="showContent(2)"></span>
-          <span class="indicator" onclick="showContent(3)"></span>
-        </div>
-      </div>
-    </div>
-    <!-- Новий екран -->
-    <div id="radioScreen" class="new-screen hidden">
-      <div class="phone-frame__dark">
-        <div class="clock">
-          <div class="time" id="time-radio"></div>
-        </div>
-        <div class="phone-notch">
-          <div class="camera"></div>
-        </div>
-        <div class="iphone-battery">
-          <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-        </div>
-        <div class="iphone-wifi">
-          <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-        </div>
-        <div class="iphone-signal">
-          <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-        </div>
-      </div>
-      <h1 class="phone-screen__title-window">Radio</h1>
-      <div class="button__close-page-general" ontouchstart="startTouch(event)" ontouchend="endTouch(event)"
-        onclick="hideScreen()">
-        <div class="button__close-page"></div>
-      </div>
-    </div>
-
-
-    <div id="teslaScreen" class="new-screen hidden tesla-page">
-      <div class="phone-frame__dark">
-        <div class="clock tesla-page-icon-top">
-          <div class="time" id="time-tesla"></div>
-        </div>
-        <div class="phone-notch">
-          <div class="camera"></div>
-        </div>
-        <div class="iphone-battery">
-          <img class="iphone-battery__image tesla-page-icon-top" src="img/battery.png" alt="Battery iPhone">
-        </div>
-        <div class="iphone-wifi">
-          <img class="iphone-wifi__image tesla-page-icon-top" src="img/wifi.png" alt="Wifi image">
-        </div>
-        <div class="iphone-signal">
-          <img class="iphone-signal__image tesla-page-icon-top" src="img/communication-signal.png"
-            alt="Communication Signal">
-        </div>
-      </div>
-      <div class="button-container__tesla-general-page">
-        <div class="button-container__tesla">
-          <div class="button-container__tesla-menu">
-            <button id="teslaContentButton1" class="tesla-new-button active">Controls</button>
-            <button id="teslaContentButton2" class="tesla-new-button">Window</button>
-            <button id="teslaContentButton3" class="tesla-new-button">Wrapers</button>
-            <button id="teslaContentButton4" class="tesla-new-button">Suspension</button>
-            <button id="teslaContentButton5" class="tesla-new-button">Tesla Зміст 5</button>
-            <button id="teslaContentButton6" class="tesla-new-button">Tesla Зміст 6</button>
-            <button id="teslaContentButton7" class="tesla-new-button">Tesla Зміст 7</button>
-            <button id="teslaContentButton8" class="tesla-new-button">Tesla Зміст 8</button>
-            <button id="teslaContentButton9" class="tesla-new-button">Tesla Зміст 9</button>
-          </div>
-        </div>
-
-
-        <div id="mainTeslaContent">
-          <div id="teslaContent1" class="hidden-content" style="display: block;">
-            <img class="tesla-page__image-general" src="img/tesla-page/tesla-general.png" alt="">
-            <div class="button-container__tesla-general-page">
-              <img id="toggleDoorButtonFL" class="tesla-page__image-door doorFl-tesla-page"
-                src="img/tesla-page/doorFL.png" alt="">
-              <img id="toggleDoorButtonFR" class="tesla-page__image-door doorFR-tesla-page"
-                src="img/tesla-page/doorFR.png" alt="">
-              <img id="toggleDoorButtonRL" class="tesla-page__image-door doorRl-tesla-page"
-                src="img/tesla-page/doorRL.png" alt="">
-              <img id="toggleDoorButtonRR" class="tesla-page__image-door doorRR-tesla-page"
-                src="img/tesla-page/doorRR.png" alt="">
-            </div>
-            <div class="tesla-page-trunk">
-              <p id="toggleDoorButtonHood" class="tesla-page-trunk__front">Front Trunk</p>
-              <p id="toggleDoorButtonLC" class="tesla-page-trunk__front trunk-back">Trunk</p>
-            </div>
-            <svg class="arc" width="200" height="100">
-              <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
-                stroke-dasharray="5, 5" />
-            </svg>
-            <svg class="arc2" width="200" height="100">
-              <path d="M 30 50 A 50 30 0 0 1 130 70" stroke="black" stroke-width="2" fill="transparent"
-                stroke-dasharray="5, 5" />
-            </svg>
-            <div class="brightness-control">
-              <div class="icon-container">
-                <img src="img/tesla-page/icon-sun.png" alt="Low Brightness" class="brightness-icon">
-              </div>
-              <div class="slider-container">
-                <div class="brightness-value">
-                  <span id="brightnessValue"></span>%
-                </div>
-                <div class="brightness-range">
-                  <input type="range" id="brightnessRange" min="0" max="100" value="28">
-                </div>
-              </div>
-              <button class="auto-button" id="autoButton">AUTO</button>
-            </div>
-          </div>
-
-
-          <div id="teslaContent2" class="hidden-content">
-            <img class="tesla-window__image" src="img/tesla-page/window-tesla.png" alt="Window Tesla Model X">
-            <div class="tesla-window__container">
-            </div>
-          </div>
-
-
-          <div id="teslaContent3" class="hidden-content">
-            <video class="video-wrapers" id="myVideoMovWrapers">
-              <source src="video/0000-0032.webm" type="video/webm">
-            </video>
-            <div class="tesla-wrapers__button">
-              <div id="buttonFirstModeWrapersOne" class="tesla-wrapers__button-ones"></div>
-              <div id="buttonFirstModeWrapers" class="tesla-wrapers__button-1st"></div>
-              <div id="buttonSecondModeWrapers" class="tesla-wrapers__button-2st"></div>
-              <div id="buttonThirdModeWrapers" class="tesla-wrapers__button-3st"></div>
-              <audio id="signalSound" src="mp3/signal-car.mp3"></audio>
-              <div class="tesla-wrapers__signal"></div>
-            </div>
-          </div>
-        </div>
-
-
-        <div id="teslaContent4" class="hidden-content">
-          <div class="suspension-container">
-          </div>
-        </div>
-      </div>
-
-
-      <div class="button__close-page-general tesla-page-icon-top__close" ontouchstart="startTouch(event)"
-        ontouchend="endTouch(event)" onclick="hideScreen()">
-        <div class="button__close-page"></div>
-      </div>
-    </div>
-
-
-
-    <div id="weatherScreen" class="new-screen hidden weather-page">
-      <div class="phone-frame__dark">
-        <div class="clock">
-          <div class="time" id="time-weather"></div>
-        </div>
-        <div class="phone-notch">
-          <div class="camera"></div>
-        </div>
-        <div class="iphone-battery">
-          <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-        </div>
-        <div class="iphone-wifi">
-          <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-        </div>
-        <div class="iphone-signal">
-          <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-        </div>
-      </div>
-      <div class="button-container__weather-general-page">
-        <div class="button-container__weather-page" id="weatherContainerPage"></div>
-      </div>
-      <div class="city-indicators__weather">
-        <hr class="city-weather__line" />
-        <button class="city-button__weather" data-city="Lviv"></button>
-        <button class="city-button__weather" data-city="Kyiv"></button>
-        <button class="city-button__weather" data-city="London"></button>
-        <button class="city-button__weather" data-city="New York"></button>
-        <button class="city-button__weather" data-city="Bangkok"></button>
-        <button class="city-button__weather" data-city="Paris"></button>
-        <button class="city-button__weather" data-city="Dubai"></button>
-        <button class="city-button__weather" data-city="Singapore"></button>
-        <button class="city-button__weather" data-city="Seoul"></button>
-        <button class="city-button__weather" data-city="Kuala Lumpur"></button>
-        <button class="city-button__weather" data-city="Tokyo"></button>
-        <button class="city-button__weather" data-city="Istanbul"></button>
-      </div>
-      <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
-        ontouchend="endTouch(event)" onclick="hideScreen()">
-        <div class="button__close-page"></div>
-      </div>
-    </div>
-
-
-    <div id="stockScreen" class="new-screen hidden stock-page">
-      <div class="phone-frame__dark">
-        <div class="clock">
-          <div class="time" id="time-stock"></div>
-        </div>
-        <div class="phone-notch">
-          <div class="camera"></div>
-        </div>
-        <div class="iphone-battery">
-          <img class="iphone-battery__image" src="img/battery.png" alt="Battery iPhone">
-        </div>
-        <div class="iphone-wifi">
-          <img class="iphone-wifi__image" src="img/wifi.png" alt="Wifi image">
-        </div>
-        <div class="iphone-signal">
-          <img class="iphone-signal__image" src="img/communication-signal.png" alt="Communication Signal">
-        </div>
-      </div>
-
-
-      <div class="button__close-page-general weather-page__close" ontouchstart="startTouch(event)"
-        ontouchend="endTouch(event)" onclick="hideScreen()">
-        <div class="button__close-page"></div>
-      </div>
-    </div>
-    <script type="module" src="./js/tesla/tesla.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/phone/start-phone.js"></script>
-    <script src="./js/phone/icon-page.js"></script>
+  </div>
+  <script type="module" src="./js/tesla/tesla.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/phone/start-phone.js"></script>
+  <script src="./js/phone/icon-page.js"></script>
 
 </body>
 

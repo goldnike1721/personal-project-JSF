@@ -182,6 +182,10 @@
     padding-top: 250px;
 }
 
+.button-container__general-three {
+    padding-top: 45px;
+}
+
 .button-container {
     display: flex;
     justify-content: center;
@@ -214,12 +218,25 @@
 .button-icon__github,
 .button-icon__vscode,
 .button-icon__google,
-.button-icon__diya,
+.button-icon__face-time,
 .button-icon__workua,
 .button-icon__phone,
 .button-icon__safari,
 .button-icon__messages,
-.button-icon__appleMusic {
+.button-icon__appleMusic,
+.button-icon__xcode,
+.button-icon__x,
+.button-icon__books,
+.button-icon__tv,
+.button-icon__ahouse,
+.button-icon__wallet,
+.button-icon__locator,
+.button-icon__watch,
+.button-icon__free-form,
+.button-icon__key-note,
+.button-icon__imovie,
+.button-icon__clips,
+.button-icon__pages {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -250,8 +267,8 @@
     background-image: url('../img/icons/google.webp');
 }
 
-.button-icon__diya {
-    background-image: url('../img/icons/diya.webp');
+.button-icon__face-time {
+    background-image: url('../img/icons/face-time.webp');
 }
 
 .button-icon__workua {
@@ -274,18 +291,85 @@
     background-image: url('../img/icons/appleMusic.webp');
 }
 
+.button-icon__xcode {
+    overflow: hidden;
+    transform: scale(1.25);
+    background-image: url('../img/icons/xcode.webp');
+}
+
+.button-icon__x {
+    background-image: url('../img/icons/X.webp');
+}
+
+.button-icon__books {
+    background-image: url('../img/icons/books.webp');
+}
+
+.button-icon__tv {
+    background-image: url('../img/icons/tv.webp');
+}
+
+.button-icon__ahouse {
+    background-image: url('../img/icons/ahouse.webp');
+}
+
+.button-icon__wallet {
+    background-image: url('../img/icons/wallet.webp');
+}
+
+.button-icon__locator {
+    background-image: url('../img/icons/locator.webp');
+}
+
+.button-icon__watch {
+    background-image: url('../img/icons/watch.webp');
+}
+
+.button-icon__free-form {
+    background-image: url('../img/icons/free-form.webp');
+}
+
+.button-icon__key-note {
+    background-image: url('../img/icons/keynote.webp');
+}
+
+.button-icon__imovie {
+    background-image: url('../img/icons/imovie.webp');
+}
+
+.button-icon__clips {
+    background-image: url('../img/icons/clips.webp');
+}
+
+.button-icon__pages {
+    background-image: url('../img/icons/pages.webp');
+}
+
 .button-icon__radio:hover,
 .button-icon__tesla:hover,
 .button-icon__discord:hover,
 .button-icon__github:hover,
 .button-icon__vscode:hover,
 .button-icon__google:hover,
-.button-icon__diya:hover,
+.button-icon__face-time:hover,
 .button-icon__workua:hover,
 .button-icon__phone:hover,
 .button-icon__safari:hover,
 .button-icon__messages:hover,
-.button-icon__appleMusic:hover {
+.button-icon__appleMusic:hover,
+.button-icon__xcode:hover,
+.button-icon__x:hover,
+.button-icon__books:hover,
+.button-icon__tv:hover,
+.button-icon__ahouse:hover,
+.button-icon__wallet:hover,
+.button-icon__locator:hover,
+.button-icon__watch:hover,
+.button-icon__free-form:hover,
+.button-icon__key-note:hover,
+.button-icon__imovie:hover,
+.button-icon__clips:hover,
+.button-icon__pages:hover {
     filter: brightness(.5);
 }
 

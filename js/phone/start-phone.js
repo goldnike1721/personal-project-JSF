@@ -18,3 +18,16 @@ function showScreen(screenId) {
         screen.classList.remove('hidden');
     }
 }
+
+const darkStart = document.querySelector('.phone-frame__dark-start');
+const darkContent = document.querySelector('.phone-frame__dark');
+
+darkStart.addEventListener('mouseenter', () => {
+    darkStart.style.backgroundImage = "url('../img/wallpaper.jpg')";
+    darkContent.style.display = 'block';
+});
+
+darkStart.addEventListener('mouseleave', () => {
+    darkStart.style.backgroundImage = 'none';
+    darkContent.style.display = 'none';
+});

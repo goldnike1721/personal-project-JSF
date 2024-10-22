@@ -136,37 +136,54 @@ loader.load('scene.gltf', (gltf) => {
     }
   });
 
-  const progressContainer = document.getElementById('progress-container');
-  const progressFill = document.getElementById('progress-fill');
-  const progressText = document.getElementById('progress-text');
-  const loadModel = new Promise((resolve, reject) => {
-    let xhr = { loaded: 0, total: 100 };
-    let interval = setInterval(() => {
-      if (xhr.loaded < xhr.total) {
-        xhr.loaded += 1;
-        const percentComplete = Math.round((xhr.loaded / xhr.total) * 100);
-        progressText.textContent = `Loading ${percentComplete}%`;
-        progressFill.style.width = `${percentComplete}%`;
-        console.log(`Loading progress: ${percentComplete}%`);
-      } else {
-        clearInterval(interval);
-        resolve();
+  function showConfirmationModal() {
+    const confirmationModal = document.getElementById('confirmation-modal');
+    confirmationModal.style.display = 'block';
+  }
+
+  showConfirmationModal();
+
+  document.getElementById('confirm-sound').addEventListener('click', () => {
+
+    const progressContainer = document.getElementById('progress-container');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const loadModel = new Promise((resolve, reject) => {
+      let xhr = { loaded: 0, total: 100 };
+      let interval = setInterval(() => {
+        if (xhr.loaded < xhr.total) {
+          xhr.loaded += 1;
+          const percentComplete = Math.round((xhr.loaded / xhr.total) * 100);
+          progressText.textContent = `Loading ${percentComplete}%`;
+          progressFill.style.width = `${percentComplete}%`;
+        } else {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 1);
+    });
+
+    loadModel.then(() => {
+      if (progressContainer) {
+        setTimeout(() => {
+          progressContainer.style.display = 'none';
+          startAnimations();
+          startCarSound.play();
+
+        }, 500);
       }
-    }, 30);
+    }).catch((error) => {
+      console.error('Error loading model:', error);
+      if (progressContainer) {
+        progressContainer.style.display = 'none';
+      }
+    });
+
+    document.getElementById('confirmation-modal').style.display = 'none';
   });
 
-  loadModel.then(() => {
-    if (progressContainer) {
-      setTimeout(() => {
-        progressContainer.style.display = 'none';
-        startAnimations();
-      }, 500);
-    }
-  }).catch((error) => {
-    console.error('Error loading model:', error);
-    if (progressContainer) {
-      progressContainer.style.display = 'none';
-    }
+  document.getElementById('cancel-sound').addEventListener('click', () => {
+    document.getElementById('confirmation-modal').style.display = 'none';
   });
 });
 
@@ -258,9 +275,14 @@ const closeSoundWindow = new THREE.Audio(listener);
 const suspensionSoundForward = new THREE.Audio(listener);
 const suspensionSoundReverse = new THREE.Audio(listener);
 const wrapersSound = new THREE.Audio(listener);
+const startCarSound = new THREE.Audio(listener);
+
 
 const audioLoader = new THREE.AudioLoader();
-
+audioLoader.load('mp3/start-car.mp3', function (buffer) {
+  startCarSound.setBuffer(buffer);
+  startCarSound.setVolume(1);
+});
 audioLoader.load('mp3/doorOpenFront.mp3', function (buffer) {
   openSoundFront.setBuffer(buffer);
   openSoundFront.setVolume(0.5);

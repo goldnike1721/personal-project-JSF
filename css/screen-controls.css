@@ -1,33 +1,93 @@
 .tesla-page__image-general {
-    margin-top: 150px;
-    transform: scale(0.6);
+    margin-top: 200px;
+    transform: scale(1.2);
 }
 
 .tesla-page__image-door {
     position: fixed;
-    width: 45px;
     cursor: pointer;
     z-index: 1111;
 }
 
 .doorRl-tesla-page {
-    margin-top: -200px;
-    margin-left: 20px;
+    width: 51px;
+    height: 51px;
+    margin-top: -215px;
+    margin-left: 25px;
 }
 
 .doorRR-tesla-page {
-    margin-top: -200px;
-    margin-left: 200px;
+    width: 47px;
+    height: 45px;
+    margin-top: -215px;
+    margin-left: 192px;
 }
 
 .doorFl-tesla-page {
     width: 47px;
-    height: 45px;
+    height: 42px;
     margin-left: 20px;
 }
 
 .doorFR-tesla-page {
+    width: 48px;
+    height: 40px;
     margin-left: 200px;
+}
+
+.tesla-controls__name-doorFL,
+.tesla-controls__name-doorFR {
+    position: fixed;
+    margin-top: 55px;
+    font-size: 13px;
+}
+
+.tesla-controls__name-doorFL {
+    margin-left: 29px;
+}
+
+.tesla-controls__name-doorFR {
+    margin-left: 195px;
+}
+
+.tesla-controls__circleFL,
+.tesla-controls__circleFR {
+    z-index: -11;
+    width: 55px;
+    height: 55px;
+    position: fixed;
+    background-color: #d5d2d2;
+    border-radius: 50%;
+    margin-top: -9px;
+    border: 1px solid rgb(160, 160, 160);
+}
+
+.tesla-controls__circleFL {
+    margin-left: 18px;
+}
+
+.tesla-controls__circleFR {
+    margin-left: 195px;
+}
+
+.tesla-controls__circleRL,
+.tesla-controls__circleRR {
+    z-index: -11;
+    width: 65px;
+    height: 65px;
+    position: fixed;
+    background-color: #d5d2d2;
+    border-radius: 50%;
+    margin-top: -225px;
+    border: 1px solid rgb(160, 160, 160);
+}
+
+.tesla-controls__circleRL {
+    margin-left: 181px;
+}
+
+.tesla-controls__circleRR {
+    margin-left: 19px;
 }
 
 .tesla-page__image-door {
@@ -53,7 +113,7 @@
 }
 
 .trunk-back {
-    margin-top: 40px;
+    margin-top: 25px;
 }
 
 .tesla-page-trunk__front {
@@ -66,10 +126,10 @@
 }
 
 .arc {
-    transform: rotate(97deg);
+    transform: rotate(90deg);
     transform-origin: center;
     position: fixed;
-    margin-top: -239px;
+    margin-top: -215px;
     margin-left: 130px;
 }
 
@@ -77,8 +137,8 @@
     transform: rotateY(0deg) rotateX(180deg) rotateZ(-90deg);
     transform-origin: center;
     position: fixed;
-    margin-top: -239px;
-    margin-left: -56px;
+    margin-top: -215px;
+    margin-left: -65px;
 }
 
 .brightness-control {
@@ -89,7 +149,7 @@
     padding: 10px;
     border-radius: 10px;
     width: 225.72px;
-    margin: 20px 0 0 20px;
+    margin: 30px 0 0 20px;
 }
 
 .brightness-icon {

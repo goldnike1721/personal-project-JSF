@@ -1,0 +1,143 @@
+.radio-container {
+    position: absolute;
+    z-index: 111;
+    margin-top: 100px;
+    width: 265.72px;
+}
+
+.tesla-radio__button {
+    position: absolute;
+    z-index: 111;
+}
+
+.radio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.station-image-wrapper {
+    margin-top: 40px;
+    max-height: 250px;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 45px;
+    border-radius: 30px;
+}
+
+.station-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.station-image {
+    max-height: 235px;
+    min-height: 235px;
+    min-width: 215.72px;
+    max-width: 215.72px;
+    border-radius: 30px;
+    transition: filter 0.5s ease;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.station-image-wrapper:hover .station-image {
+    filter: grayscale(100%) brightness(20%);
+}
+
+.play-button {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: url('../img/radio/play-icon.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.8;
+    filter: brightness(0) invert(1);
+}
+
+.play-button:hover {
+    opacity: 1;
+}
+
+.audio-wrapper {
+    display: none;
+}
+
+.station-image-wrapper {
+    position: relative;
+}
+
+.play-button {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+}
+
+.station-image-wrapper:hover .play-button {
+    display: block;
+}
+
+.radio-button__container button {
+    background-color: white;
+    border: none;
+    color: #333;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+}
+
+.radio-button__container button:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.radio-button__container button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+#prevStation,
+#nextStation {
+    position: fixed;
+    margin-top: -190px;
+    border: 1px solid #333333;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+#prevStation {
+    margin-left: -122px;
+}
+
+#nextStation {
+    margin-left: 97px;
+}
+
+.tesla-radio__buttons {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.167);
+    padding: 7px 0;
+    width: 215.3px;
+    border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;
+    border: 2px solid #333333;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 17px;
+    font-family: var(--font-family-text);
+    font-weight: 600;
+}

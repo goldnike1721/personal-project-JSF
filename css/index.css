@@ -12,3 +12,13 @@
 @import "weather-general.css";
 @import "stock.css";
 @import "stock-general.css";
+@import "screen-radio.css";
+
+
+@media (min-width: 1024px) {
+    .general-project {
+        transform: scale(1.5);
+        /* max-width: 1200px; */
+        /* margin: 0 auto; */
+    }
+}
