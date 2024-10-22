@@ -1,12 +1,12 @@
 [
     {
         "name": "Lux FM",
-        "url": "http://icecast.luxnet.ua/luxlviv",
+        "url": "https://icecast.luxnet.ua/luxlviv",
         "image": "./img/radio/lux-fm.webp"
     },
     {
         "name": "MAXIMUM",
-        "url": "http://icecast.luxnet.ua/maximum",
+        "url": "https://icecast.luxnet.ua/maximum",
         "image": "./img/radio/maximum.webp"
     },
     {
@@ -16,7 +16,7 @@
     },
     {
         "name": "Ukrainian Radio",
-        "url": "http://radio.ukr.radio:8000/ur1-mp3",
+        "url": "https://radio.ukr.radio:8000/ur1-mp3",
         "image": "./img/radio/ukrainian-radio.png"
     },
     {
@@ -36,7 +36,7 @@
     },
     {
         "name": "Europa Plus",
-        "url": "http://217.20.173.105:8100/live",
+        "url": "https://217.20.173.105:8100/live",
         "image": "./img/radio/europa-plus.png"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
         "name": "Radio Nostalgie",
-        "url": "http://icecastlv.luxnet.ua:8000/nostalgie",
+        "url": "https://icecastlv.luxnet.ua:8000/nostalgie",
         "image": "./img/radio/radio-nostalgie.png"
     }
 ]

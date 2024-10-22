@@ -64,7 +64,7 @@ async function fetchWeather() {
                         <p class="weather-day">${weekDays[dayIndex]}</p>
                     </div>
                     <div class="weather-top__container-right">
-                        <img class="weather-icon" src="http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png" alt="${currentWeatherDescription}">    
+                        <img class="weather-icon" src="https://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png" alt="${currentWeatherDescription}">    
                     </div>
                 </div>
                 <div class="current-weather">
@@ -97,7 +97,7 @@ async function fetchWeather() {
                 hourlyForecast += `
                     <li class="hour-item">
                         <p class="weather-hour__item">${hourTime.toString().padStart(2, '0')}</p>
-                        <img class="weather-hour__item-icon" src="http://openweathermap.org/img/wn/${hourWeatherIcon}@2x.png" alt="${hour.weather[0].description}">
+                        <img class="weather-hour__item-icon" src="https://openweathermap.org/img/wn/${hourWeatherIcon}@2x.png" alt="${hour.weather[0].description}">
                         <p class="weather-hour__item-temp">${hourTemp}°</p>
                     </li>
                 `;

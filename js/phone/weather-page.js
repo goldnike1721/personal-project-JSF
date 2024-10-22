@@ -98,7 +98,7 @@ async function fetchWeatherGeneral(city) {
             hourlyForecastGeneral += `
         <li class="hourly-forecast-item">
             <p class="hour-item__page">${hourTimeGeneral.toString().padStart(2, '0')}</p>
-            <img class="hour-item-icon" src="http://openweathermap.org/img/wn/${hourWeatherIconGeneral}@2x.png" alt="${hour.weather[0].description}">
+            <img class="hour-item-icon" src="https://openweathermap.org/img/wn/${hourWeatherIconGeneral}@2x.png" alt="${hour.weather[0].description}">
             <p class="hour-item-temp">${hourTempGeneral}°</p>
         </li>
     `;
@@ -168,7 +168,7 @@ async function fetchWeatherGeneral(city) {
             <div class="day-item__block">
                 <p class="day-name__week">${dayDisplay}</p>
                 <div class="day-item__block-image">
-                    <img class="day-weather-icon" src="http://openweathermap.org/img/wn/${weatherData.icon}@2x.png" alt="${dayDisplay} weather">
+                    <img class="day-weather-icon" src="https://openweathermap.org/img/wn/${weatherData.icon}@2x.png" alt="${dayDisplay} weather">
                 </div>
                 <p class="day-temp__min">${minTempDisplay}</p>
                 <p class="day-temp__max">${maxTempDisplay}</p>

@@ -32,12 +32,12 @@ const clearanceRangeContainer = document.querySelector('.clearance-range');
 const stopLines = [];
 
 fetch('./api/suspension-tesla.json')
-    .then(response => response.json())
-    .then(data => {
-        data.clearanceControl.stops.forEach((item, index) => {
-            const stopLineDiv = document.createElement('div');
-            stopLineDiv.className = `stop-line-${index + 1} stop-lines`;
-            stopLineDiv.innerHTML = `
+  .then(response => response.json())
+  .then(data => {
+    data.clearanceControl.stops.forEach((item, index) => {
+      const stopLineDiv = document.createElement('div');
+      stopLineDiv.className = `stop-line-${index + 1} stop-lines`;
+      stopLineDiv.innerHTML = `
           <span class="label-text">${item.label}</span>
           <span class="label-text__bottom">${item.height}</span>
           <span class="label-text__bottom-new">
@@ -45,37 +45,46 @@ fetch('./api/suspension-tesla.json')
             ${item.keep}
           </span>
         `;
-            clearanceRangeContainer.appendChild(stopLineDiv);
-            stopLines.push(stopLineDiv);
-        });
-
-        updateLabels();
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
+      clearanceRangeContainer.appendChild(stopLineDiv);
+      stopLines.push(stopLineDiv);
     });
+
+    updateLabels();
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
 
 function updateLabels() {
-    const currentValue = rangeInput.value;
+  const currentValue = rangeInput.value;
 
-    stopLines.forEach((stopLine) => {
-        const bottomText = stopLine.querySelector('.label-text__bottom');
-        const newText = stopLine.querySelector('.label-text__bottom-new');
-        bottomText.style.display = 'inline';
-        newText.style.display = 'none';
-    });
+  stopLines.forEach((stopLine) => {
+    const bottomText = stopLine.querySelector('.label-text__bottom');
+    const newText = stopLine.querySelector('.label-text__bottom-new');
+    if (bottomText && newText) {
+      bottomText.style.display = 'inline';
+      newText.style.display = 'none';
+    }
+  });
 
-    const currentStopLine = stopLines[stopLines.length - currentValue];
+  const currentStopLine = stopLines[stopLines.length - currentValue];
+  if (currentStopLine) {
     const bottomText = currentStopLine.querySelector('.label-text__bottom');
     const newText = currentStopLine.querySelector('.label-text__bottom-new');
-    bottomText.style.display = 'none';
-    newText.style.display = 'inline';
+    if (bottomText && newText) {
+      bottomText.style.display = 'none';
+      newText.style.display = 'inline';
+    }
+  }
 }
 
 rangeInput.addEventListener('input', updateLabels);
 
 window.addEventListener('DOMContentLoaded', () => {
-    rangeInput.value = 2;
-    updateLabels();
+  rangeInput.value = 2;
+  updateLabels();
+
+  if (clearanceValueElement) {
     clearanceValueElement.style.display = 'none';
+  }
 });
