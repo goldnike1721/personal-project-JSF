@@ -29,8 +29,11 @@ darkStart.addEventListener('mouseenter', () => {
 
 darkStart.addEventListener('mouseleave', () => {
     darkStart.classList.remove('show-image'); // Видаляємо клас для повернення до чорного фону
-    darkContent.style.display = 'none'; // Приховуємо контент
+    setTimeout(() => {
+        darkContent.style.display = 'none'; // Приховуємо контент з затримкою
+    }, 300); // Затримка для плавності (можете змінити на бажану тривалість)
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
